@@ -1,0 +1,130 @@
+messages:
+  arena:
+
+    #Available Placeholders: <name> - name of Player in action
+    #                        <current_players> - (Integer) Displays count of players in Arena
+    #                        <players> - (Integer) Displays players in Arena now.
+
+    on-join: '&7<name> &ejoined the game (&b<current_players>&e/&b<players>&e)'
+    on-leave: '&7<name> &eleft the game! (&b<current_players>&e/&b<players>&e)'
+    #Special information for describing the game.
+    info-miner-ware:
+      hard-mode: '&c&lhard'
+      normal-mode: '&a&lnormal'
+      info-message:
+        - ''
+        - '&eSelected <mode>&e difficulty!'
+        - ''
+      first-title: '&6Minerware'
+      first-subtitle: '&9by Gr_Code'
+      second-title: '&6Follow the instructions'
+      second-subtitle: '&9Win the most micro-games'
+
+    on-start:
+      #Title on starting arena.
+      title-show: false
+      title: '&aStarted'
+      #Messages when arena starts.
+      message-show: false
+      message: '&aGame has started!'
+
+    on-change-game:
+      #Title on changing game.
+      title-show: false
+      title: '&aNew game!'
+      #Message when new game starts.
+      message-show: false
+      message: '&aNew Game has started!'
+
+    on-failed-start:
+      #Title on failed starting arena.
+      title-show: true
+      title: '&cWaiting for more players...'
+      #Message on failed starting arena.
+      message-show: true
+      message: '&cWaiting players to start...'
+
+    on-failed-change:
+      #Title on failed changing game.
+      title-show: true
+      title: '&cCould not continue game with <current_players> players!'
+      #Message on failed changing game also used in forced stopping the arena.
+      message-show: true
+      message: '&cGame was finished with <current_players> players!'
+
+    on-countdown:
+      title-show: true
+      #Message when arena starts countdown state.
+      message-show: true
+      message: '&eGame is starting in <seconds>'
+
+placeholders:
+  waiting-players: '&cWaiting for more players...'
+  starting-in: '&eStarting in <seconds>'
+  game: '&c<current>&7/&c15 &e<game_name>'
+  in-between: '&c<current>&7/&c15 &7In-between'
+  finished: '&cGame OVER'
+
+#Available Placeholders for waiting-scoreboard: <arena_name> - name of Arena
+#                        <current_players> - (Integer) Displays count of players in Arena
+#                        <players> - (Integer) Displays players in Arena now.
+#                        <event> - (String from place-holders) Displays name of event in Arena now.
+
+waiting-scoreboard:
+  title: '&e&lMinerWare'
+  list:
+   - ' '
+   - '&7Map: &c<arena_name>'
+   - ' '
+   - '<event>'
+   - ' '
+   - '&7Players: &e<current_players>/<players>'
+   - ' '
+   - '&ewww.SpigotMC.org'
+
+#Available Placeholders for gaming-scoreboard: <arena_name> - name of Arena
+#                        <current_players> - (Integer) Displays count of players in Arena
+#                        <players> - (Integer) Displays players in Arena now.
+#                        <points> - (Integer) Displays points of player in arena
+#                        <game> - (String from place-holders) Displays current game.
+
+game-scoreboard:
+  title: '&e&lMinerWare'
+  leader-format: '&7<name> : &c<points>'
+  list:
+  - ' '
+  - '&7Map: &c<arena_name>'
+  - ' '
+  - '&7Your points : &c<points>'
+  - ' '
+  - '&7<game>'
+  - ' '
+  - '&ewww.SpigotMC.org'
+
+#Available Placeholders for finished arena:
+#                          <N_place> - PlaceHolder to display list or name of awarded players.
+#                          <N_points> - (Integer) Displays points of awarded players.
+
+game-finished:
+  enable-win-effects: true
+  lobby-location:
+  winner:
+    title: '&6&lWINNER!'
+    commands:
+    - 'give <name> chest 1'
+  2-place:
+    commands:
+      - 'give <name> chest 2'
+  3-place:
+    commands:
+      - 'give <name> chest 3'
+  title: '&c&lGAME OVER!'
+  list:
+  - '&8----------------------------------------------'
+  - '<center>&e&lMinerWare'
+  - ''
+  - '&61st &7<1_place> &awith &6<1_points> &apoints!'
+  - '&62nd &7<2_place> &awith &6<2_points> &apoints!'
+  - '&63rd &7<3_place> &awith &6<3_points> &apoints!'
+  - '&8----------------------------------------------'
+

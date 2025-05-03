@@ -1,0 +1,18 @@
+# BungeeCord for MinerWare
+enabled: false
+# Your server, where players will be teleported after each game.
+hub: lobby
+# Game server, enter your server name here.
+server: game
+# Customizable stages for server description and signs.
+game-stage:
+  waiting: '&aWaiting'
+  playing: '&4Playing'
+  starting: '&cStarting'
+  new_game_starting: '&4Playing'
+  finished: '&5Finished'
+
+socket:
+  enabled: false
+  ip: localhost
+  port: 25565

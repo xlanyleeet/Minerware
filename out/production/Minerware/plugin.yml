@@ -1,0 +1,8 @@
+name: MinerWare
+main: org.gr_code.minerware.MinerPlugin
+version: 2.6.9
+api-version: 1.13
+author: Gr_Code
+description: Minerware plugin made by Gr_Code
+load: POSTWORLD
+softdepend: [PlaceholderAPI]

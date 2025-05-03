@@ -1,0 +1,124 @@
+sign:
+  format:
+    title: '&8[&e&lMiner&6&lWare&8]'
+  locations:
+  random-join:
+    line-1: '&cClick to join!'
+database:
+  enabled: false
+  host: localhost
+  port: 3306
+  database: minerware
+  user: root
+  password: password
+  table: minerware_data
+leave-item:
+  material: 'FEATHER'
+  glowing: true
+  unbreakable: true
+  name: '&c&lReturn to the lobby. &7(Right click)'
+vote-item:
+  material: 'COMPASS'
+  glowing: false
+  unbreakable: true
+  name: '&7Click to open the voting'
+holograms:
+  format:
+    - '&8--------------------------'
+    - '&e&lMiner&6&lWare &astats for &c<name>'
+    - '&aGames played: &c<games_played>'
+    - '&aTotal Wins: &c<wins>'
+    - '&aYour points record: &c<max_points>'
+    - '&aProgress: &c<level> <level_bar> &c<percentage>%'
+    - '&aYour exp: &c<exp>'
+    - '&aCurrently playing: &c<online>'
+    - '&8--------------------------'
+  locations:
+leaderboards:
+  format: '&e<place>. &7<name> - &6<points>'
+  title:
+    wins: '&b&lTop Wins'
+    max_points: '&b&lTop Points'
+    level: '&b&lTop Level'
+    exp: '&b&lTop EXP'
+    games_played: '&b&lTop Games'
+  locations:
+win:
+  message: '&6+75 EXP for getting the first place! Good luck!'
+  exp: 75
+lose:
+  message: '&6+10 EXP for playing minerware on the server!'
+  exp: 50
+voting:
+  size: 27
+  name: 'Voting'
+  enabled: true
+  revoting: true
+  items:
+    normal:
+      slot: 11
+      material: WATER_BUCKET
+      glowing: false
+      name: '&a&lNormal &7Mode'
+      lore:
+        - ''
+        - '&7That is the default mode'
+        - '&7most of games are not so hard'
+        - '&7to complete and win.'
+        - ''
+        - '&7Votes: &c<normal>'
+        - ''
+        - '&eClick to vote'
+      action: VOTE_NORMAL
+    hard:
+      slot: 15
+      material: LAVA_BUCKET
+      glowing: false
+      name: '&c&lHard &7Mode'
+      lore:
+        - ''
+        - '&7All games are much harder'
+        - '&7than usual, you have'
+        - '&7less time to complete a game'
+        - ''
+        - '&7Votes: &c<hard>'
+        - ''
+        - '&eClick to vote'
+      action: VOTE_HARD
+    quit:
+      slot: 22
+      material: BOOK
+      glowing: true
+      name: '&cClose the voting'
+      lore:
+        - ''
+        - '&7Find more information'
+        - '&7about the game!'
+        - ''
+        - '&eClick to close'
+      action: CLOSE
+level-bar:
+  symbol: '■'
+  code-a: '&b'
+  code-b: '&8'
+server-tick: 1000
+lobby-scoreboard:
+  enabled: false
+  title: '&e&lMinerWare'
+  list:
+    - ' '
+    - '&fName: &a%player_name%'
+    - '&fOnline players: &a%server_online%'
+    - ' '
+    - '&fLevel: &b%minerware_level% &e⭐'
+    - '&b%minerware_level_bar% &b%minerware_percentage%%'
+    - '&fWins: &a%minerware_wins%'
+    - '&fPoints Record: &A%minerware_max_points%'
+    - '&fExperience: &a%minerware_exp%'
+    - ' '
+    - '&ewww.spigotmc.org'
+chat-handler:
+  game: true
+  game-format: '&7<name>: <message>'
+  global: true
+  global-format: '&f<name>: <message>'

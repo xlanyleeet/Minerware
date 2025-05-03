@@ -1,0 +1,1728 @@
+#Options to change game messages.
+#Almost every microgame has a timer, you can turn it on or off.
+#There are three timers to choose from.
+#First timer - the player's level is the seconds remaining until the end of the game.
+#Second timer - the bar of experience will decrease depending on the remaining time.
+#Third timer - the bar of experience and level. First timer + Second timer
+#To select the first timer, set the "type" variable to 'level'
+#To select the second timer, set the "type" variable to 'experience'
+#To select the third timer, set the "type" variable to 'mix'
+  question-game:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Question-game!
+    messages:
+      name: 'Question'
+      on-lose: '&cFailed! You answered incorrectly! You did not guess right!'
+      on-win: '&aSuccessful! You guessed right with the answer of your goal!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players guessed the answer to their question!'
+        winners: '&aOnly &6<list_winners>&a guessed the answer!'
+        one-winner: '&aOnly &6<winner>&a guessed the answer to their question!'
+        all-won: '&aEveryone guessed the correct answer to their question!'
+        all-lost: '&cNobody guessed the answer to their question!'
+      answ-to-question: '&6You answered like this: &e<answer>&6. To the question: &e<question>'
+      didnt-answer: '&cYou did not have time to answer! We need to answer faster!'
+      end-message:
+        - ''
+        - '&e&lQuestion Game'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      task: '&9Answer all question correctly!'
+    
+    questions:
+      #Question Builder. Create your own ideas.
+      mine:
+        first_question_msg: '&eAre you in Minecraft?'
+        first_question_tle: '&eAre you in Minecraft?'
+        second_question_msg: '&6<nick>&e in Minecraft?'
+        second_question_tle: '&6<nick>&e in Minecraft?'
+        material_first_block: 'GREEN_WOOL'
+        material_second_block: 'RED_WOOL'
+        name_first_block: '&aYES'
+        name_second_block: '&cNO'
+      pro:
+        first_question_msg: '&eAre you pro?'
+        first_question_tle: '&eAre you pro?'
+        second_question_msg: '&6<nick>&e is pro?'
+        second_question_tle: '&6<nick>&e is pro?'
+        material_first_block: 'GREEN_WOOL'
+        material_second_block: 'RED_WOOL'
+        name_first_block: '&aYES'
+        name_second_block: '&cNO'
+      noob:
+        first_question_msg: '&eAre you noob?'
+        first_question_tle: '&eAre you noob?'
+        second_question_msg: '&6<nick>&e is noob?'
+        second_question_tle: '&6<nick>&e is noob?'
+        material_first_block: 'GREEN_WOOL'
+        material_second_block: 'RED_WOOL'
+        name_first_block: '&aYES'
+        name_second_block: '&cNO'
+        
+  answer-the-question:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Answer-the-Question!
+    messages:
+      name: 'Quest'
+      on-lose: '&cFailed! You answered incorrectly! You did not guess right!'
+      on-win: '&aSuccessful! You guessed right with the answer of your goal!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players answered their own question correctly!'
+        winners: '&aOnly &6<list_winners>&a answered the question correctly!'
+        one-winner: '&aOnly &6<winner>&a answered their question correctly!'
+        all-won: '&aEveryone answered their question correctly!'
+        all-lost: '&cNobody answered their question correctly!'
+      answ-to-question: '&6You answered like this: &e<answer>&6. To the question: &e<question>'
+      didnt-answer: '&cYou did not have time to answer! We need to answer faster!'
+      achievement: '&6<name>&a answered the question in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lAnswer the Question'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      task: '&9You will have to answer your question!'
+    
+    questions:
+      #Question Builder. Create your own ideas.
+      mine:
+        question_msg: '&eAre you in Minecraft?'
+        question_tle: '&eAre you in Minecraft?'
+        material_right_block: 'GREEN_WOOL'
+        material_wrong_block: 'RED_WOOL'
+        name_right_block: '&aYES'
+        name_wrong_block: '&cNO'
+      wiki:
+        question_msg: '&eWhen was Minecraft written?'
+        question_tle: '&eWhen was Minecraft written?'
+        material_right_block: 'STONE'
+        material_wrong_block: 'ANDESITE'
+        name_right_block: '&a2009'
+        name_wrong_block: '&a2008'
+      alex:
+        question_msg: '&eIs &6Alex&e a &bman&e or a &cgirl&e?'
+        question_tle: '&eIs &6Alex&e a &bman&e or a &cgirl&e?'
+        material_right_block: 'PINK_WOOL'
+        material_wrong_block: 'BLUE_WOOL'
+        name_right_block: '&cGirl'
+        name_wrong_block: '&bMan'
+
+  chest-pvp:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Chest-PvP!
+    messages:
+      name: 'Chest PvP'
+      on-lose: '&cFailed! You were killed!'
+      on-win: '&aSuccessful! You are very good at PvP!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players survived!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cNo one managed to win!'
+      achievement: '&6<name>&a killed &6<count>&a players!'
+      end-message:
+        - ''
+        - '&e&lChest PvP'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Loot chests and kill all!'
+
+  catch-emeralds:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Catch Emeralds!
+    messages:
+      name: 'Emeralds'
+      on-lose: '&cFailed! You did not manage to collect enough emeralds!'
+      on-win: '&aSuccessful! You completed the game!'
+      plus-emerald: '&aYou have &6<emeralds>&a emeralds!'
+      collected-four-emeralds: '&aYou have collected &64&a emeralds, that is enough to win!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players collected enough!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won this round! Congratulations!'
+        all-lost: '&cAll players did not manage to win this game!'
+      achievement: '&6<name>&a collected &6<count>&a emeralds!'
+      end-message:
+        - ''
+        - '&e&lCatch Emeralds'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Collect all emeralds!'
+
+  block-party:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Block Party!
+    messages:
+      name: 'Block party'
+      on-lose: '&cFailed! You did not manage to stand on correct block!'
+      on-win: '&aSuccessful! You completed the game!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players were good!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won this round! Congratulations!'
+        all-lost: '&cAll players did not manage to find correct blocks!'
+      achievement: '&6<name>&a was standing on <block>&a for &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lBlock Party'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Stand on the <block>&9 block!'
+
+    #Block Builder for Random Floor!
+    blocks:
+      - 'RED_WOOL:&cred wool'
+      - 'WHITE_WOOL:&fwhite wool'
+      - 'PINK_WOOL:&dpink wool'
+      - 'ORANGE_WOOL:&6orange wool'
+      - 'MAGENTA_WOOL:&5magenta wool'
+      - 'BLUE_WOOL:&1blue wool'
+      - 'YELLOW_WOOL:&eyellow wool'
+      - 'LIME_WOOL:&alime wool'
+      - 'GRAY_WOOL:&7gray wool'
+
+  ride-cow:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Ride a Cow!
+    messages:
+      name: 'Ride a cow'
+      on-lose: '&cFailed! You fell into the void and died!'
+      on-win: '&aSuccessful! You got on the cow!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players have ridden the cow!'
+        one-winner: '&aOnly &6<winner> &agot on the cow!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cAll players did not manage to win this game!'
+      achievement: '&6<name>&a was sitting on a cow for &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lRide a Cow'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Get on the cow!'
+
+  dont-move-game:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Don't move game!
+    messages:
+      name: 'Do not move'
+      on-lose: '&cFailed! You moved!'
+      on-win: '&aSuccessful! You could stand and not move!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a out of &6<players>&a players did not move!'
+        winners: '&6<list_winners>&a - well done, only they could not move!'
+        one-winner: '&aOnly &6<winner>&a could not move!'
+        all-won: '&aIt was not difficult for all players not to move!'
+        all-lost: '&cAll the players could not just move!'
+      end-message:
+        - ''
+        - '&e&lDo not move'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6STOP!'
+      task: '&9Do not move! Just stay!'
+
+  drop-item-game:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Drop Item game!
+    messages:
+      name: 'Drop item'
+      on-lose: '&cFailed! You have not drop away the right item!'
+      on-win: '&aSuccessful! You drop away the right item.'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players dropped a correct item!'
+        winners: '&aOnly &6<list_winners>&a threw out the correct item!'
+        one-winner: '&aOnly &6<winner>&a threw the correct item!'
+        all-won: '&aEveryone threw the correct item and everyone won!'
+        all-lost: '&cNobody threw the correct item!'
+      achievement: '&6<name>&a has dropped <item> in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lDrop Item'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Drop: &6<item>&9!'
+
+    #Item Builder for Challenges!
+    items:
+      - 'DIRT:dirt'
+      - 'ANDESITE:andesite'
+      - 'DIORITE:diorite'
+      - 'GRANITE:granite'
+      - 'GLASS:glass'
+      - 'COBBLESTONE:cobblestone'
+      - 'GRAVEL:gravel'
+      - 'ICE:ice'
+      - 'DIAMOND_BLOCK:diamond block'
+      - 'LAPIS_BLOCK:lapis block'
+      - 'GOLD_BLOCK:gold block'
+      - 'IRON_BLOCK:iron block'
+      - 'SNOW:snow'
+      - 'EMERALD_BLOCK:emerald block'
+      - 'HAY_BLOCK:hay block'
+      - 'GLOWSTONE:qlowstone'
+      - 'OBSIDIAN:obsidian'
+      - 'STONE:stone'
+
+  explosion-tnt-game:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Explosions-game!
+    messages:
+      name: 'Explosions'
+      on-lose: '&cFailed! You got caught in the rain from TNT!'
+      on-win: '&aSuccessful! You did not get caught in the rain from TNT, Well done!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a out of &6<players>&a 5 players did not explode and survived!'
+        winners: '&aOnly &6<list_winners>&a survived and won the TNT explosion!'
+        one-winner: '&aOnly &6<winner>&a survived and won the TNT explosion!'
+        all-won: '&aNobody got hit by dynamite explosion! And everyone won!'
+        all-lost: '&cEveryone got hit by TNT explosion and lost!'
+      end-message:
+        - ''
+        - '&e&lExplosions TNT'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Trust from TNT!'
+
+  explosive-bow-fight:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Explosive bow fight!
+    messages:
+      name: 'Bow fight'
+      on-lose: '&cFailed! You were thrown off!'
+      on-win: '&aSuccessful! You survived!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players survived!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cNo one managed to win!'
+      achievement: '&6<name>&a shot &6<count>&a arrows!'
+      end-message:
+        - ''
+        - '&e&lExplosive Bow Fight'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9You need to survive and shoot arrows!'
+
+  falling-anvils:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Falling Anvils!
+    messages:
+      name: 'Falling anvils'
+      on-lose: '&cFailed! You were killed by anvil!'
+      on-win: '&aSuccessful! You managed to win this round!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players survived!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cAll players lost the micro-game!'
+      achievement: '&6<count>&a anvils shattered on the floor!'
+      end-message:
+        - ''
+        - '&e&lFalling Anvils'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Do not be damaged by Anvils!'
+
+  feed-animals:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Feed Animals!
+    messages:
+      name: 'Feed animals'
+      plus-animal: '&aYou fed &6<countAnimals>&7 animals!'
+      fed-eight-animals: '&aYou fed 8 animals, that is enough to win!'
+      on-lose: '&cFailed! You did not manage to feed 8 animals :('
+      on-win: '&aSuccessful! You won this micro-game!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players gave food to animals!'
+        one-winner: '&aOnly &6<winner> &afed animals!'
+        all-won: '&aEveryone gave animals food! Great!'
+        all-lost: '&cAll players did not manage to win this game!'
+      achievement: '&6<name>&a fed &6<count>&a animals!'
+      end-message:
+        - ''
+        - '&e&lFeed Animals'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Feed at least 8 animals!'
+
+  shear-sheep:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Shear Sheep!
+    messages:
+      name: 'Shear sheeps'
+      plus-sheep: '&aYou have sheared &6<countSheep>&a sheep.'
+      sheared-eight-sheep: '&aYou have sheared&6 8 &asheep, this is enough to win!'
+      on-lose: '&cFailed! You did not manage to shear 8 animals!'
+      on-win: '&aSuccessful! You won this micro-game!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these sheared sheep!'
+        one-winner: '&aOnly &6<winner> &asheared sheep!'
+        all-won: '&aEveryone won this round! Congratulations!'
+        all-lost: '&cAll players did not manage to win this game!'
+      achievement: '&6<name>&a has sheared &6<count>&a sheep!'
+      end-message:
+        - ''
+        - '&e&lShear Sheep'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Shear at least 8 sheep!'
+
+
+  fly-fly-and-fly:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for FlyFlyAndFly!
+    messages:
+      name: 'Fly and fly'
+      on-lose: '&cFailed! You can do it next time!'
+      on-win: '&aSuccessful! Well done, you did the job!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players flew to the platform!'
+        winners: '&6<list_winners>&a - these players won!'
+        one-winner: '&aOnly &6<winner> &aflew to the platform and did not fall!'
+        all-won: '&aWow! All players were able to fly to the platform!'
+        all-lost: '&cNobody flew to the platform, everyone lost!'
+      achievement: '&6<name>&a flew to the golden blocks in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lFly fly and fly'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Interact with emeralds and fly to golden blocks!'
+
+  land-on-the-floor:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Land on the floor!
+    messages:
+      name: 'Land on the floor'
+      on-lose: '&cFailed! You did not manage to land!'
+      on-win: '&aSuccessful! You landed!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players won the round!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cNo one managed to win!'
+      achievement: '&6<name>&a landed on the floor in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lLand on the floor'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9You need to land on the floor!'
+
+  hot-potato:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Hot Potato!
+    messages:
+      name: 'Hot potato'
+      on-lose: '&cFailed! You did not manage to avoid hot potato.'
+      on-win: '&aSuccessful! You won this micro-game!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players stacked blocks!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won this round! Congratulations!'
+        all-lost: '&cAll players did not manage to win this game!'
+      achievement: '&6<name>&a have been running with Hot Potato for &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lAvoid the hot Potato'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Avoid the hot potato!'
+
+  the-frozen-floor:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for The Frozen Floor!
+    messages:
+      name: 'the frozen floor'
+      on-lose: '&cYou failed by touching the water with your legs!'
+      on-win: '&aSuccessful! You were able to live on thin ice!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a did not fall through the ice!'
+        winners: '&6<list_winners>&a - these players played are the best at this micro-game!'
+        one-winner: '&aOnly &6<winner>&a was able to hold out on thin ice!'
+        all-won: '&aEveryone won and managed not to fall under the ice!'
+        all-lost: '&cEveryone lost and fell through the ice!'
+      achievement: '&6<count>&a ice blocks melted and turned into water!'
+      end-message:
+        - ''
+        - '&e&lThe Frozen Floor'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Do not get into the water!'
+
+  lava-floor-game:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Lava-Floor-game!
+    messages:
+      name: 'The floor is lava'
+      on-lose: '&cYou failed by being burned in the lava!'
+      on-win: '&aSuccessful! You are very cold person!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players left alive!'
+        winners: '&aOnly &6<list_winners>&a did not drown on lava!'
+        one-winner: '&aEveryone drowned in lava except for &6<winner>&a!'
+        all-won: '&aAll players did not burn their heels!'
+        all-lost: '&cAll players burned in the lava! No one was able to complete the micro-game!'
+      achievement: '&6<count>&a blocks burned and were turned into lava!'
+      end-message:
+        - ''
+        - '&e&lThe Lava Floor'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Do not get into the lava!'
+
+  ignite-the-tnt:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Ignite the TNT!
+    messages:
+      name: 'Ignite the TNT'
+      on-lose: '&cYou were unable to find one tnt!'
+      on-win: '&aSuccessful! You managed to ignite tnt!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players survived and ignited tnt!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cNo one managed to win!'
+      achievement: '&6<name>&a ignite to &6<count>&a TNT!'
+      end-message:
+        - ''
+        - '&e&lIgnite Tne TNT'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Ignite TNT!'
+
+  jump-and-stay:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Stand on an Emerald!
+    messages:
+      name: 'Stand on emeralds'
+      on-lose: '&cFailed! You did not manage to stand!'
+      on-win: '&aSuccessful! You stood on emeralds enough time!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players won the round!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won this round! Congratulations!'
+        all-lost: '&cAll players did not manage to win this game!'
+      achievement: '&6<name>&a stood on emerald blocks for &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lJump and Stay'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Jump on the emerald blocks!'
+
+  jump-or-fly-game:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for JumpOrFly-game!
+    messages:
+      name: 'Jump Or FLy'
+      on-lose: '&cFailed! You did not have time to complete this task!'
+      on-win: '&aSuccessful! You completed the task'
+      who-won:
+        winners-more-then-three: '&6<winners>&a out of &6<players>&a players completed their task!'
+        winners: '&6<list_winners>&a - only they completed their tasks!'
+        one-winner: '&6<winner>&a is the one who completed his task!'
+        all-won: '&aAll players completed their tasks!'
+        all-lost: '&cNobody completed their task!'
+      achievement-fly: '&6<name>&a flew to the moon in &6<seconds>&a seconds!'
+      achievement-jump: '&6<name>&a jumped into the void in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lJump and Stay'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game-fly: '&6FLY TO THE MOON!'
+      start-game-jump: '&6JUMP INTO THE VOID!'
+      task: '&9Wait for it!'
+
+  king-of-the-hill:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for KingOfTheHill!
+    messages:
+      name: 'King Of the hill'
+      on-lose: '&cFailed! You did not manage to climb the hill and you lost!'
+      on-win: '&aSuccessful! You were on the hill, therefore you won!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players managed to climb the hill!'
+        winners: '&aOnly &6<list_winners>&a were on the hill and won!'
+        one-winner: '&aThe only one who was on the hill is &6<winner>&a!'
+        all-won: '&aEveryone was on the hill and everyone won!'
+        all-lost: '&cNobody managed to climb the hill, everyone lost!'
+      achievement: '&6<name>&a stood on top of the hill for &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lKing of the Hill'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Hit everyone and climb the hill!'
+
+  knock-everyone:
+    #All messages for KnockEveryone!
+    messages:
+      name: 'Knock everyone off'
+      on-lose: '&cFailed! No luck, you were thrown into the void! You lose!'
+      on-win: '&aSuccessful! You survived! You were not thrown off, and you won!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players did not fall and survived!'
+        winners: '&6<list_winners>&a did not fall from the platform!'
+        one-winner: '&aOnly &6<winner>&a stood on the platform and won!'
+        all-won: '&aAll players stayed on the platform and won!'
+        all-lost: '&cAll players fell into the void and lost!'
+      end-message:
+        - ''
+        - '&e&lKnock off'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Accumulate level and knock everyone!'
+
+  math-game:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Math-game!
+    messages:
+      name: 'Math'
+      on-lose: '&cFailed! You did not give the right answer!'
+      on-win: '&aSuccessful! You managed to answer correctly!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a out of &6<players>&a players answered the question correctly!'
+        winners: '&aOnly &6<list_winners>&a answered correctly and won!'
+        one-winner: '&6<winner>&a was the only one who answered correctly!'
+        all-won: '&aAll answered correctly! Well done!'
+        all-lost: '&cNobody was able to answer the task correctly!'
+      achievement: '&6<name>&a answered the task in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lSolve task'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6<task>'
+      task: '&9Solve task!'
+
+  milk-the-cow:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Milk the Cow!
+    messages:
+      name: 'Milk the Cow'
+      on-lose: '&cFailed! You did not managed to get milk'
+      on-win: '&aSuccessful! You get enough milk!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players got enough milk!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cNo one managed to win!'
+      achievement: '&6<name>&a milked a cow in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lMilk the Cow'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Milk the Cow'
+
+  miner:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Miner!
+    messages:
+      name: 'Miner'
+      on-lose: '&cFailed! You did not mine the correct ore!'
+      on-win: '&aSuccessful! You are very good miner!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players mined correct ore!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cAll players lost the micro-game!'
+      achievement: '&6<name>&a mined <ore>&a in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lMine Ore'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Mine <ore>&9!'
+
+    #Name Ore's!
+    ores:
+      - 'COAL_ORE:&7coal ore'
+      - 'DIAMOND_ORE:&bdiamond ore'
+      - 'EMERALD_ORE:&aemerald ore'
+      - 'GOLD_ORE:&6gold ore'
+      - 'IRON_ORE:&firon ore'
+      - 'LAPIS_ORE:&1lapis ore'
+
+  move-game:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Move-game!
+    messages:
+      name: 'Move'
+      on-lose: '&cFailed! You stood still! You had to move!'
+      on-win: '&aSuccessful! Well done, you held out at this speed!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a out of &6<players>&a players won this micro-game!'
+        winners: '&aOnly &6<list_winners>&a survived and did not stop running!'
+        one-winner: '&aOnly &6<winner>&a survived and did not stop running!'
+        all-won: '&aEveryone ran and won!'
+        all-lost: '&cEveryone stopped running and lost!'
+      achievement: '&aPlayer ran &6<count>&a blocks!'
+      end-message:
+        - ''
+        - '&e&lMove Game'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Do not stop! Move!'
+
+  one-in-the-chamber:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for One In The Chamber!
+    messages:
+      name: 'One In The Chamber'
+      on-lose: '&cFailed! You did not manage to survive!'
+      on-win: '&aSuccessful! You survived!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players survived!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone survived in this round! Congratulations!'
+        all-lost: '&cAll players did not manage to survive!'
+      achievement: '&6<name>&a killed &6<count>&a players!'
+      end-message:
+        - ''
+        - '&e&lOne in the Chamber'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Shoot and kill everyone!'
+
+  pvp-game:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for PvP-game!
+    messages:
+      name: 'PvP'
+      on-lose: '&cFailed! You did not manage to survive!'
+      on-win: '&aSuccessful! You survived!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players survived!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone survived in this round! Congratulations!'
+        all-lost: '&cAll players did not manage to survive!'
+      achievement: '&6<name>&a killed &6<count>&a players!'
+      end-message:
+        - ''
+        - '&e&lPvP'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Kill everyone player!'
+
+  sneak-game:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Sneak-game!
+    messages:
+      name: 'Sneak'
+      on-lose: '&cFailed! You let go of the shift! You could not let go of the shift!'
+      on-win: '&aSuccessful! You stood only on the shift, you did it!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players were on the shift and won!'
+        winners: '&aOnly &6<list_winners>&a were on shift!'
+        one-winner: '&6<winner>&a was the only one on the shift and won!'
+        all-won: '&aIt was not difficult for all the players to shift!'
+        all-lost: '&cIt is crazy! Nobody could stand on the shift!'
+      end-message:
+        - ''
+        - '&e&lSneak Game'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Stand on the shift!'
+
+  spider-man:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Spider-Man!
+    messages:
+      name: 'Spider'
+      on-lose: '&cFailed! You did not have time to pull up!'
+      on-win: '&aSuccessful! You managed to pull up!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players won!'
+        one-winner: '&aOnly &6<winner> &awon the microgame!'
+        all-won: '&aEveryplayer won in this microgame! Congratulations!'
+        all-lost: '&cAll players did not manage to pull up!'
+      achievement: '&6<name>&a pulled up in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lSpiderMan'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Throw fishing rod and pull up!'
+
+  stack-blocks:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Place Blocks!
+    messages:
+      name: 'Stack blocks'
+      place-block: '&aBlocks supplied: &6<count_blocks>'
+      on-lose: '&cFailed! You did not manage to build the tower.'
+      on-win: '&aSuccessful! You won this micro-game!'
+      stacked-ten-blocks: '&aYou stacked&6 10 &ablocks, that is enough to win!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these stacked blocks!'
+        one-winner: '&aOnly &6<winner> &abuilt tower!'
+        all-won: '&aEveryone won this round! Congratulations!'
+        all-lost: '&cAll players did not manage to win this game!'
+      achievement: '&6<name>&a stacked &6<count>&a blocks!'
+      end-message:
+        - ''
+        - '&e&lStack Blocks'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    #Blocks for players
+    blocks:
+      - 'RED_WOOL'
+      - 'WHITE_WOOL'
+      - 'PINK_WOOL'
+      - 'ORANGE_WOOL'
+      - 'MAGENTA_WOOL'
+      - 'BLUE_WOOL'
+      - 'YELLOW_WOOL'
+      - 'LIME_WOOL'
+      - 'GRAY_WOOL'
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Stack blocks!'
+
+  stand-on-the-diamond:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Stand on Diamond!
+    messages:
+      name: 'Stand on...'
+      on-lose: '&cFailed! You fell into the void and died!'
+      on-win: '&aSuccessful! You found the diamond square!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players did not fall!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cAll players fell into the void!'
+      achievement: '&6<name>&a was standing on diamond block for &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lStand on Diamond'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Stand on diamond!'
+
+  throw-the-tnt:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Throw the TNT!
+    messages:
+      name: 'Throw the TNT'
+      on-lose: '&cFailed! You were exploded!'
+      on-win: '&aSuccessful! You were protected from explosions!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players completed the microgame!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cNo one managed to win!'
+      achievement: '&6<name>&a threw &6<count>&a TNT!'
+      end-message:
+        - ''
+        - '&e&lThrow TNT'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Throw TNT at other players!'
+
+    action-bar:
+      cooldown: '&c&lTNT: '
+
+  tnt-tag:
+    #All messages for TNT-Tag!
+    messages:
+      name: 'TNT-Tag'
+      on-lose: '&cFailed! You were tagged!'
+      on-win: '&aSuccessful! You managed to win that round!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players survived all rounds!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cNo one managed to win!'
+      achievement: '&6<name>&a have been running with TNT for &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lTNT Tag'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      exploded: '&cEXPLODED!'
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Give TNT to other players and do not explode!'
+
+    action-bar:
+      timer: '&c&lEXPLODE'
+      boom: '&c&lBOOM'
+
+  parkour:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Parkour!
+    messages:
+      name: 'Parkour'
+      ate-cake: '&aYou ate cake, so you won!'
+      on-lose: '&cFailed! You did not have time to eat cake!'
+      on-win: '&aSuccessful! You managed to eat cake!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a out of &6<players>&a players parked and ate cake!'
+        winners: '&aOnly &6<list_winners>&a ate cake!'
+        one-winner: '&6<winner>&a was the only one who parked and ate cake!'
+        all-won: '&aAll parked and ate cake! Well done!'
+        all-lost: '&cNobody could park!'
+      achievement: '&6<name>&a ate cake in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lParkour'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Parkour and eat cake!'
+
+  snowball-fight:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Snowball Fight!
+    messages:
+      name: 'Snowball'
+      color:
+        red: '&cred'
+        blue: '&1blue'
+        green: '&agreen'
+        yellow: '&eyellow'
+      on-lose: '&cFailed! Your team has lost the battle!'
+      on-win: '&aSuccessful! Your team won the battle!'
+      team: '&aYour team is <color>&a!'
+      who-won:
+        team-won: '&aThe <color> &ateam has won snowball fight!'
+        all-won: '&aAll players won the snowball fight!'
+      achievement: '&6<name>&a in the snowball fight shoot &6<count>&a players!'
+      end-message:
+        - ''
+        - '&e&lSnowball Fight'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Snowball fight! Shoot snowball!'
+
+  knockback:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Knockback!
+    messages:
+      name: 'Knockback'
+      on-lose: '&cFailed! No luck, you were thrown into the void! You lose!'
+      on-win: '&aSuccessful! You survived! You were not thrown off, and you won!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players did not fall and survived!'
+        winners: '&6<list_winners>&a did not fall from the platform!'
+        one-winner: '&aOnly &6<winner>&a stood on the platform and won!'
+        all-won: '&aAll players stayed on the platform and won!'
+        all-lost: '&cAll players fell into the void and lost!'
+      end-message:
+        - ''
+        - '&e&lKnockback'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Knock everyone player off!'
+
+  land-on-slime:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for LandOnSlime!
+    messages:
+      name: 'LandOnSlime'
+      on-lose: '&cFailed! You did not survive and fall on slime blocks!'
+      on-win: '&aSuccessful! You landed pn slime blocks and survived!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a out of &6<players>&a players could land and won!'
+        winners: '&aOnly &6<list_winners>&a were able to survive!'
+        one-winner: '&6<winner>&a won this microgame!'
+        all-won: '&aEveryone landed on slime blocks and survived!'
+        all-lost: '&cEveryplayer lost! No one survived!'
+      end-message:
+        - ''
+        - '&e&lLand on Slime'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Land on slime blocks and survive!'
+
+  dont-crash:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Dont crash!
+    messages:
+      name: 'Do not crash'
+      on-lose: '&cFailed! You crashed, then you lost!'
+      on-win: '&aSuccessful! You won, well done!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&aOnly &6<list_winners>&a did not crash to death!'
+        one-winner: '&aOnly &6<winner>&a was able to survive and won!'
+        all-won: '&aEveryone survived, which means everyone won!'
+        all-lost: '&cNobody won, everybody lost!'
+      end-message:
+        - ''
+        - '&e&lDont Crash'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Jump into the water and do not crash!'
+
+  give-mr-blobbo:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Give Mr. Blobbo Nutrition!
+    messages:
+      name: 'Mr.Blobbo'
+      negative-nutrition: '&c<nutrition> nutrition'
+      positive-nutrition: '&a<nutrition> nutrition'
+      name-slime: '&aRight Click to give Nutrition!'
+      on-lose: '&cFailed! You did not have time to feed Mr. Blobbo!'
+      on-win: '&aSuccessful! You managed to feed Mr. Blobbo and won!'
+      collected-enough-nutrition: '&aYou have collected enough nutrition, give this nutrition Mr. Blobbo!'
+      gave-nutrition: '&aYou gave Mr. Blobbo &6<nutrition>&a nutrition!'
+      fed-mrblobo: '&aYou fed Mr. Blobbo enough, you won!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players fed Mr. Blobbo!'
+        one-winner: '&aOnly &6<winner> &awon the microgame!'
+        all-won: '&aEveryone won the microgame and fed Mr. Blobbo!'
+        all-lost: '&cAll players did not manage to fed Mr. Blobbo!'
+      achievement: '&6<name>&a gave Mr. Blobbo &6<nutrition>&a nutrition!'
+      end-message:
+        - ''
+        - '&e&lMr. Blobbo and Nutrition'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Give Mr. Blobbo 20 Nutrition!'
+
+    action-bar:
+      amount-nutrition: '&aNutrition: &f<nutrition>/20'
+
+  swim-to-the-platform:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Swim to the platform!
+    messages:
+      name: 'Swim to...'
+      on-lose: '&cFailed! You did not have time to swim on the golden platform!'
+      on-win: '&aSuccessful! You stood on the golden blocks of the platform!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a out of &6<players>&a players managed to jump onto the platform!'
+        winners: '&6<list_winners>&a - these players stood on gold blocks and won!'
+        one-winner: '&aOnly &6<winner> &astood on the platform without letting others get up!'
+        all-won: '&aWow! Everyone won, how did it happen?'
+        all-lost: '&cOh no!All players drowned in the pool!'
+      achievement: '&6<name>&a was standing on gold block for &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lSwim and Stand'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Swim to the platform and stay!'
+
+  grab-flower:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Grab a Flower!
+    messages:
+      name: 'Grab a flower'
+      on-lose: '&cFailed! You did not take the right flower!'
+      on-win: '&aSuccessful! You grabbed the right flower!'
+      attempt: '&cAttempt number <number>, you have chosen the wrong flower!'
+      attempts-ended: '&cAll your attempts have ended, you have failed!'
+      grabbed-right-flower: '&aYou grabbed the right flower, therefore you won!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players grabbed the right flower!'
+        winners: '&6<list_winners>&a - these players won!'
+        one-winner: '&aOnly &6<winner> &agrabbed the right flower!!'
+        all-won: '&aEveryone won this round! Well done!'
+        all-lost: '&cAll players did not manage to find correct flower!'
+      achievement: '&6<name>&a grabbed the <flower> in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lRight Flower'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Grab the <flower>&9 flower!'
+
+    flowers:
+      - 'DANDELION:dandelion'
+      - 'POPPY:poppy'
+      - 'BLUE_ORCHID:blue orchid'
+      - 'ALLIUM:allium'
+      - 'AZURE_BLUET:azure bluet'
+      - 'RED_TULIP:red tulip'
+      - 'ORANGE_TULIP:orange tulip'
+      - 'WHITE_TULIP:white tulip'
+      - 'PINK_TULIP:pink tulip'
+
+  falling-platform:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Falling Platform!
+    messages:
+      name: 'Platforms'
+      on-lose: '&cFailed! You fell off the platform!'
+      on-win: '&aSuccessful! You were standing on the platform!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won this microgame!'
+        winners: '&aOnly &6<list_winners>&a stood on the platform and won!'
+        one-winner: '&aEveryone lost except &6<winner>&a, he won !'
+        all-won: '&aWow! All players stood on the platform!'
+        all-lost: '&cOh no! All players fell and lost'
+      end-message:
+        - ''
+        - '&e&lFalling Platform'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Stay on the platform and do not fall!'
+
+  lightning-strikes:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for lightning-strikes!
+    messages:
+      name: 'Lightnings'
+      on-lose: '&cFailed! You were struck by lightning!'
+      on-win: '&aSuccessful! You were able to survive, which means you won!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players not hit by lightning!'
+        winners: '&aOnly &6<list_winners>&a survived the storm!'
+        one-winner: '&6<winner>&a survived the lightning strikes!'
+        all-won: '&aNo one died from lightning strikes!'
+        all-lost: '&cNo one survived! Everyone was hit by lightning!'
+      end-message:
+        - ''
+        - '&e&lLightning Strikes'
+        - '<whoWon>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Avoid lightning strikes otherwise you will lose!'
+
+  find-the-beacon:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Find the Beacon!
+    messages:
+      name: 'Find a beacon'
+      on-lose: '&cFailed! You did not have time to find the beacon!'
+      on-win: '&aSuccessful! You have found a beacon!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players were good!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won this round! Congratulations!'
+        all-lost: '&cNo one has found a beacon!'
+      achievement: '&6<name>&a found the beacon in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lDoor Beacon'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Find the beacon!'
+
+  grab-sapling:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for Grab a Sapling!
+    messages:
+      name: 'Grab a sapling'
+      on-lose: '&cFailed! You did not take the right sapling!'
+      on-win: '&aSuccessful! You grabbed the right sapling!'
+      attempt: '&cAttempt number <number>, you have chosen the wrong sapling!'
+      attempts-ended: '&cAll your attempts have ended, you have failed!'
+      grabbed-right-sapling: '&aYou grabbed the right sapling, therefore you won!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players grabbed the right sapling!'
+        winners: '&6<list_winners>&a - these players won!'
+        one-winner: '&aOnly &6<winner> &agrabbed the right sapling!'
+        all-won: '&aEveryone won this round! Well done!'
+        all-lost: '&cAll players did not manage to find correct sapling!'
+      achievement: '&6<name>&a grabbed the <sapling> in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lRight Sapling'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Grab the <sapling>&9 sapling!'
+
+    saplings:
+      - 'OAK_SAPLING:oak'
+      - 'ACACIA_SAPLING:acacia'
+      - 'DARK_OAK_SAPLING:dark oak'
+      - 'SPRUCE_SAPLING:spruce'
+      - 'JUNGLE_SAPLING:jungle'
+      - 'BIRCH_SAPLING:birch'
+
+  high-platform:
+    timer:
+      enabled: true
+      type: 'level'
+
+    #All messages for High Platform!
+    messages:
+      name: 'High Platform'
+      name-chest: '&aRight click on the chest!'
+      on-lose: '&cFailed! You did not have time to get to the platform!'
+      on-win: '&aSuccessful! You managed to nerd pole!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players were good!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aWoo! Everyone won this round!'
+        all-lost: '&cAll players did not manage to get to the Platform!'
+      achievement: '&6<name>&a reached the platform in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lHigh Platform'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Get to the Platform!'
+
+  dangerous-cactus:
+    timer:
+      enabled: true
+      type: 'experience'
+
+    #All messages for Dangerous Cactus!
+    messages:
+      name: 'Dangerous Cactus'
+      on-lose: '&cFailed! You was sent into a cactus!'
+      on-win: '&aSuccessful! You have not been sent to a cactus during the game!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players have completed the micro-game!'
+        one-winner: '&aOnly &6<winner> &ahas not been hit by cactus!'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cAll players have been damaged by cactuses!'
+      end-message:
+        - ''
+        - '&e&lDangerous Cactus'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Do not get damaged by a cactus!'
+
+
+  falling-arrows:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Falling Arrows!
+    messages:
+      name: 'Falling Arrows'
+      on-lose: '&cFailed! An arrow has hit you!'
+      on-win: '&aSuccessful! You have was able to hide under a platform.'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players have completed the micro-game!'
+        one-winner: '&aOnly &6<winner>&a was hidden completely from arrows.'
+        all-won: '&aEveryone won the round! Great!'
+        all-lost: '&cAll players have been damaged by arrows.'
+      end-message:
+        - ''
+        - '&e&lFalling Arrows'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Hide under a platform.'
+
+  invisible-button:
+    timer:
+      enabled: true
+      type: 'mix'
+
+    #All messages for Invisible Button!
+    messages:
+      name: 'Invisible Button'
+      on-lose: '&cFailed! You did not have time to find the button!'
+      on-win: '&aSuccessful! You managed to find the button!'
+      who-won:
+        winners-more-then-three: '&6<winners>&a/&6<players>&a players won!'
+        winners: '&6<list_winners>&a - these players won the round!'
+        one-winner: '&aOnly &6<winner> &awon the round!'
+        all-won: '&aEveryone won this round! Congratulations!'
+        all-lost: '&cAll players did not manage to win this microgame!'
+      achievement: '&6<name>&a found the button in &6<seconds>&a seconds!'
+      end-message:
+        - ''
+        - '&e&lInvisible Button'
+        - '<whoWon>'
+        - '<achievement>'
+        - '<winOrLose>'
+        - ''
+
+    titles:
+      on-lose: '&cFAILED!'
+      on-win: '&aSUCCESSFUL!'
+      start-game: '&6GO!'
+      task: '&9Find the button!'

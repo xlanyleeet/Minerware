@@ -1,0 +1,186 @@
+#All messages for BossGame!
+spleef:
+  #All messages for Spleef!
+  messages:
+    name: 'SPLEEF'
+    on-lose: '&cFailed! You have fallen into the void, you failed!'
+    on-win: '&aSuccessful! You were lucky and did not fall!'
+    winners:
+      - ''
+      - '&e&lSpleef'
+      - '<winOrLose>'
+      - '&a&lTop &6&l3 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - '&63rd <topThreeName>&6 &a + 1 Points'
+      - ''
+    duo-winners:
+      - ''
+      - '&e&lSpleef'
+      - '<winOrLose>'
+      - '&a&lTop &6&l2 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - ''
+
+  titles:
+    on-lose: '&cFAILED!'
+    on-win: '&aSUCCESSFUL!'
+    start-game: '&6SPLEEF'
+    subtitle-start-game: '&9Boss Game!'
+
+snake:
+  #All messages for Snake!
+  inventory-name: '&eSnake'
+  arrows:
+    up: '&aClick to direct the snake up!'
+    down: '&aClick to direct the snake down!'
+    right: '&aClick to direct the snake right!'
+    left: '&aClick to direct the snake left!'
+  messages:
+    name: 'SNAKE'
+    on-lose: '&cFailed! You do not have the longest snake!'
+    on-win: '&aSuccessful! You have a very long snake!'
+    winners:
+      - ''
+      - '&e&lSnake'
+      - '<winOrLose>'
+      - '&a&lTop &6&l3 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - '&63rd <topThreeName>&6 &a + 1 Points'
+      - ''
+    duo-winners:
+      - ''
+      - '&e&lSnake'
+      - '<winOrLose>'
+      - '&a&lTop &6&l2 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - ''
+
+  titles:
+    on-lose: '&cFAILED!'
+    on-win: '&aSUCCESSFUL!'
+    start-game: '&6APPLE SNAKE'
+    subtitle-start-game: '&9Boss Game!'
+
+bow-spleef:
+  #All messages for Bow-Spleef!
+  messages:
+    name: 'BOW-SPLEEF'
+    on-lose: '&cFailed! You have fallen into the void, you failed!'
+    on-win: '&aSuccessful! You were lucky and did not fall!'
+    winners:
+      - ''
+      - '&e&lBow Spleef'
+      - '<winOrLose>'
+      - '&a&lTop &6&l3 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - '&63rd <topThreeName>&6 &a + 1 Points'
+      - ''
+    duo-winners:
+      - ''
+      - '&e&lBow Spleef'
+      - '<winOrLose>'
+      - '&a&lTop &6&l2 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - ''
+
+  titles:
+    on-lose: '&cFAILED!'
+    on-win: '&aSUCCESSFUL!'
+    start-game: '&6BOW SPLEEF'
+    subtitle-start-game: '&9Boss Game!'
+
+tnt-run:
+  #All messages for TNT-Run!
+  messages:
+    name: 'TNT-RUN'
+    on-lose: '&cFailed! You have fallen into the void, you failed!'
+    on-win: '&aSuccessful! You were lucky and run all time!'
+    winners:
+      - ''
+      - '&e&lTNT Run'
+      - '<winOrLose>'
+      - '&a&lTop &6&l3 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - '&63rd <topThreeName>&6 &a + 1 Points'
+      - ''
+    duo-winners:
+      - ''
+      - '&e&lTNT Run'
+      - '<winOrLose>'
+      - '&a&lTop &6&l2 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - ''
+
+  titles:
+    on-lose: '&cFAILED!'
+    on-win: '&aSUCCESSFUL!'
+    start-game: '&6TNT RUN'
+    subtitle-start-game: '&9Boss Game!'
+
+colours:
+  #All messages for Colours!
+  messages:
+    name: 'COLOURS'
+    on-lose: '&cFailed! You have fallen into the void, you failed!'
+    on-win: '&aSuccessful! You were lucky and very skilled in colours!'
+    winners:
+      - ''
+      - '&e&lColours'
+      - '<winOrLose>'
+      - '&a&lTop &6&l3 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - '&63rd <topThreeName>&6 &a + 1 Points'
+      - ''
+    duo-winners:
+      - ''
+      - '&e&lColours'
+      - '<winOrLose>'
+      - '&a&lTop &6&l2 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - ''
+
+  titles:
+    on-lose: '&cFAILED!'
+    on-win: '&aSUCCESSFUL!'
+    start-game: '&6COLOURS'
+    subtitle-start-game: '&9Boss Game!'
+
+coloured-floor:
+  #All messages for ColouredFloor!
+  messages:
+    name: 'COLOURED'
+    on-lose: '&cFailed! You could not paint floor blocks the most!'
+    on-win: '&aSuccessful! You painted over a large count of floor blocks!'
+    winners:
+      - ''
+      - '&e&lColoured Floor'
+      - '<winOrLose>'
+      - '&a&lTop &6&l3 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - '&63rd <topThreeName>&6 &a + 1 Points'
+      - ''
+    duo-winners:
+      - ''
+      - '&e&lColoured Floor'
+      - '<winOrLose>'
+      - '&a&lTop &6&l2 &a&lPlayers Win!'
+      - '&61st <topOneName>&6 &a + 3 Points'
+      - '&62nd <topTwoName>&6 &a + 2 Points'
+      - ''
+
+  titles:
+    on-lose: '&cFAILED!'
+    on-win: '&aSUCCESSFUL!'
+    start-game: '&6COLOURED FLOOR'
+    subtitle-start-game: '&9Boss Game!'
