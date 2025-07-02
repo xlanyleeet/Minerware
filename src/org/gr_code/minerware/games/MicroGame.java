@@ -43,7 +43,7 @@ public abstract class MicroGame {
         gameDuration = time;
         this.arena = arena;
         fileConfig = MinerPlugin.getInstance().getGames();
-        if (ManageHandler.getNMS().isLegacy()) {
+        if (ManageHandler.getModernAPI().isLegacy()) {
             showPlayer = Player::showPlayer;
             hidePlayer = Player::hidePlayer;
         } else {
@@ -173,7 +173,7 @@ public abstract class MicroGame {
             }
             if (cuboid.notInside(player.getLocation()))
                 player.teleport(getRandomLocation(getArena()));
-            if (!ManageHandler.getNMS().oldVersion()) {
+            if (!ManageHandler.getModernAPI().oldVersion()) {
                 requireNonNull(player.getAttribute(Attribute.GENERIC_ATTACK_SPEED)).setBaseValue(4);
                 player.saveData();
                 player.setCollidable(true);
@@ -223,7 +223,7 @@ public abstract class MicroGame {
             setupToGame(player);
             player.closeInventory();
             clearInventory(player);
-            if (!ManageHandler.getNMS().oldVersion()) {
+            if (!ManageHandler.getModernAPI().oldVersion()) {
                 requireNonNull(player.getAttribute(Attribute.GENERIC_ATTACK_SPEED)).setBaseValue(4);
                 player.saveData();
                 player.setCollidable(true);
@@ -346,3 +346,6 @@ public abstract class MicroGame {
     }
 
 }
+
+
+

@@ -1,6 +1,5 @@
 package org.gr_code.minerware.manager.type.resources;
 
-import org.apache.commons.lang.WordUtils;
 import org.bukkit.Sound;
 import org.gr_code.minerware.manager.ManageHandler;
 
@@ -1012,7 +1011,8 @@ public enum XSound {
         if (bukkitSound == null) {
             for (String legacy : legacies) {
                 bukkitSound = Data.BUKKIT_NAMES.get(legacy);
-                if (bukkitSound != null) break;
+                if (bukkitSound != null)
+                    break;
             }
         }
         this.sound = bukkitSound;
@@ -1025,13 +1025,15 @@ public enum XSound {
 
     @Override
     public String toString() {
-        return WordUtils.capitalize(this.name().replace('_', ' ').toLowerCase(Locale.ENGLISH));
+        // Simple capitalize method to replace WordUtils
+        String name = this.name().replace('_', ' ').toLowerCase(Locale.ENGLISH);
+        return name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 
     @Nullable
     public Sound parseSound() {
-        if(ManageHandler.getNMS().oldVersion()){
-            if(this.equals(XSound.BLOCK_ANVIL_PLACE))
+        if (ManageHandler.getModernAPI().oldVersion()) {
+            if (this.equals(XSound.BLOCK_ANVIL_PLACE))
                 return XSound.BLOCK_ANVIL_BREAK.parseSound();
         }
         return this.sound;
@@ -1044,7 +1046,8 @@ public enum XSound {
         private static final Map<String, XSound> NAMES = new HashMap<>();
 
         static {
-            for (Sound sound : Sound.values()) BUKKIT_NAMES.put(sound.name(), sound);
+            for (Sound sound : Sound.values())
+                BUKKIT_NAMES.put(sound.name(), sound);
         }
     }
 }

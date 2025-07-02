@@ -8,7 +8,7 @@ import org.gr_code.minerware.arena.Properties;
 import org.gr_code.minerware.builders.ItemBuilder;
 import org.gr_code.minerware.cuboid.Cuboid;
 import org.gr_code.minerware.manager.ManageHandler;
-import org.gr_code.minerware.manager.type.nms.NMS;
+// No NMS import needed
 import org.gr_code.minerware.manager.type.resources.XMaterial;
 import org.gr_code.minerware.manager.type.resources.effects.WinEffect;
 
@@ -35,15 +35,14 @@ public class IceWinEffect extends WinEffect {
 
     @Override
     public void start() {
-        NMS nms = ManageHandler.getNMS();
+        var modernAPI = ManageHandler.getModernAPI();
         Properties properties = arena.getProperties();
         Cuboid cuboid = properties.getCuboid();
         properties.destroySquares();
         for (GamePlayer player : arena.getPlayers()) {
             cuboid.getLocations().stream()
                     .filter(location -> location.getBlockY() == properties.getFirstLocation().getBlockY())
-                    .forEach(location ->
-                            nms.spawnIceWinEffect(Bukkit.getPlayer(player.getUUID()), location));
+                    .forEach(location -> modernAPI.spawnIceWinEffect(Bukkit.getPlayer(player.getUUID()), location));
         }
     }
 
@@ -52,13 +51,13 @@ public class IceWinEffect extends WinEffect {
             stop();
             return;
         }
-        NMS nms = ManageHandler.getNMS();
+        var modernAPI = ManageHandler.getModernAPI();
         Properties properties = arena.getProperties();
         Cuboid cuboid = properties.getCuboid();
         for (GamePlayer player : arena.getPlayers()) {
             cuboid.getLocations().stream()
                     .filter(location -> location.getBlockY() == properties.getFirstLocation().getBlockY())
-                    .forEach(location -> nms.updateIceWinEffect(Bukkit.getPlayer(player.getUUID()), location));
+                    .forEach(location -> modernAPI.updateIceWinEffect(Bukkit.getPlayer(player.getUUID()), location));
         }
         time--;
     }
@@ -68,7 +67,7 @@ public class IceWinEffect extends WinEffect {
         Properties properties = arena.getProperties();
         properties.restoreSquares();
         for (GamePlayer player : arena.getPlayers()) {
-            ManageHandler.getNMS().sendRestorePackets(Bukkit.getPlayer(player.getUUID()), arena);
+            ManageHandler.getModernAPI().sendRestorePackets(Bukkit.getPlayer(player.getUUID()), arena);
         }
     }
 

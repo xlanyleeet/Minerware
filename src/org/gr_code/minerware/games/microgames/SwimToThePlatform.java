@@ -58,17 +58,17 @@ public class SwimToThePlatform extends MicroGame {
         Location first = getArena().getProperties().getFirstLocation();
         Location second = getArena().getProperties().getSecondLocation();
         getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() > first.getBlockY() && l.getBlockY() <= first.getBlockY() + 5)
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.WATER.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.WATER.parseItem()), l.getBlock()));
         getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() > first.getBlockY() && l.getBlockY() <= first.getBlockY() + 5)
                 .filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()
                         || l.getBlockX() == second.getBlockX() || l.getBlockZ() == second.getBlockZ())
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
         String typeArena = getArena().getProperties().getType();
         int size = typeArena.equals("MICRO") || typeArena.equals("MINI") ? 3 : typeArena.equals("DEFAULT") ? 5 : 6;
         Location center = getArena().getProperties().getCuboid().getCenter().getBlock().getLocation().add(-((int)(size/2)), 3, -((int)(size/2)));
         for (int x = 0; x < size; x ++)
             for (int z = 0; z < size; z ++)
-                ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GOLD_BLOCK.parseItem()), center.clone().add(x,0,z).getBlock());
+                ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GOLD_BLOCK.parseItem()), center.clone().add(x,0,z).getBlock());
     }
 
     @Override
@@ -112,7 +112,7 @@ public class SwimToThePlatform extends MicroGame {
                 if (secondAch - firstAch > 0) achievement.put(Double.toString(secondAch - firstAch), gamePlayer);
                 gamePlayer.setAchievement(null);
             }
-            if (!ManageHandler.getNMS().isLegacy() && player.isSwimming()) player.setSwimming(false);
+            if (!ManageHandler.getModernAPI().isLegacy() && player.isSwimming()) player.setSwimming(false);
             if (y <= param_y) onLose(player, true);
         });
     }
@@ -165,3 +165,5 @@ public class SwimToThePlatform extends MicroGame {
     }
 
 }
+
+

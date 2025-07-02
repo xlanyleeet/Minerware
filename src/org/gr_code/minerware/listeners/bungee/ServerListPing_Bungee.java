@@ -28,3 +28,5 @@ public class ServerListPing_Bungee implements Listener {
         serverListPingEvent.setMaxPlayers(arena.getProperties().getMaxPlayers());
     }
 }
+
+

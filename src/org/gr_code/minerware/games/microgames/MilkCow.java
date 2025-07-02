@@ -81,17 +81,17 @@ public class MilkCow extends MicroGame {
 		Location first = getArena().getProperties().getFirstLocation();
 		Location center = getArena().getProperties().getCuboid().getCenter();
 		getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.PODZOL.parseItem()), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.PODZOL.parseItem()), l.getBlock()));
 		int j = 0;
 		for (Square sq : getArena().getProperties().getSquares()) {
-			sq.getLocations().forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), l.getBlock()));
+			sq.getLocations().forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), l.getBlock()));
 			if (!getArena().getProperties().getType().equals("MICRO") && j == 4) {
 				j++;
 				continue;
 			}
 			if (!getArena().isHardMode() || Math.random() <= 0.5) {
 				Location random = sq.getLocations().get(new Random().nextInt(sq.getLocations().size()));
-				ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.CHEST.parseItem()), random.getBlock());
+				ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.CHEST.parseItem()), random.getBlock());
 				Chest chest = (Chest) random.getBlock().getState();
 				for (int i = 0; i < chest.getInventory().getSize(); i++)
 					chest.getInventory().setItem(i, XMaterial.BUCKET.parseItem());
@@ -100,10 +100,10 @@ public class MilkCow extends MicroGame {
 			j++;
 		}
 		if (getArena().getProperties().getType().equals("MICRO")) {
-			ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), center.getBlock().getLocation().clone().add(0, -1, 0).getBlock());
-			ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), center.getBlock().getLocation().clone().add(1, -1, 0).getBlock());
-			ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), center.getBlock().getLocation().clone().add(1, -1, 1).getBlock());
-			ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), center.getBlock().getLocation().clone().add(0, -1, 1).getBlock());
+			ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), center.getBlock().getLocation().clone().add(0, -1, 0).getBlock());
+			ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), center.getBlock().getLocation().clone().add(1, -1, 0).getBlock());
+			ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), center.getBlock().getLocation().clone().add(1, -1, 1).getBlock());
+			ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), center.getBlock().getLocation().clone().add(0, -1, 1).getBlock());
 		}
 	}
 
@@ -114,7 +114,7 @@ public class MilkCow extends MicroGame {
 		if (getArena().getProperties().getType().equals("MEGA"))
 			cow = (Cow) requireNonNull(first.getWorld()).spawnEntity(center.getBlock().getLocation().clone().add(0.5, 0, 0.5), EntityType.COW);
 		else cow = (Cow) requireNonNull(first.getWorld()).spawnEntity(center.getBlock().getLocation().clone().add(1, 0, 1), EntityType.COW);
-		if (ManageHandler.getNMS().oldVersion()) ManageHandler.getNMS().setNoAI(cow);
+		if (ManageHandler.getModernAPI().oldVersion()) ManageHandler.getModernAPI().setNoAI(cow);
 		else {
 			cow.setSilent(true);
 			cow.setAI(false);
@@ -216,7 +216,7 @@ public class MilkCow extends MicroGame {
 		UUID uuid = player.getUniqueId();
 		if (requireNonNull(getArena().getPlayer(uuid)).getState() != State.PLAYING_GAME) return;
 		if (!(e.getRightClicked() instanceof Cow)) return;
-		ItemStack is = ManageHandler.getNMS().oldVersion() ? e.getPlayer().getInventory().getItemInHand() : e.getPlayer().getInventory().getItemInMainHand();
+		ItemStack is = ManageHandler.getModernAPI().oldVersion() ? e.getPlayer().getInventory().getItemInHand() : e.getPlayer().getInventory().getItemInMainHand();
 		if (!is.isSimilar(XMaterial.BUCKET.parseItem())) return;
 		onWin(player, false);
 	}
@@ -228,3 +228,5 @@ public class MilkCow extends MicroGame {
 	}
 
 }
+
+

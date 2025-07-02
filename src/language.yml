@@ -58,6 +58,7 @@ help:
   - '&6/mw removeStatistic&7 [&cnumber&7] - remove hologram with that number.'
   - '&6/mw forceStart &7<&cname&7> - force start the selected arena.'
   - '&6/mw forceStop &7<&cname&7> - force stop the selected arena.'
+  - '&6/mw setDisplayName &7<&carena&7> <&cname&7> - set custom display name for arena.'
   - '&6/mw join &7[&cname&7] - join the selected arena.'
   - '&6/mw randomJoin&7 - join a random arena.'
   - '&6/mw leave&7 - leave your current arena.'

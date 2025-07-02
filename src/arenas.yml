@@ -1,2 +1,12 @@
 arenas:
+  # Example arena configuration:
+  # example_world:
+  #   Type: "DEFAULT"
+  #   Display-Name: "&6Epic Battle Arena"  # Custom arena display name
+  #   Cuboid_First_Location: "world,0,64,0,0,0"
+  #   Losers_Location: "world,0,65,0,0,0"
+  #   Winners_Location: "world,0,65,5,0,0"
+  #   Min_Players: 4
+  #   Rotation: 0.0
+  #   Disabled-Games: []
 

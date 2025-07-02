@@ -75,7 +75,7 @@ public class ThrowTNT extends MicroGame {
 		getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() + 1).filter(l -> Math.random() > 0.9)
 				.forEach(l -> {
 					for (int i = 0; i < new Random().nextInt(4) + 2; i ++) 
-						ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.IRON_BLOCK.parseItem()), l.clone().add(0, i, 0).getBlock());
+						ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.IRON_BLOCK.parseItem()), l.clone().add(0, i, 0).getBlock());
 				});
 	}
 
@@ -120,7 +120,7 @@ public class ThrowTNT extends MicroGame {
     		Player player = gamePlayer.getPlayer();
     		if (Integer.parseInt(gamePlayer.getTask()) > 0) gamePlayer.setTask(Integer.toString(Integer.parseInt(gamePlayer.getTask()) - 1));
     		String cooldown = cd.get(Integer.parseInt(gamePlayer.getTask()));
-    		ManageHandler.getNMS().sendActionBar(player, translate(bar + cooldown));
+    		ManageHandler.getModernAPI().sendActionBar(player, translate(bar + cooldown));
     		int y = player.getLocation().getBlockY();
     		if (y <= param_y) onLose(player, true);
     	});
@@ -212,3 +212,5 @@ public class ThrowTNT extends MicroGame {
 	}
 
 }
+
+

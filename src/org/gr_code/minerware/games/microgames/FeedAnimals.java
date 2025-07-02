@@ -72,17 +72,17 @@ public class FeedAnimals extends MicroGame {
 		Location second = getArena().getProperties().getSecondLocation();
 		Cuboid cuboid = getArena().getProperties().getCuboid();
 		cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GRASS_BLOCK.parseItem()), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GRASS_BLOCK.parseItem()), l.getBlock()));
 		cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() + 1)
 				.filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()
 						|| l.getBlockX() == second.getBlockX() || l.getBlockZ() == second.getBlockZ())
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.OAK_FENCE.parseItem()), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.OAK_FENCE.parseItem()), l.getBlock()));
 	}
 	
 	private void spawnAllEntities(int random) {
 		for (int i = 0; i < (getArena().getCurrentPlayers() * 6); i ++) {
 			Entity entity = requireNonNull(getArena().getProperties().getFirstLocation().getWorld()).spawnEntity(getRandomLocation(getArena()), typeList[random]);
-			if (!ManageHandler.getNMS().oldVersion()) {
+			if (!ManageHandler.getModernAPI().oldVersion()) {
 				entity.setGlowing(true);
 				entity.setSilent(true);
 			}
@@ -173,7 +173,7 @@ public class FeedAnimals extends MicroGame {
 		Player player = e.getPlayer();
 		UUID uuid = player.getUniqueId();
 		if (!(e.getRightClicked() instanceof Cow || e.getRightClicked() instanceof Sheep || e.getRightClicked() instanceof Chicken)) return;
-		ItemStack itemStack = ManageHandler.getNMS().oldVersion() ? e.getPlayer().getInventory().getItemInHand() : e.getPlayer().getInventory().getItemInMainHand();
+		ItemStack itemStack = ManageHandler.getModernAPI().oldVersion() ? e.getPlayer().getInventory().getItemInHand() : e.getPlayer().getInventory().getItemInMainHand();
 		if (itemStack == null) return;
 		if (!entityList.contains(e.getRightClicked())) return;
 		if (!containsItem(Arrays.asList(itemList.clone()), itemStack)) return;
@@ -181,7 +181,7 @@ public class FeedAnimals extends MicroGame {
 		GamePlayer gamePlayer = requireNonNull(getArena().getPlayer(uuid));
 		gamePlayer.setTask((Integer.parseInt(gamePlayer.getTask()) + 1) + "");
 		String msg = translate(requireNonNull(getString("messages.plus-animal")).replace("<countAnimals>", gamePlayer.getTask()));
-		if (!ManageHandler.getNMS().oldVersion()) e.getRightClicked().setGlowing(false);
+		if (!ManageHandler.getModernAPI().oldVersion()) e.getRightClicked().setGlowing(false);
 		e.getRightClicked().setMetadata("fed", new FixedMetadataValue(MinerPlugin.getInstance(), "fed"));
 		player.playSound(player.getLocation(), requireNonNull(XSound.ENTITY_ARROW_HIT_PLAYER.parseSound()), 5, 1);
 		if (Integer.parseInt(gamePlayer.getTask()) == 8) onWin(player, false);
@@ -195,3 +195,5 @@ public class FeedAnimals extends MicroGame {
 	}
 
 }
+
+

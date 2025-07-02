@@ -75,7 +75,7 @@ public class ManagerListener {
         pluginManager.registerEvents(new ItemSpawn_Games(), minerPlugin);
         pluginManager.registerEvents(new PlayerExpChange_Games(), minerPlugin);
         pluginManager.registerEvents(new PlayerCommandPreprocess_Games(), minerPlugin);
-        if (ManageHandler.getNMS().oldVersion()) {
+        if (ManageHandler.getModernAPI().oldVersion()) {
             pluginManager.registerEvents(new PlayerPickUpItem_Games(), minerPlugin);
             return;
         }
@@ -86,3 +86,6 @@ public class ManagerListener {
         new ManagerListener();
     }
 }
+
+
+

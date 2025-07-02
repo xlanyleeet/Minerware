@@ -43,14 +43,14 @@ public class DontCrash extends MicroGame {
         Location second = getArena().getProperties().getSecondLocation();
         Cuboid cuboid = getArena().getProperties().getCuboid();
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() + 1)
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.WATER.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.WATER.parseItem()), l.getBlock()));
         cuboid.getLocations().stream()
                 .filter(l -> l.getBlockY() == first.getBlockY() + 1 || l.getBlockY() == second.getBlockY() || l.getBlockY() == second.getBlockY() - 1)
                 .filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()
                         || l.getBlockX() == second.getBlockX() || l.getBlockZ() == second.getBlockZ())
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == second.getBlockY() - 2)
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
     }
 
     @Override
@@ -82,7 +82,7 @@ public class DontCrash extends MicroGame {
         locations.stream().filter(l -> l.distance(player.getLocation()) <= 2)
                 .filter(l -> !getItem(l.getBlock()).isSimilar(XMaterial.GLASS.parseItem()))
                 .filter(l -> !cuboid.notInside(l))
-                .forEach(l -> ManageHandler.getNMS().setBlock(wool, l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(wool, l.getBlock()));
         player.setGameMode(GameMode.SPECTATOR);
         player.teleport(player.getLocation().clone().add(0,1,0));
     }
@@ -98,11 +98,11 @@ public class DontCrash extends MicroGame {
         Block block2 = player.getLocation().clone().add(-1,0,0).getBlock();
         Block block3 = player.getLocation().clone().add(0,0,1).getBlock();
         Block block4 = player.getLocation().clone().add(0,0,-1).getBlock();
-        ManageHandler.getNMS().setBlock(wool, player.getLocation().getBlock());
-        if (!getItem(block1).isSimilar(XMaterial.GLASS.parseItem())) ManageHandler.getNMS().setBlock(wool, block1);
-        if (!getItem(block2).isSimilar(XMaterial.GLASS.parseItem())) ManageHandler.getNMS().setBlock(wool, block2);
-        if (!getItem(block3).isSimilar(XMaterial.GLASS.parseItem())) ManageHandler.getNMS().setBlock(wool, block3);
-        if (!getItem(block4).isSimilar(XMaterial.GLASS.parseItem())) ManageHandler.getNMS().setBlock(wool, block4);
+        ManageHandler.getModernAPI().setBlock(wool, player.getLocation().getBlock());
+        if (!getItem(block1).isSimilar(XMaterial.GLASS.parseItem())) ManageHandler.getModernAPI().setBlock(wool, block1);
+        if (!getItem(block2).isSimilar(XMaterial.GLASS.parseItem())) ManageHandler.getModernAPI().setBlock(wool, block2);
+        if (!getItem(block3).isSimilar(XMaterial.GLASS.parseItem())) ManageHandler.getModernAPI().setBlock(wool, block3);
+        if (!getItem(block4).isSimilar(XMaterial.GLASS.parseItem())) ManageHandler.getModernAPI().setBlock(wool, block4);
         player.setGameMode(GameMode.SPECTATOR);
         player.teleport(player.getLocation().clone().add(0,1,0));
     }
@@ -148,11 +148,11 @@ public class DontCrash extends MicroGame {
         Location second = getArena().getProperties().getSecondLocation();
         Cuboid cuboid = getArena().getProperties().getCuboid();
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == second.getBlockY() - 2)
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == second.getBlockY() || l.getBlockY() == second.getBlockY() - 1)
                 .filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()
                         || l.getBlockX() == second.getBlockX() || l.getBlockZ() == second.getBlockZ())
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
         getArena().getPlayers().forEach(gamePlayer -> {
             Player player = gamePlayer.getPlayer();
             if (gamePlayer.getState() == State.PLAYING_GAME) {
@@ -210,3 +210,5 @@ public class DontCrash extends MicroGame {
     }
 
 }
+
+

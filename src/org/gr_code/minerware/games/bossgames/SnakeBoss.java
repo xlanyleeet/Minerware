@@ -173,3 +173,4 @@ public class SnakeBoss extends BossGame {
     }
 
 }
+

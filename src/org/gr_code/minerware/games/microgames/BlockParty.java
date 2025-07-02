@@ -93,13 +93,13 @@ public class BlockParty extends MicroGame {
 		int first_y = getArena().getProperties().getFirstLocation().getBlockY();
 		getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first_y).forEach(l -> {
 			String stringBlock = list_wools.get(new Random().nextInt(list_wools.size())).split(":")[0];
-			ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.valueOf(stringBlock).parseItem()), l.getBlock());
+			ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.valueOf(stringBlock).parseItem()), l.getBlock());
 		});
 		getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first_y)
 				.filter(l -> getItem(l.getBlock()).isSimilar(XMaterial.valueOf(random_wool.split(":")[0]).parseItem()))
 				.filter(l -> Math.random() <= 0.5).forEach(l -> {
 			String stringBlock = list_wools.get(new Random().nextInt(list_wools.size())).split(":")[0];
-			ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.valueOf(stringBlock).parseItem()), l.getBlock());
+			ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.valueOf(stringBlock).parseItem()), l.getBlock());
 		});
 	}
 
@@ -177,3 +177,6 @@ public class BlockParty extends MicroGame {
 	}
 
 }
+
+
+

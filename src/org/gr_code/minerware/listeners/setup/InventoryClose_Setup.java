@@ -19,3 +19,5 @@ public class InventoryClose_Setup implements Listener {
         properties.closed = true;
     }
 }
+
+

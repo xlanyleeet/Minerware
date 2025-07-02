@@ -33,11 +33,11 @@ public class InventoryClick_Setup implements Listener {
                 inventoryClickEvent.getCurrentItem().hasItemMeta() &&
                 Objects.requireNonNull(inventoryClickEvent.getCurrentItem().getItemMeta()).hasDisplayName()
                 && inventoryClickEvent.getCurrentItem().getItemMeta().getDisplayName()
-                .equals(Objects.requireNonNull(Utils.CLOSED_MENU.getItemMeta()).getDisplayName())) {
+                        .equals(Objects.requireNonNull(Utils.CLOSED_MENU.getItemMeta()).getDisplayName())) {
             inventoryClickEvent.setCancelled(true);
             return;
         }
-        if(inventoryClickEvent.getClickedInventory() == null)
+        if (inventoryClickEvent.getClickedInventory() == null)
             return;
         if (Objects.requireNonNull(inventoryClickEvent.getClickedInventory()).getHolder() != null)
             return;
@@ -122,7 +122,8 @@ public class InventoryClick_Setup implements Listener {
                         PluginCommand.getArenaHashMap().remove(humanEntity.getUniqueId());
                         humanEntity.getInventory().setItem(8, null);
                         Utils.teleportToLobby((Player) humanEntity);
-                        humanEntity.sendMessage(PluginCommand.Language.SAVED.getString().replace("<arena_name>", properties.getName()));
+                        humanEntity.sendMessage(PluginCommand.Language.SAVED.getString().replace("<arena_name>",
+                                properties.getDisplayName()));
                         return;
                     case 32:
                         properties.setTask("OPENED REMOVE");
@@ -153,14 +154,16 @@ public class InventoryClick_Setup implements Listener {
                 }
                 return;
             case "OPENED TYPE":
-                if (inventoryClickEvent.getCurrentItem() == null || inventoryClickEvent.getCurrentItem().getType() == XMaterial.GRAY_STAINED_GLASS_PANE.parseMaterial())
+                if (inventoryClickEvent.getCurrentItem() == null || inventoryClickEvent.getCurrentItem()
+                        .getType() == XMaterial.GRAY_STAINED_GLASS_PANE.parseMaterial())
                     return;
                 if (inventoryClickEvent.getSlot() == 26) {
                     properties.setTask("OPENED SETTINGS");
                     humanEntity.openInventory(properties.getSettingsGUI());
                     return;
                 }
-                String type = ChatColor.stripColor(Objects.requireNonNull(Objects.requireNonNull(itemStack).getItemMeta()).getDisplayName());
+                String type = ChatColor.stripColor(
+                        Objects.requireNonNull(Objects.requireNonNull(itemStack).getItemMeta()).getDisplayName());
                 if (properties.getType() == null || !properties.getType().equals(type)) {
                     properties.setMinPlayers(0);
                 }
@@ -225,7 +228,7 @@ public class InventoryClick_Setup implements Listener {
                                 humanEntity.closeInventory();
                                 return;
                             }
-                            if (properties.getCuboid().notInside(humanEntity.getLocation().clone().add(0,  -1, 0))) {
+                            if (properties.getCuboid().notInside(humanEntity.getLocation().clone().add(0, -1, 0))) {
                                 humanEntity.closeInventory();
                                 properties.setTask("OPENED DEFAULT");
                                 properties.setLobbyLocationWinner(humanEntity.getLocation().clone(), true);
@@ -322,18 +325,18 @@ public class InventoryClick_Setup implements Listener {
                 humanEntity.openInventory(properties.getEditGUI());
                 return;
             case "OPENED REMOVE":
-                if(inventoryClickEvent.getSlot() == 15) {
+                if (inventoryClickEvent.getSlot() == 15) {
                     properties.setTask("OPENED DEFAULT");
                     humanEntity.openInventory(properties.getEditGUI());
                     return;
                 }
-                if(inventoryClickEvent.getSlot() == 11) {
+                if (inventoryClickEvent.getSlot() == 11) {
                     MinerPlugin minerPlugin = MinerPlugin.getInstance();
                     FileConfiguration fileConfiguration = minerPlugin.getArenas();
                     File file = minerPlugin.getArenasFile();
                     humanEntity.closeInventory();
                     humanEntity.sendMessage(PluginCommand.Language.DELETED.getString());
-                    fileConfiguration.set("arenas."+ properties.getName(), null);
+                    fileConfiguration.set("arenas." + properties.getName(), null);
                     try {
                         fileConfiguration.save(file);
                     } catch (IOException e) {
@@ -353,8 +356,8 @@ public class InventoryClick_Setup implements Listener {
                 }
                 if (inventoryClickEvent.getSlot() == 46) {
                     itemStack = inventoryClickEvent.getCurrentItem();
-                    if(Objects.requireNonNull(itemStack.getItemMeta()).getDisplayName().contains("Previous")) {
-                        humanEntity.openInventory(properties.getPaginatedGames().get(index-1));
+                    if (Objects.requireNonNull(itemStack.getItemMeta()).getDisplayName().contains("Previous")) {
+                        humanEntity.openInventory(properties.getPaginatedGames().get(index - 1));
                         return;
                     }
                     properties.setTask("OPENED SETTINGS");
@@ -363,10 +366,10 @@ public class InventoryClick_Setup implements Listener {
                 }
                 if (inventoryClickEvent.getSlot() == 52) {
                     itemStack = inventoryClickEvent.getCurrentItem();
-                    if(itemStack == null)
+                    if (itemStack == null)
                         return;
-                    if(Objects.requireNonNull(itemStack.getItemMeta()).getDisplayName().contains("Next")) {
-                        humanEntity.openInventory(properties.getPaginatedGames().get(index+1));
+                    if (Objects.requireNonNull(itemStack.getItemMeta()).getDisplayName().contains("Next")) {
+                        humanEntity.openInventory(properties.getPaginatedGames().get(index + 1));
                         return;
                     }
                 }
@@ -419,13 +422,13 @@ public class InventoryClick_Setup implements Listener {
         }
     }
 
-    private static String locationToMessage(Location location){
-        return "x: "+format(location.getX())+", "
-                +"y: "+format(location.getY())+", "
-                +"z: "+format(location.getZ());
+    private static String locationToMessage(Location location) {
+        return "x: " + format(location.getX()) + ", "
+                + "y: " + format(location.getY()) + ", "
+                + "z: " + format(location.getZ());
     }
 
-    private static String format(double number){
+    private static String format(double number) {
         return String.format("%.2f", number).replace(",", ".");
     }
 

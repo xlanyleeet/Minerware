@@ -69,7 +69,7 @@ public class OneInTheChamber extends MicroGame {
             player.getInventory().setItem(2, arrow);
             gamePlayer.setState(State.PLAYING_GAME);
 			player.playSound(player.getLocation(), requireNonNull(XSound.ENTITY_ARROW_HIT_PLAYER.parseSound()), 5, 1);
-			if (!ManageHandler.getNMS().oldVersion()) {
+			if (!ManageHandler.getModernAPI().oldVersion()) {
 				AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_SPEED);
 				assert attribute != null;
 				attribute.setBaseValue(30);
@@ -164,3 +164,6 @@ public class OneInTheChamber extends MicroGame {
 	}
 
 }
+
+
+

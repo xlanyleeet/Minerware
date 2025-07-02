@@ -6,7 +6,7 @@ import org.gr_code.minerware.arena.Arena;
 import org.gr_code.minerware.arena.GamePlayer;
 import org.gr_code.minerware.builders.ItemBuilder;
 import org.gr_code.minerware.manager.ManageHandler;
-import org.gr_code.minerware.manager.type.nms.NMS;
+// No NMS import needed
 import org.gr_code.minerware.manager.type.resources.XMaterial;
 import org.gr_code.minerware.manager.type.resources.effects.WinEffect;
 
@@ -26,34 +26,36 @@ public class BlocksWinEffect extends WinEffect {
 
     @Override
     public void update() {
-        if(time == super.getTime())
+        if (time == super.getTime())
             start();
         doTask();
     }
 
     @Override
-    public void start() { }
+    public void start() {
+    }
 
     @Override
     public void stop() {
         arena.getProperties().restoreSquares();
         for (GamePlayer player : arena.getPlayers())
-            ManageHandler.getNMS().sendRestorePackets(Bukkit.getPlayer(player.getUUID()), arena);
+            ManageHandler.getModernAPI().sendRestorePackets(Bukkit.getPlayer(player.getUUID()), arena);
     }
 
     @Override
     public ItemStack getItemStack() {
-        return ItemBuilder.start(Objects.requireNonNull(XMaterial.SNOWBALL.parseItem())).setDisplayName("Blocks").build();
+        return ItemBuilder.start(Objects.requireNonNull(XMaterial.SNOWBALL.parseItem())).setDisplayName("Blocks")
+                .build();
     }
 
     public void doTask() {
-        NMS nms = ManageHandler.getNMS();
-        if(time == 0){
+        var modernAPI = ManageHandler.getModernAPI();
+        if (time == 0) {
             stop();
             return;
         }
         for (GamePlayer player : arena.getPlayers())
-            nms.updateBlocksWinEffect(Bukkit.getPlayer(player.getUUID()));
+            modernAPI.updateBlocksWinEffect(Bukkit.getPlayer(player.getUUID()));
         time--;
     }
 

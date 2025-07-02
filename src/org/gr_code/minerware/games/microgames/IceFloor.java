@@ -43,23 +43,23 @@ public class IceFloor extends MicroGame {
 
     private void newStage(Block block) {
     	ItemStack ItemStack = getItem(block);
-        XMaterial firstStage = ManageHandler.getNMS().isLegacy() ? XMaterial.PACKED_ICE : XMaterial.BLUE_ICE;
-        XMaterial secondStage = ManageHandler.getNMS().isLegacy() ? XMaterial.ICE : XMaterial.PACKED_ICE;
-        XMaterial thirdStage = ManageHandler.getNMS().isLegacy() ? XMaterial.LIGHT_BLUE_STAINED_GLASS : XMaterial.ICE;
-        if (ItemStack.isSimilar(firstStage.parseItem())) ManageHandler.getNMS().setBlock(requireNonNull(secondStage.parseItem()), block);
-        else if (ItemStack.isSimilar(secondStage.parseItem())) ManageHandler.getNMS().setBlock(requireNonNull(thirdStage.parseItem()), block);
+        XMaterial firstStage = ManageHandler.getModernAPI().isLegacy() ? XMaterial.PACKED_ICE : XMaterial.BLUE_ICE;
+        XMaterial secondStage = ManageHandler.getModernAPI().isLegacy() ? XMaterial.ICE : XMaterial.PACKED_ICE;
+        XMaterial thirdStage = ManageHandler.getModernAPI().isLegacy() ? XMaterial.LIGHT_BLUE_STAINED_GLASS : XMaterial.ICE;
+        if (ItemStack.isSimilar(firstStage.parseItem())) ManageHandler.getModernAPI().setBlock(requireNonNull(secondStage.parseItem()), block);
+        else if (ItemStack.isSimilar(secondStage.parseItem())) ManageHandler.getModernAPI().setBlock(requireNonNull(thirdStage.parseItem()), block);
         else if (ItemStack.isSimilar(thirdStage.parseItem())) {
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.WATER.parseItem()), block);
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.WATER.parseItem()), block);
             countWater++;
         }
     }
 
     private void generateFloor() {
         getArena().getProperties().destroySquares();
-        ItemStack ice = ManageHandler.getNMS().isLegacy() ? XMaterial.PACKED_ICE.parseItem() : XMaterial.BLUE_ICE.parseItem();
+        ItemStack ice = ManageHandler.getModernAPI().isLegacy() ? XMaterial.PACKED_ICE.parseItem() : XMaterial.BLUE_ICE.parseItem();
         getArena().getProperties().getCuboid().getLocations().stream()
                 .filter(location -> location.getBlockY() == getArena().getProperties().getFirstLocation().getBlockY())
-                .forEach(loc -> ManageHandler.getNMS().setBlock(requireNonNull(ice), loc.getBlock()));
+                .forEach(loc -> ManageHandler.getModernAPI().setBlock(requireNonNull(ice), loc.getBlock()));
     }
 
     @Override
@@ -121,3 +121,6 @@ public class IceFloor extends MicroGame {
 	}
 
 }
+
+
+

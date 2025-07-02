@@ -47,7 +47,7 @@ public class PluginCommand extends ACommand {
 
     private static final HashMap<UUID, Properties> ARENA_HASH_MAP = new HashMap<>();
 
-    public enum Language{
+    public enum Language {
 
         INCORRECT("messages.unknown-command"),
         ILLEGAL("messages.illegal-characters"),
@@ -96,13 +96,13 @@ public class PluginCommand extends ACommand {
         CAN_NOT_VOTE("messages.can-not-vote"),
         CAN_NOT_OPEN("messages.can-not-open");
 
-        Language(String string){
+        Language(String string) {
             this.string = Utils.translate(minerPlugin.getLanguage().getString(string));
         }
 
         private final String string;
 
-        public String getString(){
+        public String getString() {
             return string;
         }
 
@@ -149,9 +149,9 @@ public class PluginCommand extends ACommand {
                     }
                     WorldManager worldManager = WorldManager.GenerateWorld(args[1]);
                     World world = worldManager.getWorld();
-                    //noinspection deprecation
+                    // noinspection deprecation
                     world.setGameRuleValue("DO_MOB_SPAWNING", "false");
-                    //noinspection deprecation
+                    // noinspection deprecation
                     world.setGameRuleValue("DO_DAY_LIGHT_CYCLE", "false");
                     world.setThundering(false);
                     worldManager.teleport(uuid);
@@ -246,7 +246,9 @@ public class PluginCommand extends ACommand {
                     Arena arena = ServerManager.getArena(uuid);
                     Utils.setupToGame(player);
                     assert arena != null;
-                    sendMessage(Language.LEAVE.getString().replace("<arena_name>", arena.getName()), player);
+                    sendMessage(
+                            Language.LEAVE.getString().replace("<arena_name>", arena.getProperties().getDisplayName()),
+                            player);
                     arena.removePlayer(uuid, true);
                     return;
                 }
@@ -259,7 +261,8 @@ public class PluginCommand extends ACommand {
                         sendMessage(Language.INCORRECT.getString(), player);
                         return;
                     }
-                    minerPlugin.getMessages().set("game-finished.lobby-location", SetupManager.toString(player.getLocation()));
+                    minerPlugin.getMessages().set("game-finished.lobby-location",
+                            SetupManager.toString(player.getLocation()));
                     try {
                         minerPlugin.getMessages().save(minerPlugin.getMessagesFile());
                     } catch (IOException e) {
@@ -314,7 +317,7 @@ public class PluginCommand extends ACommand {
                     sendMessage(Language.REMOVED_HOLOGRAM.getString().replace("<number>", args[1]), player);
                     return;
                 }
-                if(args[0].equalsIgnoreCase("spawnLeaderboard")){
+                if (args[0].equalsIgnoreCase("spawnLeaderboard")) {
                     if (!player.hasPermission("minerware.admin")) {
                         sendMessage(Language.NO_PERMISSIONS.getString(), player);
                         return;
@@ -324,11 +327,11 @@ public class PluginCommand extends ACommand {
                         return;
                     }
                     MySQL.Path path = MySQL.parsePath(args[1]);
-                    if(path == null){
+                    if (path == null) {
                         sendMessage(Language.UNKNOWN_LEADERBOARD.getString(), player);
                         return;
                     }
-                    if(!StatisticManager.isLeaderboards()){
+                    if (!StatisticManager.isLeaderboards()) {
                         sendMessage(Language.ENABLE_DATABASE.getString(), player);
                         return;
                     }
@@ -357,7 +360,8 @@ public class PluginCommand extends ACommand {
                     return;
                 }
                 if (args[0].equalsIgnoreCase("version")) {
-                    String strings = Utils.translate("&e&lMiner&6&lWare &c" + minerPlugin.getDescription().getVersion() + " &7by &9Gr_Code");
+                    String strings = Utils.translate(
+                            "&e&lMiner&6&lWare &c" + minerPlugin.getDescription().getVersion() + " &7by &9Gr_Code");
                     player.sendMessage(strings);
                     return;
                 }
@@ -371,11 +375,11 @@ public class PluginCommand extends ACommand {
                         return;
                     }
                     Properties properties = PluginCommand.getArenaHashMap().get(uuid);
-                    if(properties == null) {
+                    if (properties == null) {
                         player.sendMessage(Language.CAN_NOT_OPEN.getString());
                         return;
                     }
-                    if(!properties.closed)
+                    if (!properties.closed)
                         return;
                     properties.setTask("OPENED DEFAULT");
                     player.openInventory(properties.getEditGUI());
@@ -387,11 +391,12 @@ public class PluginCommand extends ACommand {
                         sendMessage(Language.NO_PERMISSIONS.getString(), player);
                         return;
                     }
-                    if(Utils.isInGame(uuid) && args.length == 1){
+                    if (Utils.isInGame(uuid) && args.length == 1) {
                         Arena arena = ServerManager.getArena(uuid);
                         assert arena != null;
                         arena.forceStopArena();
-                        sendMessage(Language.STOP.getString().replace("<arena_name>", arena.getName()), player);
+                        sendMessage(Language.STOP.getString().replace("<arena_name>",
+                                arena.getProperties().getDisplayName()), player);
                         return;
                     }
                     if (args.length != 2) {
@@ -408,7 +413,9 @@ public class PluginCommand extends ACommand {
                         return;
                     }
                     arena.forceStopArena();
-                    sendMessage(Language.STOP.getString().replace("<arena_name>", arena.getName()), player);
+                    sendMessage(
+                            Language.STOP.getString().replace("<arena_name>", arena.getProperties().getDisplayName()),
+                            player);
                     return;
                 }
                 if (args[0].equalsIgnoreCase("forceStart")) {
@@ -416,12 +423,13 @@ public class PluginCommand extends ACommand {
                         sendMessage(Language.NO_PERMISSIONS.getString(), player);
                         return;
                     }
-                    if(Utils.isInGame(uuid) && args.length == 1){
+                    if (Utils.isInGame(uuid) && args.length == 1) {
                         Arena arena = ServerManager.getArena(uuid);
                         assert arena != null;
                         boolean started = arena.forceStartArena();
-                        if(started) {
-                            sendMessage(Language.START.getString().replace("<arena_name>", arena.getName()), player);
+                        if (started) {
+                            sendMessage(Language.START.getString().replace("<arena_name>",
+                                    arena.getProperties().getDisplayName()), player);
                             return;
                         }
                         sendMessage(Language.FAILED_START.getString(), player);
@@ -441,11 +449,39 @@ public class PluginCommand extends ACommand {
                         return;
                     }
                     boolean started = arena.forceStartArena();
-                    if(started) {
-                        sendMessage(Language.START.getString().replace("<arena_name>", arena.getName()), player);
+                    if (started) {
+                        sendMessage(Language.START.getString().replace("<arena_name>",
+                                arena.getProperties().getDisplayName()), player);
                         return;
                     }
                     sendMessage(Language.FAILED_START.getString(), player);
+                    return;
+                }
+                if (args[0].equalsIgnoreCase("setDisplayName")) {
+                    if (!player.hasPermission("minerware.admin")) {
+                        sendMessage(Language.NO_PERMISSIONS.getString(), player);
+                        return;
+                    }
+                    if (args.length < 3) {
+                        sendMessage("&7▪ Usage: /mw setDisplayName <arena> <display name>", player);
+                        return;
+                    }
+                    Arena arena = ServerManager.getArena(args[1]);
+                    if (arena == null) {
+                        sendMessage(Language.NOT_EXIST.getString(), player);
+                        return;
+                    }
+                    // Join all arguments from index 2 onwards to support multi-word names
+                    StringBuilder displayName = new StringBuilder();
+                    for (int i = 2; i < args.length; i++) {
+                        if (i > 2)
+                            displayName.append(" ");
+                        displayName.append(args[i]);
+                    }
+                    String newDisplayName = Utils.translate(displayName.toString());
+                    arena.getProperties().setDisplayName(newDisplayName);
+                    SetupManager.saveArena(arena);
+                    sendMessage("&7▪ Arena display name changed to: &6" + newDisplayName, player);
                     return;
                 }
             }
@@ -453,12 +489,12 @@ public class PluginCommand extends ACommand {
         commandSender.sendMessage(Language.INCORRECT.getString());
     }
 
-    private void sendMessage(String string, Player player){
+    private void sendMessage(String string, Player player) {
         BaseComponent baseComponent = ComponentBuilder.newComponentBuilder(string).build();
         player.spigot().sendMessage(baseComponent);
     }
 
-    private void sendMessage(Player player){
+    private void sendMessage(Player player) {
         String path = player.hasPermission("minerware.admin") ? "help" : "user-help";
         List<String> strings = minerPlugin.getLanguage().getStringList(path);
         for (String string : strings)
@@ -466,7 +502,8 @@ public class PluginCommand extends ACommand {
     }
 
     @Override
-    public @NotNull List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, String[] args) throws IllegalArgumentException {
+    public @NotNull List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, String[] args)
+            throws IllegalArgumentException {
         return super.tabComplete(sender, alias, args);
     }
 

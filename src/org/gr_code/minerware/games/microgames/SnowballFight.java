@@ -110,13 +110,13 @@ public class SnowballFight extends MicroGame {
     
     private void generate() {
         for (Properties.Square square : getArena().getProperties().getSquares()) square.getLocations().forEach(loc -> {
-            for (int i = 0; i < 5; i ++) ManageHandler.getNMS()
+            for (int i = 0; i < 5; i ++) ManageHandler.getModernAPI()
                     .setBlock(requireNonNull(XMaterial.SNOW_BLOCK.parseItem()),
                             loc.clone().add(0, i,0).getBlock());
         });
         Location first = getArena().getProperties().getFirstLocation();
         getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-                .forEach(loc -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.SNOW_BLOCK.parseItem()), loc.getBlock()));
+                .forEach(loc -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.SNOW_BLOCK.parseItem()), loc.getBlock()));
     }
 
     private void generateTeams() {
@@ -267,3 +267,5 @@ public class SnowballFight extends MicroGame {
     }
 
 }
+
+

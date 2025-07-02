@@ -105,8 +105,8 @@ public class GiveMrBlobbo extends MicroGame {
         Location center = getArena().getProperties().getCuboid().getCenter().getBlock().getLocation().add(-1, -1, -1);
         ItemStack gold = XMaterial.GOLD_BLOCK.parseItem();
         assert gold != null;
-        for (int x = 0; x < 3; x ++) for (int z = 0; z < 3; z ++) ManageHandler.getNMS().setBlock(gold, center.clone().add(x, 0, z).getBlock());
-        ManageHandler.getNMS().setBlock(gold, center.add(1, 1, 1).getBlock());
+        for (int x = 0; x < 3; x ++) for (int z = 0; z < 3; z ++) ManageHandler.getModernAPI().setBlock(gold, center.clone().add(x, 0, z).getBlock());
+        ManageHandler.getModernAPI().setBlock(gold, center.add(1, 1, 1).getBlock());
     }
 
     private void spawnSlime() {
@@ -117,8 +117,8 @@ public class GiveMrBlobbo extends MicroGame {
         slime.setSize(2);
         slime.setCustomName(nameSlime);
         slime.setCustomNameVisible(true);
-        if (!ManageHandler.getNMS().oldVersion()) slime.setAI(false);
-        else ManageHandler.getNMS().setNoAI(slime);
+        if (!ManageHandler.getModernAPI().oldVersion()) slime.setAI(false);
+        else ManageHandler.getModernAPI().setNoAI(slime);
     }
 
     private void spawnNutrition() {
@@ -183,7 +183,7 @@ public class GiveMrBlobbo extends MicroGame {
             int y = player.getLocation().getBlockY();
             checkStand(player, gamePlayer);
             if (gamePlayer.getTask().equals("0")) player.getInventory().clear();
-            ManageHandler.getNMS().sendActionBar(player, translate(actionBar.replace("<nutrition>", gamePlayer.getTask())));
+            ManageHandler.getModernAPI().sendActionBar(player, translate(actionBar.replace("<nutrition>", gamePlayer.getTask())));
             if (y <= yp - 1) onLose(player, true);
         });
     }
@@ -279,3 +279,5 @@ public class GiveMrBlobbo extends MicroGame {
     }
 
 }
+
+

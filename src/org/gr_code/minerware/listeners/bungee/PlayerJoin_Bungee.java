@@ -24,3 +24,5 @@ public class PlayerJoin_Bungee implements Listener {
         arena.addPlayer(uuid);
     }
 }
+
+

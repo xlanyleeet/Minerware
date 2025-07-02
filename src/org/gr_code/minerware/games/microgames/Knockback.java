@@ -34,7 +34,7 @@ public class Knockback extends MicroGame {
 
     @Override
     public void startGame() {
-        if (!ManageHandler.getNMS().oldVersion())
+        if (!ManageHandler.getModernAPI().oldVersion())
         	getArena().getPlayers().forEach(gamePlayer -> {
             	Player player = gamePlayer.getPlayer();
             	AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_SPEED);
@@ -158,3 +158,6 @@ public class Knockback extends MicroGame {
 	}
 
 }
+
+
+

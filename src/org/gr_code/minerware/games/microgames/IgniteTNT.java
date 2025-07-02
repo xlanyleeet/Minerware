@@ -64,7 +64,7 @@ public class IgniteTNT extends MicroGame {
 		}
 		for (Square sq : squares) for (int i = 0; i < count; i ++) {
 			Location location = sq.getLocations().get(new Random().nextInt(sq.getLocations().size()));
-			ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.TNT.parseItem()), location.getBlock());
+			ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.TNT.parseItem()), location.getBlock());
 		}
 	}
 
@@ -165,3 +165,5 @@ public class IgniteTNT extends MicroGame {
 	}
 
 }
+
+

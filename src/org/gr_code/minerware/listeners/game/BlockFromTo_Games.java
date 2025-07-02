@@ -29,10 +29,13 @@ public class BlockFromTo_Games implements Listener{
 	}
 
 	private boolean isWaterOrLava(Block block) {
-		int idBlock = ManageHandler.getNMS().getTypeId(block);
+		int idBlock = ManageHandler.getModernAPI().getTypeId(block);
 		Material materialBlock = block.getType();
-		if (!ManageHandler.getNMS().isLegacy())
+		if (!ManageHandler.getModernAPI().isLegacy())
 			return (materialBlock == Material.WATER || materialBlock == Material.LAVA);
 		return (idBlock == 8 || idBlock == 9 || idBlock == 10 || idBlock == 11);
 	}
 }
+
+
+

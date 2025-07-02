@@ -45,7 +45,7 @@ public class RideCow extends MicroGame {
 
     @Override
     public void startGame() {
-		if (!ManageHandler.getNMS().oldVersion())
+		if (!ManageHandler.getModernAPI().oldVersion())
 			getArena().getPlayers().forEach(gamePlayer -> gamePlayer.getPlayer().setCollidable(false));
         super.startGame();
     }
@@ -76,11 +76,11 @@ public class RideCow extends MicroGame {
 			Location random = getRandomLocation(getArena());
 			random.setPitch(0);
 			Cow cow = (Cow) requireNonNull(getArena().getProperties().getFirstLocation().getWorld()).spawnEntity(random, EntityType.COW);
-			if (!ManageHandler.getNMS().oldVersion()) {
+			if (!ManageHandler.getModernAPI().oldVersion()) {
 				cow.setCollidable(false);
 				if (!getArena().isHardMode()) cow.setAI(false);
 				cow.setSilent(true);
-			} else if (!getArena().isHardMode()) ManageHandler.getNMS().setNoAI(cow);
+			} else if (!getArena().isHardMode()) ManageHandler.getModernAPI().setNoAI(cow);
 			cowList.add(cow);
 		}
 	}
@@ -115,7 +115,7 @@ public class RideCow extends MicroGame {
     }
 
     private List<Cow> getFilterCows() {
-		if (ManageHandler.getNMS().oldVersion())
+		if (ManageHandler.getModernAPI().oldVersion())
 			return cowList.stream().filter(cow -> cow.getPassenger() != null && cow.getPassenger() instanceof Player)
 					.filter(cow -> isInGame(cow.getPassenger().getUniqueId())).collect(Collectors.toList());
 		return cowList.stream().filter(cow -> cow.getPassengers().size() == 1 && cow.getPassengers().get(0) instanceof Player)
@@ -123,7 +123,7 @@ public class RideCow extends MicroGame {
 	}
 
 	private void setWinners() {
-		if (ManageHandler.getNMS().oldVersion()) getFilterCows().forEach(cow-> {
+		if (ManageHandler.getModernAPI().oldVersion()) getFilterCows().forEach(cow-> {
 			Player player = requireNonNull(((Player) cow.getPassenger()));
 			GamePlayer gamePlayer = requireNonNull(getArena().getPlayer(player.getUniqueId()));
 			onWin(player, false);
@@ -198,7 +198,7 @@ public class RideCow extends MicroGame {
 		e.setCancelled(false);
 		player.setHealth(20);
 		if (cowList.size() == 0) return;
-		if (ManageHandler.getNMS().oldVersion()) {
+		if (ManageHandler.getModernAPI().oldVersion()) {
 			cowList.stream().filter(cow -> cow.getPassenger() != null && cow.getPassenger() == player).forEach(cow->{
 				cow.eject();
 				player.setVelocity(e.getDamager().getLocation().getDirection().normalize().multiply(1.5));
@@ -229,7 +229,7 @@ public class RideCow extends MicroGame {
 		GamePlayer gamePlayer = requireNonNull(getArena().getPlayer(player.getUniqueId()));
 		if (gamePlayer.getState() != State.PLAYING_GAME) return;
 		if (!(e.getRightClicked() instanceof Cow)) return;
-		if (ManageHandler.getNMS().oldVersion()) {
+		if (ManageHandler.getModernAPI().oldVersion()) {
 			if (e.getRightClicked().getPassenger() != null) return;
 			e.getRightClicked().setPassenger(player);
 			e.setCancelled(true);
@@ -267,3 +267,5 @@ public class RideCow extends MicroGame {
 	}
 
 }
+
+

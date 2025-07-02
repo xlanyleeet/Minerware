@@ -18,3 +18,4 @@ public class PlayerPickUpItem_Games implements Listener {
         playerPickupItemEvent.setCancelled(true);
     }
 }
+

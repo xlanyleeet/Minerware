@@ -2,7 +2,6 @@ package org.gr_code.minerware.manager.type.database.cached;
 
 import org.bukkit.entity.Player;
 import org.gr_code.minerware.manager.type.LobbyHelper;
-import org.gr_code.minerware.manager.type.StatisticManager;
 import org.gr_code.minerware.manager.type.database.type.MySQL;
 
 import java.sql.ResultSet;
@@ -32,8 +31,10 @@ public class CachedMySQL {
                     cached.setLevel(manager.getInt("LEVEL"));
                     cached.setExp(manager.getInt("EXP"));
                     CachedMySQL.cached.add(cached);
-                    StatisticManager.spawnHolograms(uuid);
-                } catch (SQLException ignored) { }
+                    // StatisticManager.spawnHolograms(uuid); // Removed - no longer spawn holograms
+                    // automatically
+                } catch (SQLException ignored) {
+                }
             }
 
             @Override
@@ -44,7 +45,8 @@ public class CachedMySQL {
                 cached.setLevel(0);
                 cached.setExp(0);
                 CachedMySQL.cached.add(cached);
-                StatisticManager.spawnHolograms(uuid);
+                // StatisticManager.spawnHolograms(uuid); // Removed - no longer spawn holograms
+                // automatically
             }
         };
         MySQL.get(uuid, resultSetCallBack, cached);

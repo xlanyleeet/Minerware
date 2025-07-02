@@ -49,7 +49,7 @@ public class FallingArrows extends MicroGame {
             for (int x = 0 ; x < firstX; x ++) for (int z = 0; z < firstZ; z ++) {
                 Location location = random.clone().add(x, 0, z);
                 if (cuboid.notInside(location)) continue;
-                ManageHandler.getNMS().setBlock(itemStack, location.getBlock());
+                ManageHandler.getModernAPI().setBlock(itemStack, location.getBlock());
             }
         }
     }
@@ -136,3 +136,5 @@ public class FallingArrows extends MicroGame {
     }
 
 }
+
+

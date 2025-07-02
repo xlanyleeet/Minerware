@@ -43,7 +43,7 @@ public class SpleefBoss extends BossGame {
 		Predicate<Location> predicate = !getArena().isHardMode() ? l -> l.getBlockY() <= first.getBlockY() + 4
 				 : l -> l.getBlockY() != first.getBlockY() && l.getBlockY() <= first.getBlockY() + 4;
 		locations.stream().filter(predicate)
-			.forEach(loc-> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.SNOW_BLOCK.parseItem()), loc.getBlock()));
+			.forEach(loc-> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.SNOW_BLOCK.parseItem()), loc.getBlock()));
 		ItemStack shovel = ItemBuilder.start(requireNonNull(XMaterial.DIAMOND_SHOVEL.parseItem()))
 				.setUnbreakable(true).addEnchantment(Enchantment.DIG_SPEED, 3, true).build();
 		getArena().getPlayers().forEach(gamePlayer -> {
@@ -105,3 +105,5 @@ public class SpleefBoss extends BossGame {
 	}
 
 }
+
+

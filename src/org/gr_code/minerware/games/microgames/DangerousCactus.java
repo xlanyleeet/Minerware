@@ -37,7 +37,7 @@ public class DangerousCactus extends MicroGame {
         Location first = getArena().getProperties().getFirstLocation();
         Location second = getArena().getProperties().getSecondLocation();
         List<Location> locationsY = cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() + 1).collect(Collectors.toList());
-        locationsY.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.SAND.parseItem()), l.getBlock()));
+        locationsY.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.SAND.parseItem()), l.getBlock()));
         List<Location> locations = new ArrayList<>();
         locations.addAll(locationsY.stream().filter(l -> l.getBlockX() == first.getBlockX()).collect(Collectors.toList()));
         locations.addAll(locationsY.stream().filter(l -> l.getBlockZ() == first.getBlockZ()).collect(Collectors.toList()));
@@ -47,10 +47,10 @@ public class DangerousCactus extends MicroGame {
             Properties.Square square = getArena().getProperties().getSquares()[i];
             if (getArena().getProperties().getType().equals("MICRO") || i != 4)
                 for (int j = 0; j < square.getLocations().size(); j += 3) for (int k = 0; k < 3; k ++)
-                    ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.CACTUS.parseItem()), square.getLocations().get(j).clone().add(0,1 + k,0).getBlock());
+                    ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.CACTUS.parseItem()), square.getLocations().get(j).clone().add(0,1 + k,0).getBlock());
         }
         for (int i = 0; i < locations.size(); i += 2) for (int k = 0; k < 3; k ++)
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.CACTUS.parseItem()), locations.get(i).clone().add(0,1 + k,0).getBlock());
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.CACTUS.parseItem()), locations.get(i).clone().add(0,1 + k,0).getBlock());
 
     }
 
@@ -129,3 +129,5 @@ public class DangerousCactus extends MicroGame {
     }
 
 }
+
+

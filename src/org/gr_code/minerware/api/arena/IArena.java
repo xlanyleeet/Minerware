@@ -29,3 +29,5 @@ public interface IArena {
     IPlayer getPlayer(UUID uuid);
 
 }
+
+

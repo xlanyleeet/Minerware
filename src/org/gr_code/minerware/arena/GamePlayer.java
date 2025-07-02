@@ -32,7 +32,7 @@ public class GamePlayer implements IPlayer {
     private final String objectString = fileConfiguration.getString("waiting-scoreboard.title");
 
     @SuppressWarnings("deprecation")
-    Objective objective = ManageHandler.getNMS().isLegacy() ?
+    Objective objective = ManageHandler.getModernAPI().isLegacy() ?
             scoreboard.registerNewObjective("MinerWare", "dummy") :
             scoreboard.registerNewObjective("MinerWare", "dummy", translate(objectString));
 
@@ -258,7 +258,7 @@ public class GamePlayer implements IPlayer {
         return state;
     }
 
-    private static final int LIMIT = ManageHandler.getNMS().isLegacy() ? 16 : 64;
+    private static final int LIMIT = ManageHandler.getModernAPI().isLegacy() ? 16 : 64;
 
     public Arena getArena() {
         return arena;
@@ -276,3 +276,6 @@ public class GamePlayer implements IPlayer {
         return voted;
     }
 }
+
+
+

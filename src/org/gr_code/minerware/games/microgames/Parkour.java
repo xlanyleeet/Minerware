@@ -121,10 +121,10 @@ public class Parkour extends MicroGame {
 
     private void spawnParkour() {
         for (int i = 0; i < 2; i ++) {
-            ManageHandler.getNMS().setBlock(requireNonNull(ter), toListSec.clone().add(0, i,0).getBlock());
-            ManageHandler.getNMS().setBlock(ter, toList.clone().add(0, i,0).getBlock());
+            ManageHandler.getModernAPI().setBlock(requireNonNull(ter), toListSec.clone().add(0, i,0).getBlock());
+            ManageHandler.getModernAPI().setBlock(ter, toList.clone().add(0, i,0).getBlock());
         }
-        fullLocations.forEach(location -> ManageHandler.getNMS().setBlock(ter, location.getBlock()));
+        fullLocations.forEach(location -> ManageHandler.getModernAPI().setBlock(ter, location.getBlock()));
         for (int i = 0; i < Cuboid.getSize(getArena()) / 5; i ++) {
             Location fParam = stolb.get(stolb.size() - 1);
             List<Location> locSt = locCub.stream().filter(l -> l.distance(fParam) <= 3).filter(l -> l.distance(fParam) > 2.5)
@@ -138,10 +138,10 @@ public class Parkour extends MicroGame {
             Location newL = locSt.get(new Random().nextInt(locSt.size()));
             int count = stolbInt.get(stolb.indexOf(fParam)) + 1;
             stolb.add(newL); stolbInt.add(count);
-            for (int j = 0; j < count; j ++) ManageHandler.getNMS().setBlock(ter, newL.clone().add(0, j,0).getBlock());
+            for (int j = 0; j < count; j ++) ManageHandler.getModernAPI().setBlock(ter, newL.clone().add(0, j,0).getBlock());
         }
         Location cake = stolb.get(stolb.size() - 1).clone().add(0, stolbInt.get(stolbInt.size() - 1), 0);
-        String materialCake = ManageHandler.getNMS().isLegacy() ? "CAKE_BLOCK" : "CAKE";
+        String materialCake = ManageHandler.getModernAPI().isLegacy() ? "CAKE_BLOCK" : "CAKE";
         cake.getBlock().setType(Material.valueOf(materialCake));
         System.gc();
     }
@@ -206,10 +206,12 @@ public class Parkour extends MicroGame {
         UUID uuid = player.getUniqueId();
         if (requireNonNull(getArena().getPlayer(uuid)).getState() != State.PLAYING_GAME) return;
         if (e.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        String material = ManageHandler.getNMS().isLegacy() ? "CAKE_BLOCK" : "CAKE";
+        String material = ManageHandler.getModernAPI().isLegacy() ? "CAKE_BLOCK" : "CAKE";
         ItemStack cake = new ItemStack(Material.valueOf(material));
         if (!Utils.getItem(e.getClickedBlock()).isSimilar(cake)) return;
         onWin(player, false);
     }
 
 }
+
+

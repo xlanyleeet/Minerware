@@ -95,7 +95,7 @@ public class GrabASapling extends MicroGame {
             Cuboid cuboid = getArena().getProperties().getCuboid();
             cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() + 1).forEach(l -> {
                 String stringSapling = saplings.get(new Random().nextInt(saplings.size())).split(":")[0];
-                ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.valueOf(stringSapling).parseItem()), l.getBlock());
+                ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.valueOf(stringSapling).parseItem()), l.getBlock());
             });
         }
 
@@ -103,7 +103,7 @@ public class GrabASapling extends MicroGame {
             Location first = getArena().getProperties().getFirstLocation();
             Cuboid cuboid = getArena().getProperties().getCuboid();
             cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-                    .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GRASS_BLOCK.parseItem()), l.getBlock()));
+                    .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GRASS_BLOCK.parseItem()), l.getBlock()));
             generateSaplings();
         }
 
@@ -194,3 +194,5 @@ public class GrabASapling extends MicroGame {
         }
 
 }
+
+

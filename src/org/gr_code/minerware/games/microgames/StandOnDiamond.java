@@ -68,7 +68,7 @@ public class StandOnDiamond extends MicroGame {
 		}
 		for (int i : sizesCuboid)
 			getArena().getProperties().getSquares()[new Random().nextInt(i)].getLocations()
-			.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.DIAMOND_BLOCK.parseItem()), l.getBlock()));
+			.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.DIAMOND_BLOCK.parseItem()), l.getBlock()));
 	}
 
     @Override
@@ -120,10 +120,10 @@ public class StandOnDiamond extends MicroGame {
     private void removeFloor() {
 		Location first = getArena().getProperties().getFirstLocation();
 		getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
 		for (Square sq : getArena().getProperties().getSquares()) 
 			sq.getLocations().stream().filter(l -> !getItem(l.getBlock()).isSimilar(XMaterial.DIAMOND_BLOCK.parseItem()))
-					.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
+					.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
 	}
 
 	@Override
@@ -169,3 +169,5 @@ public class StandOnDiamond extends MicroGame {
 	}
 
 }
+
+

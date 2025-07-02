@@ -19,3 +19,4 @@ public class EntityExplode_Games implements Listener {
         arena.getMicroGame().event(entityExplodeEvent);
     }
 }
+

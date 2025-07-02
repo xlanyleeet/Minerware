@@ -12,9 +12,12 @@ public class PlayerDropItem_Waiting implements Listener {
     public void onDrop(PlayerDropItemEvent playerDropItemEvent){
     	if(!Utils.isInGame(playerDropItemEvent.getPlayer().getUniqueId()))
     	    return;
-        if(!(ManageHandler.getNMS().equalsItemStack(playerDropItemEvent.getItemDrop().getItemStack(), Utils.LEAVE_THE_ARENA)
-        || ManageHandler.getNMS().equalsItemStack(playerDropItemEvent.getItemDrop().getItemStack(), Utils.VOTE)))
+        if(!(ManageHandler.getModernAPI().equalsItemStack(playerDropItemEvent.getItemDrop().getItemStack(), Utils.LEAVE_THE_ARENA)
+        || ManageHandler.getModernAPI().equalsItemStack(playerDropItemEvent.getItemDrop().getItemStack(), Utils.VOTE)))
             return;
         playerDropItemEvent.setCancelled(true);
     }
 }
+
+
+

@@ -58,8 +58,11 @@ public class Building {
             String[] settings = strBlock.split(":");
             ItemStack item = settings[3].equalsIgnoreCase("itemFl") ? itemFloor : itemSquare;
             Location block = first.clone().add(parseInt(settings[0]), parseInt(settings[1]), parseInt(settings[2]));
-            ManageHandler.getNMS().setBlock(item, block.getBlock());
+            ManageHandler.getModernAPI().setBlock(item, block.getBlock());
         }
     }
 
 }
+
+
+

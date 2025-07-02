@@ -110,7 +110,7 @@ public class FindTheBeacon extends MicroGame {
     }
 
     public void createDoors() {
-        blocks.forEach(ManageHandler.getNMS().getGeneratorDoors());
+        blocks.forEach(ManageHandler.getModernAPI().getGeneratorDoors());
         Cuboid cuboid = getArena().getProperties().getCuboid();
         getArena().getProperties().destroySquares();
         Location first = getArena().getProperties().getFirstLocation();
@@ -122,7 +122,7 @@ public class FindTheBeacon extends MicroGame {
         for (int x = 0; x < 3; x ++) for (int z = 0; z < 3; z ++) {
             Location location = beaconLocation.clone().add(x, 0, z);
             if (cuboid.notInside(location)) continue;
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.IRON_BLOCK.parseItem()), location.getBlock());
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.IRON_BLOCK.parseItem()), location.getBlock());
         }
         double k = (spawnLocation[1].getZ() - spawnLocation[0].getZ()) / (spawnLocation[1].getX() - spawnLocation[0].getX());
         spawnLocation[0].setYaw((float) Math.toDegrees(Math.atan(k)) + 90);
@@ -186,3 +186,6 @@ public class FindTheBeacon extends MicroGame {
     }
 
 }
+
+
+

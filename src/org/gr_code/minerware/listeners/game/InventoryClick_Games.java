@@ -24,3 +24,4 @@ public class InventoryClick_Games implements Listener {
         arena.getMicroGame().event(event);
     }
 }
+

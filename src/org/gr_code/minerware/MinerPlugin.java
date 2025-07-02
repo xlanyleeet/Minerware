@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 public final class MinerPlugin extends JavaPlugin implements Listener {
-    
+
     private static final HashSet<Arena> ARENA_REGISTRY = new HashSet<>();
 
     public MinerPlugin() {
@@ -89,7 +89,8 @@ public final class MinerPlugin extends JavaPlugin implements Listener {
         return files[2];
     }
 
-    private static final String[] strings = {"arenas.yml", "configuration.yml", "options.yml", "games.yml", "boss_games.yml", "bungeecord.yml", "language.yml"};
+    private static final String[] strings = { "arenas.yml", "configuration.yml", "options.yml", "games.yml",
+            "boss_games.yml", "bungeecord.yml", "language.yml" };
 
     private final FileConfiguration[] configurations = new FileConfiguration[strings.length * 2 - 1];
 
@@ -103,13 +104,13 @@ public final class MinerPlugin extends JavaPlugin implements Listener {
             if (!getDataFolder().exists()) {
                 file.getParentFile().mkdirs();
                 saveResource(name, false);
-                System.out.println("[MinerWare] File " + file.getName() + " has been created.");
+                getLogger().info("File " + file.getName() + " has been created.");
             }
             FileConfiguration fileConfiguration = new MinerConfiguration();
             try {
                 fileConfiguration.load(file);
             } catch (IOException | InvalidConfigurationException e) {
-                System.out.println("[MinerWare] Could not load file " + file.getName() + "!");
+                getLogger().warning("Could not load file " + file.getName() + "!");
             }
             files[i] = file;
             configurations[i] = fileConfiguration;
@@ -119,7 +120,8 @@ public final class MinerPlugin extends JavaPlugin implements Listener {
 
     private void internalInitialize() {
         for (int i = 1; i < strings.length; i++) {
-            InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(getResource(strings[i])), StandardCharsets.UTF_8);
+            InputStreamReader inputStreamReader = new InputStreamReader(Objects.requireNonNull(getResource(strings[i])),
+                    StandardCharsets.UTF_8);
             configurations[strings.length + i - 1] = YamlConfiguration.loadConfiguration(inputStreamReader);
         }
         defaults();
@@ -146,16 +148,16 @@ public final class MinerPlugin extends JavaPlugin implements Listener {
         try {
             fileConfiguration.save(file);
         } catch (IOException e) {
-            System.out.println("[MinerWare] Could not save file " + file.getName() + "!");
+            getInstance().getLogger().warning("Could not save file " + file.getName() + "!");
         }
     }
-    
+
     public static class MinerConfiguration extends YamlConfiguration {
 
         @Override
         public @Nullable String getString(@NotNull String path) {
             String string = super.getString(path);
-            if (string != null && ManageHandler.getNMS().oldVersion()) {
+            if (string != null && ManageHandler.getModernAPI().oldVersion()) {
                 string = new String(string.getBytes(), Charsets.UTF_8);
                 return string;
             }
@@ -167,6 +169,5 @@ public final class MinerPlugin extends JavaPlugin implements Listener {
             super.setDefaults(defaults);
         }
     }
-
 
 }

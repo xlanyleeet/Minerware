@@ -9,7 +9,214 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c4bd7319-2921-4d9e-bde6-79fcf3c262a4" name="Default Changelist" comment="" />
+    <list default="true" id="c4bd7319-2921-4d9e-bde6-79fcf3c262a4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minerware.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/arenas.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/arenas.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/language.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/language.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/MinerPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/MinerPlugin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/EventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/EventManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/MinerAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/MinerAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/arena/IArena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/arena/IArena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/arena/IPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/arena/IPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/ArenaFinishMatchEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/ArenaFinishMatchEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/CowDamageByPlayerEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/CowDamageByPlayerEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/EventA.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/EventA.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerCollectedEmeraldsEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerCollectedEmeraldsEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerJoinArenaEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerJoinArenaEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerLeaveArenaEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerLeaveArenaEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerPrepareLeaveArenaEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerPrepareLeaveArenaEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerStackedAllBlocksEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerStackedAllBlocksEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerWinMatchEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/api/events/PlayerWinMatchEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/arena/Arena.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/arena/Arena.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/arena/GamePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/arena/GamePlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/arena/Properties.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/arena/Properties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/arena/Voting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/arena/Voting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/builders/ComponentBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/builders/ComponentBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/builders/EnumBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/builders/EnumBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/builders/InventoryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/builders/InventoryBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/builders/ItemBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/builders/ItemBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/commands/ACommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/commands/ACommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/commands/subcommand/PluginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/commands/subcommand/PluginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/cuboid/Cuboid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/cuboid/Cuboid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/cuboid/WorldGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/cuboid/WorldGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/BossGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/BossGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/Info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/Info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/MicroGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/MicroGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/BlockPartyBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/BlockPartyBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/BowSpleefBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/BowSpleefBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/ColouredFloorBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/ColouredFloorBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/SnakeBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/SnakeBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/SpleefBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/SpleefBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/TNTRunBoss.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/bossgames/TNTRunBoss.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/BlockParty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/BlockParty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/CatchEmeralds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/CatchEmeralds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ChestPvP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ChestPvP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/DangerousCactus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/DangerousCactus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/DontCrash.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/DontCrash.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/DontMove.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/DontMove.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/DropItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/DropItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ExplosionTNT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ExplosionTNT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ExplosiveBow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ExplosiveBow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FallingAnvils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FallingAnvils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FallingArrows.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FallingArrows.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FallingPlatform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FallingPlatform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FeedAnimals.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FeedAnimals.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FindTheBeacon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FindTheBeacon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FlyFlyAndFly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/FlyFlyAndFly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/GiveMrBlobbo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/GiveMrBlobbo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/GrabAFlower.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/GrabAFlower.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/GrabASapling.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/GrabASapling.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/HighPlatform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/HighPlatform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/HotPotato.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/HotPotato.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/IceFloor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/IceFloor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/IgniteTNT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/IgniteTNT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/InvisibleButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/InvisibleButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/JumpAndStay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/JumpAndStay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/JumpOrFly.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/JumpOrFly.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/KingOfTheHill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/KingOfTheHill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/KnockEveryone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/KnockEveryone.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Knockback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Knockback.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/LandOnSlime.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/LandOnSlime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/LandOnTheFloor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/LandOnTheFloor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/LavaFloor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/LavaFloor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/LightningStrikes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/LightningStrikes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/MathGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/MathGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/MilkCow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/MilkCow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/MineOre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/MineOre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/OneInTheChamber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/OneInTheChamber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Parkour.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Parkour.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/PvP.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/PvP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Question.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Question.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/RideCow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/RideCow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/SecondQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/SecondQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ShearSheeps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ShearSheeps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Sneak.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/Sneak.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/SnowballFight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/SnowballFight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/SpiderMan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/SpiderMan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/StackBlocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/StackBlocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/StandOnDiamond.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/StandOnDiamond.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/SwimToThePlatform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/SwimToThePlatform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/TNTTag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/TNTTag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ThrowTNT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/microgames/ThrowTNT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/resources/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/resources/Building.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/resources/Platform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/resources/Platform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/games/resources/Snake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/games/resources/Snake.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/ManagerListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/ManagerListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/bungee/PlayerJoin_Bungee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/bungee/PlayerJoin_Bungee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/bungee/PlayerLogin_Bungee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/bungee/PlayerLogin_Bungee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/bungee/PlayerQuit_Bungee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/bungee/PlayerQuit_Bungee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/bungee/ServerListPing_Bungee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/bungee/ServerListPing_Bungee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/AsyncPlayerChat_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/AsyncPlayerChat_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockBreak_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockBreak_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockExplode_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockExplode_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockFade_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockFade_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockFromTo_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockFromTo_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockPlace_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/BlockPlace_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/CreatureSpawn_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/CreatureSpawn_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityChangeBlock_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityChangeBlock_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityCombust_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityCombust_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityDamage_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityDamage_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityDismount_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityDismount_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityExplode_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityExplode_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityPickUpItem_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityPickUpItem_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityShootBow_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/EntityShootBow_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/FoodLevelChange_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/FoodLevelChange_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/InventoryClick_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/InventoryClick_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/InventoryClose_Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/InventoryClose_Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/ItemSpawn_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/ItemSpawn_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerCommandPreprocess_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerCommandPreprocess_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerDropItem_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerDropItem_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerExpChange_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerExpChange_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerFish_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerFish_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerInteractAtEntity_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerInteractAtEntity_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerInteractEntity_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerInteractEntity_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerInteract_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerInteract_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerLeave_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerLeave_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerPickUpItem_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerPickUpItem_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerShearEntity_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/PlayerShearEntity_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/ProjectileHit_Games.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/game/ProjectileHit_Games.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/setup/InventoryClick_Setup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/setup/InventoryClick_Setup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/setup/InventoryClose_Setup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/setup/InventoryClose_Setup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/setup/PlayerInteract_Setup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/setup/PlayerInteract_Setup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/sign/PlayerInteract_Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/sign/PlayerInteract_Sign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/sign/SignChange_Sign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/sign/SignChange_Sign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PlayerPrepareLeaveArena_Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PlayerPrepareLeaveArena_Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PlayerRespawn_Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PlayerRespawn_Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PlayerWin_Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PlayerWin_Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PlayerWorldChange_Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PlayerWorldChange_Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PluginEnable_Statistic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/statistic/PluginEnable_Statistic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/EntityDamage_Waiting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/EntityDamage_Waiting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/PlayerChat_Waiting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/PlayerChat_Waiting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/PlayerDropItem_Waiting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/PlayerDropItem_Waiting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/PlayerInteract_Waiting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/PlayerInteract_Waiting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/PlayerInventoryClick_Waiting.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/listeners/waiting/PlayerInventoryClick_Waiting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/ManageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/ManageHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/LobbyHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/LobbyHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/PlaceholderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/PlaceholderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/ServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/ServerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/SetupManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/SetupManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/SignManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/SignManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/SocketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/SocketManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/SortManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/SortManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/StatisticManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/StatisticManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/TabManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/TabManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/WorldManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/WorldManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/database/MinerwareAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/database/MinerwareAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/database/cached/Cached.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/database/cached/Cached.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/database/cached/CachedMySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/database/cached/CachedMySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/database/type/MySQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/database/type/MySQL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/NMS.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/IHologram.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_10_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_11_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_12_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_13_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_14_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_15_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_16_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_16_R2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_16_R3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_8_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_8_R2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_8_R3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_9_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/hologram/version/v1_9_R2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_10_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_11_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_12_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_13_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_14_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_15_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_16_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_16_R2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_16_R3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_17_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_8_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_8_R2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_8_R3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_9_R1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/nms/version/v1_9_R2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/MathHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/MathHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/XMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/XMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/XSound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/XSound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/WinEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/WinEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/BlocksWinEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/BlocksWinEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/ExplosionWinEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/ExplosionWinEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/FireWinEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/FireWinEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/IceWinEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/IceWinEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/RocketWinEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/org/gr_code/minerware/manager/type/resources/effects/win/RocketWinEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/plugin.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,34 +234,48 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2020.1.2\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJIdea2023.3\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProblemsViewState">
     <option name="showPreview" value="true" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="1hPfErBNohlx9FD6U5WhryPvwQ4" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Plugins" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15572034" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.minerware [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.minerware [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.minerware [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="org.gr_code.minerware.manager.type.Utils" />
@@ -75,6 +296,21 @@
       <recent name="C:\Users\Григорий\Desktop\Utilities\cv\LavaGame\src\org\Gr_Code\LavaGames\games\bossgame_files" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Minerware" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Minerware" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -83,45 +319,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599917539225</updated>
+      <workItem from="1751388539829" duration="5620000" />
+      <workItem from="1751476005050" duration="3009000" />
     </task>
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.yml" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1624367952519">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1624367952519" />
-    <state x="699" y="414" width="562" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1627052300178">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="699" y="414" width="562" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1627052300178" />
-    <state x="396" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1620224734754">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="396" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620224734754" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1628499811173">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628499811173" />
-    <state x="740" y="265" key="FileChooserDialogImpl" timestamp="1627291754673">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="740" y="265" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1627291754673" />
-    <state x="330" y="0" width="960" height="1040" key="SettingsEditor" timestamp="1627291756005">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="330" y="0" width="960" height="1040" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1627291756005" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1628499811173">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1628499811173" />
-    <state x="514" y="412" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1627289928500">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="514" y="412" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1627289928500" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

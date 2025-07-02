@@ -75,7 +75,7 @@ public class FlyFlyAndFly extends MicroGame {
         Cuboid cuboid = getArena().getProperties().getCuboid();
         Location center = cuboid.getCenter().clone().add(0, Cuboid.getSize(getArena()) - 2, 0);
         for (int x = 0; x < 3; x ++) for (int z = 0; z < 3; z ++)
-                ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GOLD_BLOCK.parseItem()), center.clone().add(-1 + x, 0, -1 + z).getBlock());
+                ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GOLD_BLOCK.parseItem()), center.clone().add(-1 + x, 0, -1 + z).getBlock());
         getArena().getPlayers().forEach(gamePlayer -> {
             Player player = gamePlayer.getPlayer();
             if (cuboid.notInside(player.getLocation())) player.teleport(getRandomLocation(getArena()));
@@ -147,3 +147,6 @@ public class FlyFlyAndFly extends MicroGame {
     }
 
 }
+
+
+

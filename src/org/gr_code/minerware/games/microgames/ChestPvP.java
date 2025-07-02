@@ -87,7 +87,7 @@ public class ChestPvP extends MicroGame {
 			player.getInventory().setHeldItemSlot(0);
 			assert XSound.ENTITY_ARROW_HIT_PLAYER.parseSound() != null;
 			player.playSound(player.getLocation(), requireNonNull(XSound.ENTITY_ARROW_HIT_PLAYER.parseSound()), 5, 1);
-			if (!ManageHandler.getNMS().oldVersion()) {
+			if (!ManageHandler.getModernAPI().oldVersion()) {
 				AttributeInstance attribute = player.getAttribute(Attribute.GENERIC_ATTACK_SPEED);
 				assert attribute != null;
 				attribute.setBaseValue(30);
@@ -108,7 +108,7 @@ public class ChestPvP extends MicroGame {
 
 	private void createChest(Square sq) {
 		Location random = sq.getLocations().get(new Random().nextInt(sq.getLocations().size()));
-		ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.CHEST.parseItem()), random.getBlock());
+		ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.CHEST.parseItem()), random.getBlock());
 		Chest chest = (Chest) random.getBlock().getState();
 		for (int i = 0; i < new Random().nextInt(4) + 1; i ++) chest.getInventory()
 				.setItem(new Random().nextInt(chest.getInventory().getSize()), listItem[new Random().nextInt(listItem.length)]);
@@ -197,3 +197,5 @@ public class ChestPvP extends MicroGame {
 	}
 
 }
+
+

@@ -43,10 +43,10 @@ public class LavaFloor extends MicroGame {
 
     private void newStage(Block block) {
         ItemStack ItemStack = getItem(block);
-        if (ItemStack.isSimilar(XMaterial.YELLOW_TERRACOTTA.parseItem())) ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.ORANGE_TERRACOTTA.parseItem()), block);
-        else if (ItemStack.isSimilar(XMaterial.ORANGE_TERRACOTTA.parseItem())) ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.RED_TERRACOTTA.parseItem()), block);
+        if (ItemStack.isSimilar(XMaterial.YELLOW_TERRACOTTA.parseItem())) ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.ORANGE_TERRACOTTA.parseItem()), block);
+        else if (ItemStack.isSimilar(XMaterial.ORANGE_TERRACOTTA.parseItem())) ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.RED_TERRACOTTA.parseItem()), block);
         else if (ItemStack.isSimilar(XMaterial.RED_TERRACOTTA.parseItem())) {
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.LAVA.parseItem()), block);
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.LAVA.parseItem()), block);
             countLava++;
         }
     }
@@ -55,7 +55,7 @@ public class LavaFloor extends MicroGame {
         getArena().getProperties().destroySquares();
         getArena().getProperties().getCuboid().getLocations().stream()
                 .filter(location -> location.getBlockY() == getArena().getProperties().getFirstLocation().getBlockY())
-                .forEach(loc -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.YELLOW_TERRACOTTA.parseItem()), loc.getBlock()));
+                .forEach(loc -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.YELLOW_TERRACOTTA.parseItem()), loc.getBlock()));
 
     }
 
@@ -117,3 +117,6 @@ public class LavaFloor extends MicroGame {
 	}
 
 }
+
+
+

@@ -5,7 +5,6 @@ import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.FileUtils;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -21,7 +20,6 @@ import org.gr_code.minerware.commands.subcommand.PluginCommand;
 import org.gr_code.minerware.cuboid.WorldGenerator;
 import org.gr_code.minerware.listeners.statistic.PluginEnable_Statistic;
 import org.gr_code.minerware.manager.ManageHandler;
-import org.gr_code.minerware.manager.type.nms.NMS;
 import org.gr_code.minerware.manager.type.resources.XMaterial;
 import org.gr_code.minerware.manager.type.resources.XSound;
 
@@ -32,7 +30,7 @@ import java.util.stream.Collectors;
 
 public class Utils {
 
-    private static final float[] math = new float[65536*2];
+    private static final float[] math = new float[65536 * 2];
 
     static {
         for (int var0 = 0; var0 < 65536; ++var0) {
@@ -59,30 +57,26 @@ public class Utils {
     }
 
     public static String translate(String paramString) {
-        return ManageHandler.getNMS().translate(paramString);
+        return ManageHandler.getModernAPI().translate(paramString);
     }
 
     public static void deleteWorld(String paramString) {
         World world = Bukkit.getWorld(paramString);
-        if (world == null) return;
+        if (world == null)
+            return;
         if (!world.getPlayers().isEmpty())
             world.getPlayers().forEach(Utils::teleportToLobby);
         Bukkit.unloadWorld(paramString, false);
         try {
-            if (ManageHandler.getNMS().isLegacy())
-                org.apache.commons.io.FileUtils.deleteDirectory(new File(paramString));
-            else {
-                FileUtils.deleteDirectory(new File(paramString));
-            }
+            // Use modern file deletion approach
+            deleteDirectory(new File(paramString));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public static ItemStack CLOSED_MENU = ItemBuilder.
-            start(Objects.requireNonNull(XMaterial.CLOCK.parseItem())).
-            setGlowing(true).
-            setDisplayName("&e&lCLICK &7to open GUI")
+    public static ItemStack CLOSED_MENU = ItemBuilder.start(Objects.requireNonNull(XMaterial.CLOCK.parseItem()))
+            .setGlowing(true).setDisplayName("&e&lCLICK &7to open GUI")
             .build();
 
     public static ItemStack LEAVE_THE_ARENA = null;
@@ -91,16 +85,16 @@ public class Utils {
 
     public static void apply(Player player, GamePlayer gamePlayer) {
         player.setGameMode(GameMode.ADVENTURE);
-        NMS nms = ManageHandler.getNMS();
-        gamePlayer.setItemStacks(nms.getInventoryContents(player));
+        var modernAPI = ManageHandler.getModernAPI();
+        gamePlayer.setItemStacks(modernAPI.getInventoryContents(player));
         gamePlayer.setLevel(player.getExp());
         gamePlayer.setExp(player.getLevel());
         Utils.setupToGame(player);
     }
 
     public static void apply(GamePlayer gamePlayer, Player player) {
-        NMS nms = ManageHandler.getNMS();
-        nms.restoreInventory(player, gamePlayer.getItemStacks());
+        var modernAPI = ManageHandler.getModernAPI();
+        modernAPI.restoreInventory(player, gamePlayer.getItemStacks());
         player.setExp(gamePlayer.getLevel());
         player.setLevel(gamePlayer.getExp());
         gamePlayer.resetScoreBoard();
@@ -117,7 +111,8 @@ public class Utils {
         return MinerPlugin.getARENA_REGISTRY().stream().anyMatch(x -> x.getPlayer(uuid) != null);
     }
 
-    public static String sendMessage(Arena arena, Player player, String stringPath, Player consumer, boolean sendMessage) {
+    public static String sendMessage(Arena arena, Player player, String stringPath, Player consumer,
+            boolean sendMessage) {
         String string = fileConfiguration.getString(stringPath);
         string = replacePlaceholders(arena, string);
         if (consumer != null)
@@ -141,7 +136,7 @@ public class Utils {
 
     public static void teleportToLobby(org.bukkit.entity.Player player) {
         player.setFallDistance(0);
-        if(ManageHandler.notBungeeMode()) {
+        if (ManageHandler.notBungeeMode()) {
             player.setGameMode(GameMode.SURVIVAL);
             player.teleport(ManageHandler.getLobbyLocation());
             return;
@@ -164,8 +159,8 @@ public class Utils {
             sendTitle(player, title, null, 10, 40, 10);
     }
 
-    public static void sendTitle(org.bukkit.entity.Player player, String string){
-        ManageHandler.getNMS().sendTitle(player, string, null, 10, 70, 20);
+    public static void sendTitle(org.bukkit.entity.Player player, String string) {
+        ManageHandler.getModernAPI().sendTitle(player, string, null, 10, 70, 20);
     }
 
     public static boolean notParsable(String input) {
@@ -195,7 +190,7 @@ public class Utils {
         string = string
                 .replace("<current_players>", arena.getPlayers().size() + "")
                 .replace("<players>", arena.getProperties().getMaxPlayers() + "")
-                .replace("<arena_name>", arena.getProperties().getName());
+                .replace("<arena_name>", arena.getProperties().getDisplayName());
         switch (arena.getStage()) {
             case WAITING:
                 string = translate(string.replace("<event>",
@@ -203,21 +198,24 @@ public class Utils {
                 break;
             case STARTING:
                 string = translate(string.replace("<event>",
-                        Objects.requireNonNull(fileConfiguration.getString("placeholders.starting-in"))).replace("<seconds>", "" + arena.getSeconds()));
+                        Objects.requireNonNull(fileConfiguration.getString("placeholders.starting-in")))
+                        .replace("<seconds>", "" + arena.getSeconds()));
                 break;
             case PLAYING:
                 string = translate(string.replace("<game>",
                         Objects.requireNonNull(Objects.requireNonNull(fileConfiguration.getString("placeholders.game"))
-                        .replace("<current>", 16 - arena.getGames().size()+""))));
+                                .replace("<current>", 16 - arena.getGames().size() + ""))));
                 break;
             case NEW_GAME_STARTING:
                 string = translate(string.replace("<game>",
-                        Objects.requireNonNull(Objects.requireNonNull(fileConfiguration.getString("placeholders.in-between"))
-                        .replace("<current>", 16 - arena.getGames().size()+""))));
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(fileConfiguration.getString("placeholders.in-between"))
+                                        .replace("<current>", 16 - arena.getGames().size() + ""))));
                 break;
             case FINISHED:
                 string = translate(string.replace("<game>",
-                        Objects.requireNonNull(Objects.requireNonNull(fileConfiguration.getString("placeholders.finished")))));
+                        Objects.requireNonNull(
+                                Objects.requireNonNull(fileConfiguration.getString("placeholders.finished")))));
                 break;
         }
         return string;
@@ -229,7 +227,8 @@ public class Utils {
         int players = arena.getCurrentPlayers();
         String[] strings = players > 2 ? new String[3] : players == 1 ? new String[1] : new String[2];
         for (int count = 0; count < strings.length; count++) {
-            strings[count] = Objects.requireNonNull(Bukkit.getPlayer(playerList.get(players - count - 1).getUUID())).getName();
+            strings[count] = Objects.requireNonNull(Bukkit.getPlayer(playerList.get(players - count - 1).getUUID()))
+                    .getName();
         }
         return strings;
     }
@@ -240,7 +239,8 @@ public class Utils {
         int a = arena.getCurrentPlayers() - 1;
         int maxPoints = playerList.get(a).getPoints();
         int finalMaxPoints = maxPoints;
-        int count = Math.toIntExact(playerList.stream().filter(playerInGame -> playerInGame.getPoints() == finalMaxPoints).count());
+        int count = Math.toIntExact(
+                playerList.stream().filter(playerInGame -> playerInGame.getPoints() == finalMaxPoints).count());
         String[][] prizes = new String[3][];
         int current;
         for (int i = 0; i < 3; i++) {
@@ -249,19 +249,20 @@ public class Utils {
             for (int j = 0; j < count; j++) {
                 GamePlayer player = playerList.get(a);
                 String name = Objects.requireNonNull(Bukkit.getPlayer(player.getUUID())).getName();
-                prizes[i][j] = name+":"+maxPoints;
-                player.setPlace(i+1);
+                prizes[i][j] = name + ":" + maxPoints;
+                player.setPlace(i + 1);
                 current++;
                 a -= 1;
-                if(a == -1) {
+                if (a == -1) {
                     return prizes;
                 }
             }
-            if(current > 1)
-                i+=Math.max(1, current / 3 + 1);
+            if (current > 1)
+                i += Math.max(1, current / 3 + 1);
             maxPoints = playerList.get(a).getPoints();
             int finalM = maxPoints;
-            count = Math.toIntExact(playerList.stream().filter(playerInGame -> playerInGame.getPoints() == finalM).count());
+            count = Math
+                    .toIntExact(playerList.stream().filter(playerInGame -> playerInGame.getPoints() == finalM).count());
         }
         return prizes;
     }
@@ -269,51 +270,54 @@ public class Utils {
     public static String[] replaceWinners(Arena arena) {
         List<String> stringList = fileConfiguration.getStringList("game-finished.list");
         String[][] strings = getWinners(arena);
-        for(int i = 0; i < strings.length; i++){
+        for (int i = 0; i < strings.length; i++) {
             String[] array = strings[i];
-            String placeHolderName = "<"+(i+1)+"_place>";
-            String placeHolderPoints = "<"+(i+1)+"_points>";
-            if(array == null)
+            String placeHolderName = "<" + (i + 1) + "_place>";
+            String placeHolderPoints = "<" + (i + 1) + "_points>";
+            if (array == null)
                 stringList = deleteString(stringList, placeHolderName, placeHolderPoints);
         }
         return replaceWinners(stringList, strings);
     }
 
-    public static boolean containsPlaceHolders(List<String> strings, String placeHolder){
+    public static boolean containsPlaceHolders(List<String> strings, String placeHolder) {
         return strings.stream().anyMatch(s -> s.contains(placeHolder));
     }
 
-    private static String[] replaceWinners(List<String> list, String[][] base){
+    private static String[] replaceWinners(List<String> list, String[][] base) {
         String[] strings = new String[list.size()];
-        for(int i = 0; i < list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             String string = list.get(i);
-            for(int j = 0; j < 3; j++){
-                string = replaceWinners(j+1, string, base[j]);
+            for (int j = 0; j < 3; j++) {
+                string = replaceWinners(j + 1, string, base[j]);
             }
             strings[i] = string;
         }
         return strings;
     }
 
-    public static List<String> deleteString(List<String> strings, String placeHolder, String placeHolder2){
-        return strings.stream().filter(s -> !s.contains(placeHolder)).filter(s -> !s.contains(placeHolder2)).collect(Collectors.toList());
+    public static List<String> deleteString(List<String> strings, String placeHolder, String placeHolder2) {
+        return strings.stream().filter(s -> !s.contains(placeHolder)).filter(s -> !s.contains(placeHolder2))
+                .collect(Collectors.toList());
     }
 
-    private static String replaceWinners(int paramInt, String given, String... paramStrings){
-        String placeHolderName = "<"+paramInt+"_place>";
-        String placeHolderPoints = "<"+paramInt+"_points>";
+    private static String replaceWinners(int paramInt, String given, String... paramStrings) {
+        String placeHolderName = "<" + paramInt + "_place>";
+        String placeHolderPoints = "<" + paramInt + "_points>";
         StringBuilder stringBuilder = new StringBuilder();
-        if(paramStrings == null)
+        if (paramStrings == null)
             return translate(given);
-        if(paramStrings.length == 1)
-            return translate(given.replace(placeHolderName, paramStrings[0].split(":")[0]).replace(placeHolderPoints, paramStrings[0].split(":")[1]));
+        if (paramStrings.length == 1)
+            return translate(given.replace(placeHolderName, paramStrings[0].split(":")[0]).replace(placeHolderPoints,
+                    paramStrings[0].split(":")[1]));
         for (int i = 0; i < paramStrings.length; i++) {
             String paramString = paramStrings[i];
             stringBuilder.append(paramString.split(":")[0]);
-            if(i < paramStrings.length - 1)
+            if (i < paramStrings.length - 1)
                 stringBuilder.append(", ");
         }
-        String string = given.replace(placeHolderName, stringBuilder.toString()).replace(placeHolderPoints, paramStrings[0].split(":")[1]);
+        String string = given.replace(placeHolderName, stringBuilder.toString()).replace(placeHolderPoints,
+                paramStrings[0].split(":")[1]);
         return translate(string);
     }
 
@@ -323,9 +327,12 @@ public class Utils {
         FireworkEffect effect = FireworkEffect.builder()
                 .with(FireworkEffect.Type.BALL_LARGE).flicker(true)
                 .trail(true).withColor(Color.fromRGB(new Random().nextInt(256),
-                        new Random().nextInt(256), new Random().nextInt(256))).build();
-        paramPlayer.playSound(paramPlayer.getLocation(), Objects.requireNonNull(XSound.ENTITY_PLAYER_LEVELUP.parseSound()), 10, 1);
-        Firework firework = (Firework) paramPlayer.getWorld().spawnEntity(paramPlayer.getLocation().add(0, 2, 0), EntityType.FIREWORK);
+                        new Random().nextInt(256), new Random().nextInt(256)))
+                .build();
+        paramPlayer.playSound(paramPlayer.getLocation(),
+                Objects.requireNonNull(XSound.ENTITY_PLAYER_LEVELUP.parseSound()), 10, 1);
+        Firework firework = (Firework) paramPlayer.getWorld().spawnEntity(paramPlayer.getLocation().add(0, 2, 0),
+                EntityType.FIREWORK);
         FireworkMeta fireworkMeta = firework.getFireworkMeta();
         fireworkMeta.clearEffects();
         fireworkMeta.setPower(2);
@@ -355,14 +362,15 @@ public class Utils {
         return Bukkit.getWorld(aString.split(":")[0]) == null;
     }
 
-    public static final List<String> DEPRECATED_WORLDS = Arrays.asList("world", "world_nether", "world_the_end", "randomJoin");
+    public static final List<String> DEPRECATED_WORLDS = Arrays.asList("world", "world_nether", "world_the_end",
+            "randomJoin");
 
     public static void performCommand(Player player, int place) {
-        String path = place == 1 ? "winner" : place+"-place";
-            for(String s : MinerPlugin.getInstance().getMessages()
-                    .getStringList("game-finished.<p>.commands".replace("<p>", path))){
-                if(s.isEmpty())
-                    continue;
+        String path = place == 1 ? "winner" : place + "-place";
+        for (String s : MinerPlugin.getInstance().getMessages()
+                .getStringList("game-finished.<p>.commands".replace("<p>", path))) {
+            if (s.isEmpty())
+                continue;
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), s.replace("<name>", player.getName()));
         }
     }
@@ -374,7 +382,8 @@ public class Utils {
     }
 
     public static boolean containsIllegalCharacters(String string) {
-        List<Character> strings = Arrays.asList('`', '~', '!', '@', '#', '%', '^', '&', '*', '(', ')', '=', '?', '<', '>', '.', '¹', ';', '\'');
+        List<Character> strings = Arrays.asList('`', '~', '!', '@', '#', '%', '^', '&', '*', '(', ')', '=', '?', '<',
+                '>', '.', 'ï¿½', ';', '\'');
         char[] chars = string.toCharArray();
         for (char aChar : chars) {
             if (strings.contains(aChar))
@@ -383,8 +392,9 @@ public class Utils {
         return false;
     }
 
-    public static void sendTitle(org.bukkit.entity.Player player, String title, String subTitle, int fadeIn, int showTime, int fadeOut) {
-        ManageHandler.getNMS().sendTitle(player, title, subTitle, fadeIn, showTime, fadeOut);
+    public static void sendTitle(org.bukkit.entity.Player player, String title, String subTitle, int fadeIn,
+            int showTime, int fadeOut) {
+        ManageHandler.getModernAPI().sendTitle(player, title, subTitle, fadeIn, showTime, fadeOut);
     }
 
     public static void sendMessage(org.bukkit.entity.Player player, String string) {
@@ -408,9 +418,10 @@ public class Utils {
         return fileConfiguration.getString(path);
     }
 
-    private static final BlockFace[] axis = {BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST};
+    private static final BlockFace[] axis = { BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST };
 
-    private static final BlockFace[] radial = {BlockFace.NORTH, BlockFace.NORTH_EAST, BlockFace.EAST, BlockFace.SOUTH_EAST, BlockFace.SOUTH, BlockFace.SOUTH_WEST, BlockFace.WEST, BlockFace.NORTH_WEST};
+    private static final BlockFace[] radial = { BlockFace.NORTH, BlockFace.NORTH_EAST, BlockFace.EAST,
+            BlockFace.SOUTH_EAST, BlockFace.SOUTH, BlockFace.SOUTH_WEST, BlockFace.WEST, BlockFace.NORTH_WEST };
 
     public static Vector getToSquare(float yaw) {
         Vector vector;
@@ -432,38 +443,33 @@ public class Utils {
 
     @SuppressWarnings("deprecation")
     public static ItemStack getItem(Block block) {
-        return ManageHandler.getNMS().isLegacy() ? block.getState().getData().toItemStack() : new ItemStack(block.getType());
+        return new ItemStack(block.getType()); // Always use modern approach
     }
 
     public static float sin(float var0) {
-        return math[(int)(var0 * 10430.378F) & '\uffff'];
+        return math[(int) (var0 * 10430.378F) & '\uffff'];
     }
 
     public static float cos(float var0) {
-        return math[(int)(var0 * 10430.378F + 16384.0F) & '\uffff'];
+        return math[(int) (var0 * 10430.378F + 16384.0F) & '\uffff'];
     }
 
     public static void showPlayers(org.bukkit.entity.Player player, List<GamePlayer> players) {
-        for(GamePlayer gamePlayer : players){
+        for (GamePlayer gamePlayer : players) {
             org.bukkit.entity.Player hidden = Bukkit.getPlayer(gamePlayer.getUUID());
-            assert hidden != null;
-            if(ManageHandler.getNMS().isLegacy()) {
-                //noinspection deprecation
-                player.showPlayer(hidden);
-                //noinspection deprecation
-                hidden.showPlayer(player);
-                continue;
+            if (hidden != null) {
+                // Use modern API - always use plugin parameter
+                player.showPlayer(minerPlugin, hidden);
+                hidden.showPlayer(minerPlugin, player);
             }
-            player.showPlayer(minerPlugin, hidden);
-            hidden.showPlayer(minerPlugin, player);
         }
     }
 
-    public static boolean clear(){
+    public static boolean clear() {
         return PluginEnable_Statistic.ENABLED && PlaceholderManager.getInstance().unregister();
     }
 
-    public static String request(String s, OfflinePlayer player){
+    public static String request(String s, OfflinePlayer player) {
         return !PluginEnable_Statistic.ENABLED ? s : PlaceholderAPI.setPlaceholders(player, s);
     }
 
@@ -482,12 +488,28 @@ public class Utils {
     }
 
     public static boolean isFluid(Block block) {
-        int idBlock = ManageHandler.getNMS().getTypeId(block);
         Material materialBlock = block.getType();
-        if (!ManageHandler.getNMS().isLegacy())
-            return (materialBlock == Material.WATER || materialBlock == Material.LAVA);
-        return (idBlock == 8 || idBlock == 9 || idBlock == 10 || idBlock == 11);
+        // Always use modern approach
+        return (materialBlock == Material.WATER || materialBlock == Material.LAVA);
     }
 
+    /**
+     * Modern file directory deletion
+     */
+    private static void deleteDirectory(File directory) throws IOException {
+        if (directory.exists()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isDirectory()) {
+                        deleteDirectory(file);
+                    } else {
+                        file.delete();
+                    }
+                }
+            }
+            directory.delete();
+        }
+    }
 
 }

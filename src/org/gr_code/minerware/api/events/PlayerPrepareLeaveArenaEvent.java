@@ -45,3 +45,5 @@ public class PlayerPrepareLeaveArenaEvent extends Event {
         return isFinishedMatch;
     }
 }
+
+

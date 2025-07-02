@@ -38,3 +38,5 @@ public class PlayerPrepareLeaveArena_Statistic implements Listener {
         StatisticManager.update(uuid);
     }
 }
+
+

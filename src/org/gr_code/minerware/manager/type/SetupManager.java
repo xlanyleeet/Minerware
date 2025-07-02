@@ -21,12 +21,15 @@ public class SetupManager {
     private static final MinerPlugin minerPlugin = MinerPlugin.getInstance();
 
     public static String toString(Location location) {
-        return Objects.requireNonNull(location.getWorld()).getName() + ":" + format(location.getX()) + ":" + format(location.getY()) + ":" + format(location.getZ()) + ":" + format(location.getYaw());
+        return Objects.requireNonNull(location.getWorld()).getName() + ":" + format(location.getX()) + ":"
+                + format(location.getY()) + ":" + format(location.getZ()) + ":" + format(location.getYaw());
     }
 
     public static Location fromString(String string) {
         String[] paramStrings = string.split(":");
-        return new Location(Bukkit.getWorld(paramStrings[0]), Double.parseDouble(paramStrings[1]), Double.parseDouble(paramStrings[2]), Double.parseDouble(paramStrings[3]), Float.parseFloat(paramStrings[4]), 0.0F);
+        return new Location(Bukkit.getWorld(paramStrings[0]), Double.parseDouble(paramStrings[1]),
+                Double.parseDouble(paramStrings[2]), Double.parseDouble(paramStrings[3]),
+                Float.parseFloat(paramStrings[4]), 0.0F);
     }
 
     public static Location fromString(String string, String world) {
@@ -51,6 +54,8 @@ public class SetupManager {
         List<String> strings = new ArrayList<>(properties.getDisabledGames());
         fileConfiguration.addDefault(name, "Type");
         fileConfiguration.set("arenas." + name + ".Type", properties.getType());
+        fileConfiguration.set("arenas." + name + ".Display-Name",
+                properties.getDisplayName().equals(properties.getName()) ? null : properties.getDisplayName());
         fileConfiguration.set("arenas." + name + ".Cuboid_First_Location", toString(selection_1));
         fileConfiguration.set("arenas." + name + ".Losers_Location", toString(losers));
         fileConfiguration.set("arenas." + name + ".Winners_Location", toString(winners));
@@ -74,18 +79,27 @@ public class SetupManager {
         }
         for (String string : configurationSection.getKeys(false)) {
             Utils.loadWorld(string);
-            Location selection_1 = fromString(Objects.requireNonNull(fileConfiguration.getString("arenas." + string + ".Cuboid_First_Location")), string);
-            Location losers = fromString(Objects.requireNonNull(fileConfiguration.getString("arenas." + string + ".Losers_Location")), string);
-            Location winners = fromString(Objects.requireNonNull(fileConfiguration.getString("arenas." + string + ".Winners_Location")), string);
+            Location selection_1 = fromString(
+                    Objects.requireNonNull(fileConfiguration.getString("arenas." + string + ".Cuboid_First_Location")),
+                    string);
+            Location losers = fromString(
+                    Objects.requireNonNull(fileConfiguration.getString("arenas." + string + ".Losers_Location")),
+                    string);
+            Location winners = fromString(
+                    Objects.requireNonNull(fileConfiguration.getString("arenas." + string + ".Winners_Location")),
+                    string);
             int minPlayers = fileConfiguration.getInt("arenas." + string + ".Min_Players");
-            float yaw = Float.parseFloat(Objects.requireNonNull(fileConfiguration.getString("arenas." + string + ".Rotation")));
+            float yaw = Float
+                    .parseFloat(Objects.requireNonNull(fileConfiguration.getString("arenas." + string + ".Rotation")));
             String type = fileConfiguration.getString("arenas." + string + ".Type");
+            String displayName = fileConfiguration.getString("arenas." + string + ".Display-Name");
             List<String> strings = fileConfiguration.getStringList("arenas." + string + ".Disabled-Games");
-            Properties properties = new Properties(Arena.parseType(type), yaw, selection_1, losers, winners, minPlayers, strings, string);
+            Properties properties = new Properties(Arena.parseType(type), yaw, selection_1, losers, winners, minPlayers,
+                    strings, string, displayName);
             properties.doRestore();
             Properties.finish(properties);
         }
-        if(bungeeMode)
+        if (bungeeMode)
             ServerManager.startBungeeMode();
         internal();
     }

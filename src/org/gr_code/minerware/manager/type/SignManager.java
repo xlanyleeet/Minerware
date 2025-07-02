@@ -1,6 +1,5 @@
 package org.gr_code.minerware.manager.type;
 
-import io.netty.util.internal.ConcurrentSet;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -8,6 +7,9 @@ import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.gr_code.minerware.MinerPlugin;
+
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import org.gr_code.minerware.arena.Arena;
 
 import java.io.File;
@@ -31,7 +33,7 @@ public class SignManager {
     public static void addSign(Block block) {
         if (!(block.getState() instanceof Sign))
             return;
-        if(signLocations.contains(SetupManager.toString(block.getLocation())))
+        if (signLocations.contains(SetupManager.toString(block.getLocation())))
             return;
         signLocations.add(SetupManager.toString(block.getLocation()));
         List<String> aLocations = new ArrayList<>(getSignLocations());
@@ -42,7 +44,7 @@ public class SignManager {
     public static void load() {
         title = fileConfiguration.getString("sign.format.title");
         title = title == null ? "&8[&e&lMiner&6&lWare&8]" : title;
-        signLocations = new ConcurrentSet<>();
+        signLocations = ConcurrentHashMap.newKeySet();
         signLocations.addAll(fileConfiguration.getStringList("sign.locations"));
         update();
     }
@@ -57,7 +59,7 @@ public class SignManager {
     }
 
     public static void update() {
-        if(getSignLocations() == null || getSignLocations().isEmpty())
+        if (getSignLocations() == null || getSignLocations().isEmpty())
             return;
         signLocations.stream().iterator().forEachRemaining(SignManager::updateSignSynchronously);
     }
@@ -67,7 +69,7 @@ public class SignManager {
             removeSign(signLocation);
             return;
         }
-        if(Utils.isNullable(signLocation)) {
+        if (Utils.isNullable(signLocation)) {
             removeSign(signLocation);
             return;
         }
@@ -87,7 +89,8 @@ public class SignManager {
         Arena arena = ServerManager.getArena(string);
         assert arena != null;
         sign.setLine(2, arena.getStage().getSignString());
-        sign.setLine(3, Utils.translate("&8" + arena.getCurrentPlayers() + " / " + arena.getProperties().getMaxPlayers()));
+        sign.setLine(3,
+                Utils.translate("&8" + arena.getCurrentPlayers() + " / " + arena.getProperties().getMaxPlayers()));
         sign.update();
     }
 

@@ -46,3 +46,5 @@ public class PlayerChat_Waiting implements Listener {
                 .forEach(p -> p.getPlayer().sendMessage(Utils.translate(result)));
     }
 }
+
+

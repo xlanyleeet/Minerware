@@ -47,7 +47,7 @@ public class Move extends MicroGame {
 		if (getArena().isHardMode()) {
 			ItemStack lava = requireNonNull(XMaterial.LAVA.parseItem());
 			for (Properties.Square square : getArena().getProperties().getSquares())
-				square.getLocations().forEach(l -> ManageHandler.getNMS().setBlock(lava, l.clone().add(0,-1,0).getBlock()));
+				square.getLocations().forEach(l -> ManageHandler.getModernAPI().setBlock(lava, l.clone().add(0,-1,0).getBlock()));
 			getArena().getProperties().destroySquares();
 		}
 		String title = translate(getString("titles.start-game"));
@@ -116,3 +116,6 @@ public class Move extends MicroGame {
 	}
 
 }
+
+
+

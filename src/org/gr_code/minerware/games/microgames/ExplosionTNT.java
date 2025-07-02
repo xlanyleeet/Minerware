@@ -56,7 +56,7 @@ public class ExplosionTNT extends MicroGame {
 		for (int i = 0; i < count; i ++) {
 			Location loc = getRandomLocation(getArena()).add(Math.random(), 5, Math.random());
 			TNTPrimed tnt = (TNTPrimed) requireNonNull(loc.getWorld()).spawnEntity(loc, EntityType.PRIMED_TNT);
-			if (!ManageHandler.getNMS().oldVersion()) tnt.setGlowing(true);
+			if (!ManageHandler.getModernAPI().oldVersion()) tnt.setGlowing(true);
 			tnt.setFuseTicks(60);
 			tnt.setYield(4F);
 		}
@@ -123,3 +123,5 @@ public class ExplosionTNT extends MicroGame {
 	}
 
 }
+
+

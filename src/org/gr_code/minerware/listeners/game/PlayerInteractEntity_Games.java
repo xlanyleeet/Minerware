@@ -24,3 +24,4 @@ public class PlayerInteractEntity_Games implements Listener {
         arena.getMicroGame().event(playerInteractEntityEvent);
     }
 }
+

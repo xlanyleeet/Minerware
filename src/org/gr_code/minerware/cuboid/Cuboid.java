@@ -31,7 +31,7 @@ public class Cuboid {
 
     private final HashSet<String> floor;
 
-    public Cuboid(int minX, int minY, int minZ, int maxX, int maxY, int maxZ, World world, boolean generateDefaults){
+    public Cuboid(int minX, int minY, int minZ, int maxX, int maxY, int maxZ, World world, boolean generateDefaults) {
         this.minX = minX;
         this.minY = minY;
         this.minZ = minZ;
@@ -40,14 +40,19 @@ public class Cuboid {
         this.maxZ = maxZ;
         this.floor = new HashSet<>();
         this.world = world;
-        centerLocation = new Location(world, (float) (maxX+minX)/2, minY+2, (float) (maxZ+minZ)/2);
-        for(int mX = minX; mX <= maxX; mX++){
-            for(int mY = minY; mY <= maxY; mY++)
-                for(int mZ = minZ; mZ <= maxZ; mZ++) {
-                    if(mY == minY && generateDefaults && world.getBlockAt(mX, mY, mZ).getType() == Material.AIR)
-                        ManageHandler.getNMS().setBlock(Objects.requireNonNull(XMaterial.YELLOW_TERRACOTTA.parseItem()), world.getBlockAt(mX, mY, mZ));
-                    if ((mY == maxY || mY == minY) && (mX == maxX || mX == minX) && (mZ == minZ || mZ == maxZ) && generateDefaults)
-                        ManageHandler.getNMS().setBlock(Objects.requireNonNull(XMaterial.GRAY_STAINED_GLASS.parseItem()), world.getBlockAt(mX, mY, mZ));
+        centerLocation = new Location(world, (float) (maxX + minX) / 2, minY + 2, (float) (maxZ + minZ) / 2);
+        for (int mX = minX; mX <= maxX; mX++) {
+            for (int mY = minY; mY <= maxY; mY++)
+                for (int mZ = minZ; mZ <= maxZ; mZ++) {
+                    if (mY == minY && generateDefaults && world.getBlockAt(mX, mY, mZ).getType() == Material.AIR)
+                        ManageHandler.getModernAPI().setBlock(
+                                Objects.requireNonNull(XMaterial.YELLOW_TERRACOTTA.parseItem()),
+                                world.getBlockAt(mX, mY, mZ));
+                    if ((mY == maxY || mY == minY) && (mX == maxX || mX == minX) && (mZ == minZ || mZ == maxZ)
+                            && generateDefaults)
+                        ManageHandler.getModernAPI().setBlock(
+                                Objects.requireNonNull(XMaterial.GRAY_STAINED_GLASS.parseItem()),
+                                world.getBlockAt(mX, mY, mZ));
                     locations.add(world.getBlockAt(mX, mY, mZ).getLocation());
                 }
         }
@@ -60,7 +65,8 @@ public class Cuboid {
         Location first = arena.getProperties().getFirstLocation();
         List<Location> list = arena.getProperties().getCuboid().getLocations().stream()
                 .filter(location -> location.getBlockY() == first.getBlockY() + 1)
-                .filter(location -> arena.getProperties().getCuboid().getCenter().distance(location) <= ((float) getSize(arena) / 2) - 2)
+                .filter(location -> arena.getProperties().getCuboid().getCenter()
+                        .distance(location) <= ((float) getSize(arena) / 2) - 2)
                 .filter(location -> !squares.contains(location.getBlock().getLocation()))
                 .collect(Collectors.toList());
         int size = list.size();
@@ -78,7 +84,7 @@ public class Cuboid {
         return Math.abs(a.getBlockX() - b.getBlockX());
     }
 
-    public boolean notInside(Location location){
+    public boolean notInside(Location location) {
         return (location.getBlockY() > maxY || location.getBlockY() < minY)
                 || (location.getBlockZ() > maxZ || location.getBlockZ() < minZ)
                 || (location.getBlockX() > maxX || location.getBlockX() < minX);
@@ -88,7 +94,7 @@ public class Cuboid {
         return new ArrayList<>(locations);
     }
 
-    public Location getCenter(){
+    public Location getCenter() {
         Location location = centerLocation.clone();
         location.setYaw(new Random().nextInt(180));
         return location;
@@ -96,30 +102,40 @@ public class Cuboid {
 
     public void saveFloor() {
         floor.clear();
-        locations.stream().filter(location -> location.getBlockY() == centerLocation.getBlockY()-2).forEach(location -> {
-            int mX = location.getBlockX();
-            int mY = location.getBlockY();
-            int mZ = location.getBlockZ();
-            assert world != null;
-            Block block = world.getBlockAt(mX, mY, mZ);
-            ItemStack itemStack;
-            if(ManageHandler.getNMS().isLegacy())
-                itemStack = block.getState().getData().toItemStack();
-            else itemStack = new ItemStack(block.getType());
-            String string = XMaterial.toString(itemStack);
-            floor.add(mX+":"+mY+":"+mZ+":"+string);
-        });
+        locations.stream().filter(location -> location.getBlockY() == centerLocation.getBlockY() - 2)
+                .forEach(location -> {
+                    int mX = location.getBlockX();
+                    int mY = location.getBlockY();
+                    int mZ = location.getBlockZ();
+                    assert world != null;
+                    Block block = world.getBlockAt(mX, mY, mZ);
+                    ItemStack itemStack;
+                    if (ManageHandler.getModernAPI().isLegacy()) {
+                        // For legacy versions, try to get ItemStack but avoid expensive getData() calls
+                        try {
+                            itemStack = block.getState().getData().toItemStack();
+                        } catch (Exception e) {
+                            // Fallback to simple ItemStack if getData() fails
+                            itemStack = new ItemStack(block.getType());
+                        }
+                    } else {
+                        itemStack = new ItemStack(block.getType());
+                    }
+                    String string = XMaterial.toString(itemStack);
+                    floor.add(mX + ":" + mY + ":" + mZ + ":" + string);
+                });
     }
 
-    public void restore(){
+    public void restore() {
         floor.forEach(s -> {
             String[] strings = s.split(":");
             int x = Integer.parseInt(strings[0]);
             int y = Integer.parseInt(strings[1]);
             int z = Integer.parseInt(strings[2]);
             ItemStack itemStack = XMaterial.valueOf(strings[3]).parseItem();
-            if(!Utils.getItem(getCenter().getBlock().getWorld().getBlockAt(x,y,z)).isSimilar(itemStack))
-                ManageHandler.getNMS().setBlock(Objects.requireNonNull(itemStack), getCenter().getBlock().getWorld().getBlockAt(x,y,z));
+            if (!Utils.getItem(getCenter().getBlock().getWorld().getBlockAt(x, y, z)).isSimilar(itemStack))
+                ManageHandler.getModernAPI().setBlock(Objects.requireNonNull(itemStack),
+                        getCenter().getBlock().getWorld().getBlockAt(x, y, z));
         });
     }
 

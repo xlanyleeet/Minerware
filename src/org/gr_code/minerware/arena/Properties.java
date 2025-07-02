@@ -17,15 +17,21 @@ import org.gr_code.minerware.manager.type.resources.XMaterial;
 
 import java.util.*;
 
-
 public class Properties {
 
     public static final Inventory REMOVE = InventoryBuilder.generateRemoveInventory();
 
     public static Inventory TYPE = InventoryBuilder.InventoryCreate("", 45).generateTypeInventory().getInventory();
 
-    public Properties(Arena.Type type, float yaw, Location firstLocation, Location lobbyLocationLoser, Location lobbyLocationWinner, int minPlayers, List<String> strings, String name) {
+    public Properties(Arena.Type type, float yaw, Location firstLocation, Location lobbyLocationLoser,
+            Location lobbyLocationWinner, int minPlayers, List<String> strings, String name) {
+        this(type, yaw, firstLocation, lobbyLocationLoser, lobbyLocationWinner, minPlayers, strings, name, null);
+    }
+
+    public Properties(Arena.Type type, float yaw, Location firstLocation, Location lobbyLocationLoser,
+            Location lobbyLocationWinner, int minPlayers, List<String> strings, String name, String displayName) {
         this.name = name;
+        this.displayName = displayName;
         setupInventory();
         this.baseYaw = yaw;
         setType(type.name());
@@ -62,13 +68,15 @@ public class Properties {
 
     private final String name;
 
+    private String displayName; // Custom arena display name
+
     private String task;
 
     private float baseYaw;
 
     protected Set<String> disabledGames = new HashSet<>();
 
-    /*|Void|*/
+    /* |Void| */
 
     private void generateCube(boolean generateDefaults) {
         int minX, minY, minZ, maxX, maxY, maxZ;
@@ -135,14 +143,18 @@ public class Properties {
 
     private void setBlock(Location location, boolean block, Location original, XMaterial xMaterial, int slot) {
         if (original != null && block)
-            ManageHandler.getNMS().setBlock(Objects.requireNonNull(XMaterial.AIR.parseItem()), original.clone().add(0, -1, 0).getBlock());
+            ManageHandler.getModernAPI().setBlock(Objects.requireNonNull(XMaterial.AIR.parseItem()),
+                    original.clone().add(0, -1, 0).getBlock());
         if (location != null) {
             if (block)
-                ManageHandler.getNMS().setBlock(Objects.requireNonNull(xMaterial.parseItem()), location.clone().add(0, -1, 0).getBlock());
-            locations.setItem(slot, ItemBuilder.start(Objects.requireNonNull(getLocationsGUI().getItem(slot))).setGlowing(true).build());
+                ManageHandler.getModernAPI().setBlock(Objects.requireNonNull(xMaterial.parseItem()),
+                        location.clone().add(0, -1, 0).getBlock());
+            locations.setItem(slot, ItemBuilder.start(Objects.requireNonNull(getLocationsGUI().getItem(slot)))
+                    .setGlowing(true).build());
             return;
         }
-        locations.setItem(slot, ItemBuilder.start(Objects.requireNonNull(getLocationsGUI().getItem(slot))).setGlowing(false).build());
+        locations.setItem(slot,
+                ItemBuilder.start(Objects.requireNonNull(getLocationsGUI().getItem(slot))).setGlowing(false).build());
     }
 
     public void setLobbyLocationLoser(Location lobbyLocationLoser, boolean block) {
@@ -160,11 +172,13 @@ public class Properties {
         setLobbyLocationLoser(null, true);
         setLobbyLocationWinner(null, true);
         this.firstLocation = firstLocation;
-        locations.setItem(10, ItemBuilder.start(Objects.requireNonNull(locations.getItem(10))).setGlowing(true).build());
+        locations.setItem(10,
+                ItemBuilder.start(Objects.requireNonNull(locations.getItem(10))).setGlowing(true).build());
     }
 
     private void setupInventory() {
-        this.inventory = InventoryBuilder.InventoryCreate("&c&lArena &e&l" + this.getName(), 45).generateArenaInventory().getInventory();
+        this.inventory = InventoryBuilder.InventoryCreate("&c&lArena &e&l" + this.getName(), 45)
+                .generateArenaInventory().getInventory();
         this.locations = InventoryBuilder.InventoryCreate("", 45).generateLocationsInventory().getInventory();
         this.settings = InventoryBuilder.InventoryCreate("", 45).generateOptionsInventory().getInventory();
         this.paginatedGames = InventoryBuilder.generateGamesInventory();
@@ -173,24 +187,30 @@ public class Properties {
     public void setup(boolean generateDefaults) {
         secondLocation = getFirstLocation().add(Utils.getVector(baseYaw, type.getSizeArena() - 1));
         generateCube(generateDefaults);
-        Location startLocation = firstLocation.clone().add(Utils.getToSquare(baseYaw).multiply(type.getDistanceCorners() - 1).add(new Vector(0, 1, 0))).add(Utils.getToSquare(baseYaw - 90).multiply(type.getDistanceCorners()));
+        Location startLocation = firstLocation.clone()
+                .add(Utils.getToSquare(baseYaw).multiply(type.getDistanceCorners() - 1).add(new Vector(0, 1, 0)))
+                .add(Utils.getToSquare(baseYaw - 90).multiply(type.getDistanceCorners()));
         int a = 0;
         for (int i = 0; i < type.getCuboids(); i++) {
             for (int j = 0; j < type.getCuboids(); j++) {
-                Location current = startLocation.clone().add(Utils.getToSquare(baseYaw).multiply(type.getSizeSquares() + type.getDistanceSquares()).multiply(j));
+                Location current = startLocation.clone().add(Utils.getToSquare(baseYaw)
+                        .multiply(type.getSizeSquares() + type.getDistanceSquares()).multiply(j));
                 Square square = new Square(current, baseYaw, type.getSizeSquares(), generateDefaults);
                 squares[a] = square;
                 a++;
             }
-            startLocation.add(Utils.getToSquare(baseYaw - 90).multiply(type.getSizeSquares() + type.getDistanceSquares()));
+            startLocation
+                    .add(Utils.getToSquare(baseYaw - 90).multiply(type.getSizeSquares() + type.getDistanceSquares()));
         }
-        setEmpty(new int[]{14, 12}, true, getEditGUI());
-        getLocationsGUI().setItem(16, ItemBuilder.start(Objects.requireNonNull(getLocationsGUI().getItem(16))).setGlowing(true).build());
+        setEmpty(new int[] { 14, 12 }, true, getEditGUI());
+        getLocationsGUI().setItem(16,
+                ItemBuilder.start(Objects.requireNonNull(getLocationsGUI().getItem(16))).setGlowing(true).build());
     }
 
     public void setType(String type) {
         Arena.Type aType = Arena.parseType(type);
-        getSettingsGUI().setItem(15, ItemBuilder.start(Objects.requireNonNull(getItemStackType(aType))).setGlowing(true).build());
+        getSettingsGUI().setItem(15,
+                ItemBuilder.start(Objects.requireNonNull(getItemStackType(aType))).setGlowing(true).build());
         if (this.type != null && type.equals(this.type.toString()))
             return;
         this.type = aType;
@@ -222,25 +242,28 @@ public class Properties {
     public void destroyCuboid() {
         if (cuboid == null)
             return;
-        cuboid.getLocations().forEach(location -> ManageHandler.getNMS().setBlock(Objects.requireNonNull(XMaterial.AIR.parseItem()), location.getBlock()));
+        cuboid.getLocations().forEach(location -> ManageHandler.getModernAPI()
+                .setBlock(Objects.requireNonNull(XMaterial.AIR.parseItem()), location.getBlock()));
         cuboid = null;
         secondLocation = null;
         setLobbyLocationWinner(null, true);
         setLobbyLocationLoser(null, true);
-        setEmpty(new int[]{16, 14, 12}, false, getLocationsGUI());
+        setEmpty(new int[] { 16, 14, 12 }, false, getLocationsGUI());
         getEditGUI().setItem(14, ItemBuilder.start(EnumBuilder.SQUARES.getItemStack()).setGlowing(false).build());
         getEditGUI().setItem(12, ItemBuilder.start(EnumBuilder.FLOOR.getItemStack()).setGlowing(false).build());
     }
 
     public void destroySquares() {
         for (Square square : squares) {
-            square.getLocations().forEach(location -> ManageHandler.getNMS().setBlock(Objects.requireNonNull(XMaterial.AIR.parseItem()), location.getBlock()));
+            square.getLocations().forEach(location -> ManageHandler.getModernAPI()
+                    .setBlock(Objects.requireNonNull(XMaterial.AIR.parseItem()), location.getBlock()));
         }
     }
 
     public void unloadChunks() {
-        if (!ManageHandler.getNMS().isLegacy())
-            Arrays.stream(Objects.requireNonNull(Bukkit.getWorld(getName())).getLoadedChunks()).forEach(chink -> chink.unload(true));
+        if (!ManageHandler.getModernAPI().isLegacy())
+            Arrays.stream(Objects.requireNonNull(Bukkit.getWorld(getName())).getLoadedChunks())
+                    .forEach(chink -> chink.unload(true));
     }
 
     private void setEmpty(int[] ints, boolean bool, Inventory... inventories) {
@@ -253,10 +276,18 @@ public class Properties {
         }
     }
 
-    /*|Getters|*/
+    /* |Getters| */
 
     public String getName() {
         return name;
+    }
+
+    public String getDisplayName() {
+        return displayName != null ? displayName : name;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public Location getLobbyLocation() {
@@ -361,7 +392,7 @@ public class Properties {
                 if (itemStack1 != null && itemStack1.hasItemMeta() &&
                         Objects.requireNonNull(itemStack1.getItemMeta()).hasDisplayName()
                         && itemStack1.getItemMeta().getDisplayName()
-                        .equals(Objects.requireNonNull(itemStack.getItemMeta()).getDisplayName()))
+                                .equals(Objects.requireNonNull(itemStack.getItemMeta()).getDisplayName()))
                     return j;
             }
         }
@@ -375,13 +406,12 @@ public class Properties {
                 if (itemStack1 != null && itemStack1.hasItemMeta() &&
                         Objects.requireNonNull(itemStack1.getItemMeta()).hasDisplayName()
                         && itemStack1.getItemMeta().getDisplayName()
-                        .equals(Objects.requireNonNull(itemStack.getItemMeta()).getDisplayName()))
+                                .equals(Objects.requireNonNull(itemStack.getItemMeta()).getDisplayName()))
                     return inventory;
             }
         }
         return null;
     }
-
 
     public static class Square {
 
@@ -399,7 +429,7 @@ public class Properties {
                     Vector vector = Utils.getToSquare(yaw).multiply(j + 1);
                     Location current = location.clone().add(vector);
                     if (generateDefaults && current.getBlock().getType() == Material.AIR)
-                        ManageHandler.getNMS()
+                        ManageHandler.getModernAPI()
                                 .setBlock(Objects.requireNonNull(XMaterial.LIME_TERRACOTTA.parseItem()),
                                         location.clone().add(vector).getBlock());
                     locations.add(current);
@@ -422,7 +452,7 @@ public class Properties {
                 int z = Integer.parseInt(strings[2]);
                 ItemStack itemStack = XMaterial.valueOf(strings[3]).parseItem();
                 assert itemStack != null;
-                ManageHandler.getNMS().setBlock(itemStack, world.getBlockAt(x, y, z));
+                ManageHandler.getModernAPI().setBlock(itemStack, world.getBlockAt(x, y, z));
             });
         }
 
@@ -432,8 +462,40 @@ public class Properties {
                 int x = location.getBlockX();
                 int y = location.getBlockY();
                 int z = location.getBlockZ();
-                //noinspection deprecation
-                String item = XMaterial.toString(ManageHandler.getNMS().isLegacy() ? location.getBlock().getState().getData().toItemStack() : new ItemStack(location.getBlock().getType()));
+
+                // Get the block type and convert to appropriate item
+                Material blockType = location.getBlock().getType();
+                String item;
+
+                // Handle wall signs by converting them to their corresponding sign item
+                if (blockType.name().contains("WALL_SIGN")) {
+                    String signType = blockType.name().replace("_WALL_SIGN", "_SIGN");
+                    try {
+                        Material signMaterial = Material.valueOf(signType);
+                        item = XMaterial.matchXMaterial(signMaterial).name();
+                    } catch (Exception e) {
+                        // Fallback to OAK_SIGN if conversion fails
+                        item = XMaterial.OAK_SIGN.name();
+                    }
+                } else {
+                    // For other blocks, try to get the corresponding item
+                    ItemStack itemStack;
+                    if (ManageHandler.getModernAPI().isLegacy()) {
+                        // noinspection deprecation
+                        itemStack = location.getBlock().getState().getData().toItemStack();
+                    } else {
+                        itemStack = new ItemStack(blockType);
+                    }
+
+                    String materialName = XMaterial.toString(itemStack);
+                    if (materialName != null) {
+                        item = materialName;
+                    } else {
+                        // Fallback if XMaterial.toString fails
+                        item = XMaterial.matchXMaterial(blockType).name();
+                    }
+                }
+
                 stringHashSet.add(x + ":" + y + ":" + z + ":" + item);
             });
         }

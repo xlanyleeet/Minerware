@@ -35,7 +35,7 @@ public class ItemBuilder {
             itemStack.getEnchantments().forEach((enchantment, integer) -> itemStack.removeEnchantment(enchantment));
             return this;
         }
-        return ItemBuilder.start(ManageHandler.getNMS().setGlowing(itemStack));
+        return ItemBuilder.start(ManageHandler.getModernAPI().setGlowing(itemStack));
     }
 
     public ItemBuilder setDisplayName(String displayName) {
@@ -66,7 +66,7 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setUnbreakable(boolean unbreakable) {
-        return new ItemBuilder(ManageHandler.getNMS().setUnbreakable(itemStack, unbreakable));
+        return new ItemBuilder(ManageHandler.getModernAPI().setUnbreakable(itemStack, unbreakable));
     }
 
     public ItemBuilder setAmount(int amount){
@@ -100,3 +100,6 @@ public class ItemBuilder {
         return this.itemStack;
     }
 }
+
+
+

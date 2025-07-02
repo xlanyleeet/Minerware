@@ -44,7 +44,7 @@ public class ColouredFloorBoss extends BossGame {
         Location first = getArena().getProperties().getFirstLocation();
         String floorM = getArena().getProperties().getType().equals("MEGA") ? "QUARTZ_BLOCK" : "WHITE_TERRACOTTA";
         getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.valueOf(floorM).parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.valueOf(floorM).parseItem()), l.getBlock()));
     }
 
     @SuppressWarnings("deprecation")
@@ -53,7 +53,7 @@ public class ColouredFloorBoss extends BossGame {
         generatePlatform();
         int count = getArena().isHardMode() ? 5 : 2;
         ItemStack hoe = ItemBuilder.start(requireNonNull(XMaterial.DIAMOND_HOE.parseItem())).setUnbreakable(true).build();
-        ItemStack potion = ManageHandler.getNMS().oldVersion() ? new ItemStack(Material.POTION, count, (short)16384) :
+        ItemStack potion = ManageHandler.getModernAPI().oldVersion() ? new ItemStack(Material.POTION, count, (short)16384) :
                 ItemBuilder.start(requireNonNull(XMaterial.SPLASH_POTION.parseItem())).setAmount(count).build();
         Cuboid cuboid = getArena().getProperties().getCuboid();
         getArena().getPlayers().forEach(gamePlayer -> {
@@ -142,7 +142,7 @@ public class ColouredFloorBoss extends BossGame {
         if (!Utils.getItem(e.getClickedBlock()).isSimilar(XMaterial.valueOf(material).parseItem())) return;
         ItemStack plMaterial = XMaterial.valueOf(gamePlayer.getAchievement()).parseItem();
         if (gamePlayer.getTask().equals("0")) {
-            ManageHandler.getNMS().setBlock(requireNonNull(plMaterial), requireNonNull(e.getClickedBlock()));
+            ManageHandler.getModernAPI().setBlock(requireNonNull(plMaterial), requireNonNull(e.getClickedBlock()));
             gamePlayer.setTask((Integer.parseInt(gamePlayer.getTask()) + 1) + "");
         }
         ItemStack firstB = Utils.getItem(requireNonNull(e.getClickedBlock()).getLocation().clone().add(1,0,0).getBlock());
@@ -155,7 +155,7 @@ public class ColouredFloorBoss extends BossGame {
             return;
         }
         gamePlayer.setTask((Integer.parseInt(gamePlayer.getTask()) + 1) + "");
-        ManageHandler.getNMS().setBlock(requireNonNull(plMaterial), e.getClickedBlock());
+        ManageHandler.getModernAPI().setBlock(requireNonNull(plMaterial), e.getClickedBlock());
         player.playSound(player.getLocation(), requireNonNull(XSound.ENTITY_ITEM_PICKUP.parseSound()), 5, 1);
     }
 
@@ -176,10 +176,12 @@ public class ColouredFloorBoss extends BossGame {
         Cuboid cuboid = getArena().getProperties().getCuboid();
         for (Location location : locations) {
             if (cuboid.notInside(location)) continue;
-            ManageHandler.getNMS().setBlock(material, location.getBlock());
+            ManageHandler.getModernAPI().setBlock(material, location.getBlock());
         }
-        ManageHandler.getNMS().setBlock(material, hitBlock);
+        ManageHandler.getModernAPI().setBlock(material, hitBlock);
         x.setTask((Integer.parseInt(x.getTask()) + 5) + "");
     }
 
 }
+
+

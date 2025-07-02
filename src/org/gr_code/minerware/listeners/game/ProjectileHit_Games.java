@@ -28,7 +28,7 @@ public class ProjectileHit_Games implements Listener {
 	}
 
 	public static Block getHitBlockNMS(ProjectileHitEvent projectileHitEvent) {
-		if (!ManageHandler.getNMS().oldVersion()) return projectileHitEvent.getHitBlock();
+		if (!ManageHandler.getModernAPI().oldVersion()) return projectileHitEvent.getHitBlock();
 		World world = projectileHitEvent.getEntity().getWorld();
 		Vector vector = projectileHitEvent.getEntity().getLocation().toVector();
 		Vector vector2 = projectileHitEvent.getEntity().getVelocity().normalize();
@@ -41,3 +41,5 @@ public class ProjectileHit_Games implements Listener {
 		return null;
 	}
 }
+
+

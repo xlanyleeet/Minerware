@@ -19,3 +19,4 @@ public class PlayerInteractAtEntity_Games implements Listener {
         playerInteractAtEntityEvent.setCancelled(true);
     }
 }
+

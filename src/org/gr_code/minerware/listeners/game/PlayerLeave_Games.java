@@ -20,3 +20,5 @@ public class PlayerLeave_Games implements Listener {
         Objects.requireNonNull(ServerManager.getArena(uuid)).removePlayer(uuid, true);
     }
 }
+
+

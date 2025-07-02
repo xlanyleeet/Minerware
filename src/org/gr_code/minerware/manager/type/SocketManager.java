@@ -42,10 +42,11 @@ public class SocketManager {
                     try {
                         socket = new Socket(host, port);
                         dataInputStream = new DataInputStream(socket.getInputStream());
-                        printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                        System.out.println("[MinerWare] Successfully enabled proxy-client!");
+                        printWriter = new PrintWriter(
+                                new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                        MinerPlugin.getInstance().getLogger().info("Successfully enabled proxy-client!");
                     } catch (IOException e) {
-                        System.out.println("[MinerWare] An error occurred while enabling the socket!");
+                        MinerPlugin.getInstance().getLogger().warning("An error occurred while enabling the socket!");
                         enabled = false;
                     }
                 }
@@ -53,8 +54,8 @@ public class SocketManager {
         }.runTaskAsynchronously(MinerPlugin.getInstance());
     }
 
-    public static void disable(){
-        if(!enabled)
+    public static void disable() {
+        if (!enabled)
             return;
         enabled = false;
         try {
@@ -62,20 +63,20 @@ public class SocketManager {
             printWriter.close();
             socket.close();
         } catch (IOException e) {
-            System.out.println("[MinerWare] An error occurred while disabling the socket!");
+            MinerPlugin.getInstance().getLogger().warning("An error occurred while disabling the socket!");
         }
     }
 
     public static void sendMessage(String paramString) {
-        if(!enabled)
+        if (!enabled)
             return;
         new BukkitRunnable() {
             @Override
             public void run() {
                 try {
                     printWriter.println(paramString);
-                } catch (Exception e){
-                    System.out.println("[MinerWare] An error occurred while sending message!");
+                } catch (Exception e) {
+                    MinerPlugin.getInstance().getLogger().warning("An error occurred while sending message!");
                 }
             }
         }.runTaskAsynchronously(minerPlugin);
@@ -88,14 +89,14 @@ public class SocketManager {
         map.put("Server", server);
         map.put("ID", arena.getName());
         map.put("Stage", arena.getStage().name());
-        map.put("Players", arena.getCurrentPlayers()+"");
-        map.put("MaximumPlayers", properties.getMaxPlayers()+"");
+        map.put("Players", arena.getCurrentPlayers() + "");
+        map.put("MaximumPlayers", properties.getMaxPlayers() + "");
         String string = gson.toJson(map);
         sendMessage(string);
     }
 
-    public static String decode(String uuid, String action, String name){
-        return action+":"+server+":"+name+":"+uuid;
+    public static String decode(String uuid, String action, String name) {
+        return action + ":" + server + ":" + name + ":" + uuid;
     }
 
 }

@@ -19,3 +19,4 @@ public class EntityCombust_Games implements Listener {
         entityCombustEvent.setCancelled(true);
     }
 }
+

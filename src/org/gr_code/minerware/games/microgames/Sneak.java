@@ -52,7 +52,7 @@ public class Sneak extends MicroGame {
 		for (int i = 0; i < getSize(getArena()) / 6; i ++) {
 			Location loc = getRandomLocation(getArena()).add(Math.random(), 5, Math.random());
 			TNTPrimed tnt = (TNTPrimed) requireNonNull(loc.getWorld()).spawnEntity(loc, EntityType.PRIMED_TNT);
-			if (!ManageHandler.getNMS().oldVersion()) tnt.setGlowing(true);
+			if (!ManageHandler.getModernAPI().oldVersion()) tnt.setGlowing(true);
 			tnt.setFuseTicks(40);
 		}
 	}
@@ -120,3 +120,5 @@ public class Sneak extends MicroGame {
 	}
 
 }
+
+

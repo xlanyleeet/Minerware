@@ -8,7 +8,7 @@ import org.gr_code.minerware.arena.Properties;
 import org.gr_code.minerware.builders.ItemBuilder;
 import org.gr_code.minerware.cuboid.Cuboid;
 import org.gr_code.minerware.manager.ManageHandler;
-import org.gr_code.minerware.manager.type.nms.NMS;
+// No NMS import needed
 import org.gr_code.minerware.manager.type.resources.XMaterial;
 import org.gr_code.minerware.manager.type.resources.effects.WinEffect;
 
@@ -37,11 +37,12 @@ public class RocketWinEffect extends WinEffect {
     public void start() {
         Properties properties = arena.getProperties();
         Cuboid cuboid = properties.getCuboid();
-        NMS nms = ManageHandler.getNMS();
+        var modernAPI = ManageHandler.getModernAPI();
         properties.destroySquares();
         cuboid.getLocations().stream()
                 .filter(location -> location.getBlockY() == properties.getFirstLocation().getBlockY())
-                .forEachOrdered(location -> nms.setBlock(Objects.requireNonNull(XMaterial.GRASS_BLOCK.parseItem()), location.getBlock()));
+                .forEachOrdered(location -> modernAPI
+                        .setBlock(Objects.requireNonNull(XMaterial.GRASS_BLOCK.parseItem()), location.getBlock()));
     }
 
     @Override
@@ -51,7 +52,7 @@ public class RocketWinEffect extends WinEffect {
         properties.restoreCuboid();
         for (GamePlayer gamePlayer : arena.getPlayers()) {
             org.bukkit.entity.Player player = Bukkit.getPlayer(gamePlayer.getUUID());
-            ManageHandler.getNMS().sendRestorePackets(player, arena);
+            ManageHandler.getModernAPI().sendRestorePackets(player, arena);
             assert player != null;
             player.setFlying(false);
             player.setAllowFlight(true);
@@ -60,17 +61,18 @@ public class RocketWinEffect extends WinEffect {
 
     @Override
     public ItemStack getItemStack() {
-        return ItemBuilder.start(Objects.requireNonNull(XMaterial.FEATHER.parseItem())).setDisplayName("&aRocket").build();
+        return ItemBuilder.start(Objects.requireNonNull(XMaterial.FEATHER.parseItem())).setDisplayName("&aRocket")
+                .build();
     }
 
-    public void doTask(){
-        NMS nms = ManageHandler.getNMS();
-        if(time == 0){
+    public void doTask() {
+        var modernAPI = ManageHandler.getModernAPI();
+        if (time == 0) {
             stop();
             return;
         }
         for (GamePlayer player : arena.getPlayers())
-            nms.updateRocketWinEffect(Bukkit.getPlayer(player.getUUID()), super.getTime() - time);
+            modernAPI.updateRocketWinEffect(Bukkit.getPlayer(player.getUUID()), super.getTime() - time);
         time--;
     }
 

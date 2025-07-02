@@ -40,3 +40,5 @@ public class WorldManager {
         player.teleport(world.getSpawnLocation());
     }
 }
+
+

@@ -40,7 +40,7 @@ public class LightningStrikes extends MicroGame {
         Location first = getArena().getProperties().getFirstLocation();
         getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
                 .filter(l -> Math.random() < 0.015).forEach(l -> {
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.IRON_BLOCK.parseItem()), l.getBlock());
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.IRON_BLOCK.parseItem()), l.getBlock());
             ironBlocks.add(l.getBlock());
         });
         getArena().getProperties().destroySquares();
@@ -59,14 +59,14 @@ public class LightningStrikes extends MicroGame {
     private void updateStrikes() {
         Location first = getArena().getProperties().getFirstLocation();
         for (Block block : ironBlocks) {
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.BEDROCK.parseItem()), block);
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.BEDROCK.parseItem()), block);
             block.getWorld().strikeLightning(block.getLocation());
             ironBlocks.remove(block);
         }
         float count = getArena().isHardMode() ? 0.005f : 0;
         getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
                 .filter(l -> Math.random() < 0.015 + count).forEach(l -> {
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.IRON_BLOCK.parseItem()), l.getBlock());
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.IRON_BLOCK.parseItem()), l.getBlock());
             ironBlocks.add(l.getBlock());
         });
     }
@@ -119,3 +119,5 @@ public class LightningStrikes extends MicroGame {
     }
 
 }
+
+

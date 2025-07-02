@@ -49,3 +49,5 @@ public enum EventA {
 
     public abstract Event getEvent(Player player, Arena arena);
 }
+
+

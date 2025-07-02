@@ -18,7 +18,7 @@ public class PlayerInteract_Setup implements Listener {
             return;
         if(playerInteractEvent.getItem() == null)
             return;
-        if(ManageHandler.getNMS().equalsItemStack(playerInteractEvent.getItem(), Utils.CLOSED_MENU)){
+        if(ManageHandler.getModernAPI().equalsItemStack(playerInteractEvent.getItem(), Utils.CLOSED_MENU)){
             Properties properties = PluginCommand.getArenaHashMap().get(uuid);
             if(!properties.closed || !playerInteractEvent.getAction().toString().startsWith("RIGHT"))
                 return;
@@ -28,3 +28,6 @@ public class PlayerInteract_Setup implements Listener {
         }
     }
 }
+
+
+

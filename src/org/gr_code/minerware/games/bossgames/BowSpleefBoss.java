@@ -40,7 +40,7 @@ public class BowSpleefBoss extends BossGame {
         getArena().getProperties().destroySquares();
         Location first = getArena().getProperties().getFirstLocation();
         getArena().getProperties().getCuboid().getLocations().stream().filter(loc-> loc.getBlockY() == first.getY())
-                .forEach(loc-> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.TNT.parseItem()), loc.getBlock()));
+                .forEach(loc-> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.TNT.parseItem()), loc.getBlock()));
     }
     
     @Override
@@ -105,15 +105,17 @@ public class BowSpleefBoss extends BossGame {
         float randomDistance = (((float)new Random().nextInt(7)) + 10f )/ 10f;
         Location first = hitBlock.getLocation().add(-3, 0, -3);
         List<Location> locations = new ArrayList<>();
-        ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.AIR.parseItem()), hitBlock);
+        ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.AIR.parseItem()), hitBlock);
         world.spawnEntity(hitBlock.getLocation().add(0.5, 0, 0.5), EntityType.PRIMED_TNT);
         for (int x = 0; x < 7; x ++) for (int z = 0; z < 7; z ++) locations.add(first.clone().add(x, 0, z));
         locations.stream().filter(l -> l.distance(hitBlock.getLocation()) <= randomDistance)
                 .filter(l -> l.getBlock().getType() == Material.TNT && !cuboid.notInside(l) && Math.random() <= 0.6)
                 .forEach(location -> {
-                    ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.AIR.parseItem()), location.getBlock());
+                    ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.AIR.parseItem()), location.getBlock());
                     world.spawnEntity(location.add(0.5, 0, 0.5), EntityType.PRIMED_TNT);
                 });
     }
 
 }
+
+

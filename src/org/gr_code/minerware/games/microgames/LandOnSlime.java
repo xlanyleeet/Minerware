@@ -39,15 +39,15 @@ public class LandOnSlime extends MicroGame {
         assert lava != null;
         Cuboid cuboid = getArena().getProperties().getCuboid();
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY()).forEach(l -> {
-            if (Math.random() <= 0.2) ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.SLIME_BLOCK.parseItem()), l.getBlock());
-            else ManageHandler.getNMS().setBlock(lava, l.getBlock());
+            if (Math.random() <= 0.2) ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.SLIME_BLOCK.parseItem()), l.getBlock());
+            else ManageHandler.getModernAPI().setBlock(lava, l.getBlock());
         });
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == second.getBlockY() || l.getBlockY() == second.getBlockY() - 1)
                 .filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()
                         || l.getBlockX() == second.getBlockX() || l.getBlockZ() == second.getBlockZ())
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == second.getBlockY() - 2)
-                .forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
+                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
 
     }
 
@@ -138,3 +138,5 @@ public class LandOnSlime extends MicroGame {
     }
 
 }
+
+

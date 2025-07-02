@@ -83,7 +83,7 @@ public class HighPlatform extends MicroGame {
         Location[] locations = new Location[4];
         first = getArena().getProperties().getFirstLocation().add(0,1,0);
         Location second = getArena().getProperties().getSecondLocation().add(0,1,0);
-        cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() - 1).forEach(l -> ManageHandler.getNMS()
+        cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() - 1).forEach(l -> ManageHandler.getModernAPI()
                 .setBlock(requireNonNull(XMaterial.valueOf(terracotta[new Random().nextInt(terracotta.length)]).parseItem()), l.getBlock()));
         locations[0] = new Location(first.getWorld(), Math.min(first.getBlockX(), second.getBlockX()), first.getBlockY(), Math.min(first.getBlockZ(), second.getBlockZ()));
         locations[1] = new Location(first.getWorld(), Math.max(first.getBlockX(), second.getBlockX()), first.getBlockY(), Math.max(first.getBlockZ(), second.getBlockZ()));
@@ -94,10 +94,10 @@ public class HighPlatform extends MicroGame {
             stand.setVisible(false);
             stand.setCustomName(nameStand);
             stand.setCustomNameVisible(true);
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.CHEST.parseItem()), location.getBlock());
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.CHEST.parseItem()), location.getBlock());
         }
         for (int x = 0; x < 3; x ++) for (int z = 0; z < 3; z ++)
-            ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GOLD_BLOCK.parseItem()), center.clone().add(-1 + x, 0, -1 + z).getBlock());
+            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GOLD_BLOCK.parseItem()), center.clone().add(-1 + x, 0, -1 + z).getBlock());
     }
 
     @Override
@@ -204,3 +204,5 @@ public class HighPlatform extends MicroGame {
     }
 
 }
+
+

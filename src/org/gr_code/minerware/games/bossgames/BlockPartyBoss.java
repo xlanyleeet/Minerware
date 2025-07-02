@@ -59,7 +59,7 @@ public class BlockPartyBoss extends BossGame {
     private void setVoid(ItemStack item) {
     	Location first = getArena().getProperties().getFirstLocation();
     	getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-    	.filter(l -> !getItem(l.getBlock()).isSimilar(item)).forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
+    	.filter(l -> !getItem(l.getBlock()).isSimilar(item)).forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
     	getArena().getPlayers().stream().filter(gamePlayer -> gamePlayer.getState() == State.PLAYING_GAME)
 				.forEach(gamePlayer -> clearInventory(gamePlayer.getPlayer()));
     }
@@ -68,15 +68,15 @@ public class BlockPartyBoss extends BossGame {
     	Location first = getArena().getProperties().getFirstLocation();
     	Cuboid cuboid = getArena().getProperties().getCuboid();
     	List<Location> locations = cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY()).collect(Collectors.toList());
-    	locations.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
-    	ManageHandler.getNMS().setBlock(item, locations.get(new Random().nextInt(locations.size())).getBlock());
+    	locations.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
+    	ManageHandler.getModernAPI().setBlock(item, locations.get(new Random().nextInt(locations.size())).getBlock());
     	while (locations.stream().anyMatch(l -> getItem(l.getBlock()).isSimilar(XMaterial.AIR.parseItem()))) {
     		List<Location> locationsAir = locations.stream()
 					.filter(l -> getItem(l.getBlock()).isSimilar(XMaterial.AIR.parseItem())).collect(Collectors.toList());
     		Location location = locationsAir.get(new Random().nextInt(locationsAir.size()));
     		ItemStack stack = listItem[new Random().nextInt(15)];
     		locationsAir.stream().filter(l -> location.distance(l) <= new Random().nextInt(3) + 1)
-					.forEach(l -> ManageHandler.getNMS().setBlock(stack, l.getBlock()));
+					.forEach(l -> ManageHandler.getModernAPI().setBlock(stack, l.getBlock()));
     	}
     	getArena().getPlayers().stream().filter(gamePlayer -> gamePlayer.getState() == State.PLAYING_GAME).forEach(gamePlayer -> {
     		Player p = gamePlayer.getPlayer();
@@ -154,3 +154,5 @@ public class BlockPartyBoss extends BossGame {
 	}
 
 }
+
+

@@ -20,7 +20,7 @@ public class LobbyHelper {
 
     private static final FileConfiguration fileConfiguration = MinerPlugin.getInstance().getOptions();
 
-    private static final int LIMIT = ManageHandler.getNMS().isLegacy() ? 16 : 64;
+    private static final int LIMIT = ManageHandler.getModernAPI().isLegacy() ? 16 : 64;
 
     private static final Set<LobbyAssist> tracks = new HashSet<>();
 
@@ -91,7 +91,7 @@ public class LobbyHelper {
 
         private Scoreboard scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
 
-        private final Objective objective = ManageHandler.getNMS().isLegacy() ?
+        private final Objective objective = ManageHandler.getModernAPI().isLegacy() ?
                 scoreboard.registerNewObjective("MinerwareL", "dummy") :
                 scoreboard.registerNewObjective("MinerwareL", "dummy", translate(title));
 
@@ -187,3 +187,6 @@ public class LobbyHelper {
     }
 
 }
+
+
+

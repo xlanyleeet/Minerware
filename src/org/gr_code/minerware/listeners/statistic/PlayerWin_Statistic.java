@@ -20,3 +20,5 @@ public class PlayerWin_Statistic implements Listener {
         StatisticManager.update(uuid);
     }
 }
+
+

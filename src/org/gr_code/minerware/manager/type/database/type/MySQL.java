@@ -29,10 +29,10 @@ public class MySQL {
 
     protected static String table;
 
-    public static Path parsePath(String string){
+    public static Path parsePath(String string) {
         try {
             return Path.valueOf(string);
-        }catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
@@ -54,7 +54,8 @@ public class MySQL {
             @Override
             public void run() {
                 try {
-                    PreparedStatement preparedStatement = getConnection().prepareStatement("SELECT * FROM " + table + " WHERE UUID=?");
+                    PreparedStatement preparedStatement = getConnection()
+                            .prepareStatement("SELECT * FROM " + table + " WHERE UUID=?");
                     preparedStatement.setString(1, uuid.toString());
                     ResultSet resultSet = preparedStatement.executeQuery();
                     resultSet.next();
@@ -68,7 +69,8 @@ public class MySQL {
                     insertInto.setInt(6, 0);
                     insertInto.setInt(7, 0);
                     insertInto.executeUpdate();
-                } catch (SQLException ignored) { }
+                } catch (SQLException ignored) {
+                }
             }
         }.runTaskAsynchronously(MinerPlugin.getInstance());
     }
@@ -80,12 +82,13 @@ public class MySQL {
             @Override
             public void run() {
                 try {
-                    PreparedStatement preparedStatement = getConnection().
-                            prepareStatement("UPDATE " + table + " SET <path>=? WHERE UUID=?".replace("<path>", path.toString()));
+                    PreparedStatement preparedStatement = getConnection().prepareStatement(
+                            "UPDATE " + table + " SET <path>=? WHERE UUID=?".replace("<path>", path.toString()));
                     preparedStatement.setString(2, uuid.toString());
                     preparedStatement.setInt(1, paramInt);
                     preparedStatement.executeUpdate();
-                } catch (SQLException ignored) { }
+                } catch (SQLException ignored) {
+                }
             }
         }.runTaskAsynchronously(MinerPlugin.getInstance());
     }
@@ -99,16 +102,18 @@ public class MySQL {
             @Override
             public void run() {
                 try {
-                    PreparedStatement preparedStatement = getConnection().prepareStatement("SELECT * FROM " + table + " WHERE UUID=?");
+                    PreparedStatement preparedStatement = getConnection()
+                            .prepareStatement("SELECT * FROM " + table + " WHERE UUID=?");
                     preparedStatement.setString(1, uuid.toString());
                     ResultSet resultSet = preparedStatement.executeQuery();
-                    if(resultSet.next())
+                    if (resultSet.next())
                         callback.onSuccess(cached, resultSet);
                     else {
                         callback.onError(cached);
                         createData(uuid, Objects.requireNonNull(Bukkit.getPlayer(uuid)).getName());
                     }
-                } catch (SQLException e) { }
+                } catch (SQLException e) {
+                }
             }
         }.runTaskAsynchronously(MinerPlugin.getInstance());
     }
@@ -125,15 +130,17 @@ public class MySQL {
                 if (connection != null && !connection.isClosed())
                     return;
                 Class.forName("com.mysql.jdbc.Driver");
-                setConnection(DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true&useSSL=false", user, password));
+                setConnection(DriverManager.getConnection(
+                        "jdbc:mysql://" + host + ":" + port + "/" + database + "?autoReconnect=true&useSSL=false", user,
+                        password));
                 Statement statement = connection.createStatement();
                 String a = "CREATE TABLE IF NOT EXISTS <table> " +
                         "(`UUID` TEXT, `NAME` TEXT, `WINS` INT, `MAX_POINTS` INT, `GAMES_PLAYED` INT, `LEVEL` INT, `EXP` INT);";
                 statement.executeUpdate(a.replace("<table>", table));
-                System.out.print("[MinerWare] MySQL enabled successful!");
+                MinerPlugin.getInstance().getLogger().info("MySQL enabled successful!");
             }
         } catch (SQLException | ClassNotFoundException e) {
-            System.out.println("[MinerWare] MySQL wasn't enabled due to the unexpected error.");
+            MinerPlugin.getInstance().getLogger().warning("MySQL wasn't enabled due to the unexpected error.");
             enabled = false;
         }
     }
@@ -159,10 +166,11 @@ public class MySQL {
     private static void refresh() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            setConnection(DriverManager.getConnection("jdbc:mysql://" + host + ":" + fileConfiguration.getInt("database.port") + "/" +
-                    database + "?autoReconnect=true&useSSL=false", user, password));
+            setConnection(DriverManager
+                    .getConnection("jdbc:mysql://" + host + ":" + fileConfiguration.getInt("database.port") + "/" +
+                            database + "?autoReconnect=true&useSSL=false", user, password));
         } catch (ClassNotFoundException | SQLException ignored) {
-            //do nothing
+            // do nothing
         }
     }
 
@@ -178,7 +186,8 @@ public class MySQL {
                     int i = 0;
                     for (Path path : Path.values()) {
                         PreparedStatement preparedStatement = getConnection()
-                                .prepareStatement("SELECT * FROM " + table + " ORDER BY " + path.name() + " DESC LIMIT 10");
+                                .prepareStatement(
+                                        "SELECT * FROM " + table + " ORDER BY " + path.name() + " DESC LIMIT 10");
                         ResultSet resultSet = preparedStatement.executeQuery();
                         resultSets[i] = resultSet;
                         i++;
@@ -190,11 +199,12 @@ public class MySQL {
         }.runTaskAsynchronously(MinerPlugin.getInstance());
     }
 
-    public interface CallBack<V, T>{
+    public interface CallBack<V, T> {
 
         void onSuccess(V object, T manager);
 
-        default void onError(V object) {}
+        default void onError(V object) {
+        }
 
     }
 

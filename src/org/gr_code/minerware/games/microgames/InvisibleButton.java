@@ -77,7 +77,7 @@ public class InvisibleButton extends MicroGame {
         Location buttonLocation = getRandomLocation(getArena());
         while (buttonLocation.getBlock().getType() != Material.AIR) buttonLocation = getRandomLocation(getArena());
         buttonLocation.getBlock().setType(Material.STONE_BUTTON);
-        ManageHandler.getNMS().setUpDirectionButton(buttonLocation.getBlock());
+        ManageHandler.getModernAPI().setUpDirectionButton(buttonLocation.getBlock());
     }
 
     @Override
@@ -143,3 +143,5 @@ public class InvisibleButton extends MicroGame {
     }
 
 }
+
+

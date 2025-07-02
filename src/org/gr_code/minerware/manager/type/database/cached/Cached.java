@@ -5,13 +5,13 @@ import org.bukkit.entity.Player;
 import org.gr_code.minerware.MinerPlugin;
 import org.gr_code.minerware.manager.type.Utils;
 import org.gr_code.minerware.manager.type.database.type.MySQL;
-import org.gr_code.minerware.manager.type.nms.NMS;
-import org.gr_code.minerware.manager.type.nms.hologram.IHologram;
+import org.gr_code.minerware.api.hologram.IHologram;
+import org.gr_code.minerware.api.hologram.ModernHologram;
+import org.gr_code.minerware.manager.type.modern.ModernMinerAPI;
 
 import java.util.UUID;
 
 public class Cached {
-
 
     public enum Block {
 
@@ -23,7 +23,7 @@ public class Cached {
         ICE(6, "ice_block"),
         OAK_LOG(4, "oak_log");
 
-        Block(int minRank, String id){
+        Block(int minRank, String id) {
             this.minRank = minRank;
             this.id = id;
         }
@@ -40,9 +40,9 @@ public class Cached {
             return id;
         }
 
-        public static Block getByID(String id){
+        public static Block getByID(String id) {
             for (Block block : Block.values()) {
-                if(block.getID().equalsIgnoreCase(id))
+                if (block.getID().equalsIgnoreCase(id))
                     return block;
             }
             return null;
@@ -66,17 +66,17 @@ public class Cached {
         SMOKE(5000, "smoke"),
         FLAME(6000, "flame");
 
-        Trail(int price, String id){
+        Trail(int price, String id) {
             this.price = price;
             this.id = id;
-            this.particle = NMS.Particle.valueOf(name());
+            this.particle = ModernMinerAPI.MinerParticle.valueOf(name());
         }
 
         private final int price;
 
         private final String id;
 
-        private final NMS.Particle particle;
+        private final ModernMinerAPI.MinerParticle particle;
 
         public String getID() {
             return id;
@@ -86,13 +86,13 @@ public class Cached {
             return price;
         }
 
-        public NMS.Particle getParticle() {
+        public ModernMinerAPI.MinerParticle getParticle() {
             return particle;
         }
 
-        public static Trail getByID(String id){
+        public static Trail getByID(String id) {
             for (Trail trail : Trail.values()) {
-                if(trail.getID().equalsIgnoreCase(id))
+                if (trail.getID().equalsIgnoreCase(id))
                     return trail;
             }
             return null;
@@ -114,7 +114,7 @@ public class Cached {
         this.exp = -1;
     }
 
-    public Cached(UUID uuid){
+    public Cached(UUID uuid) {
         this.uuid = uuid;
         this.wins = -1;
         this.gamesPlayed = -1;
@@ -156,55 +156,55 @@ public class Cached {
     }
 
     public void setWins(int wins) {
-        if(this.wins != -1)
+        if (this.wins != -1)
             MySQL.set(uuid, MySQL.Path.WINS, wins);
         this.wins = wins;
     }
 
     public void setGamesPlayed(int gamesPlayed) {
-        if(this.gamesPlayed != -1)
+        if (this.gamesPlayed != -1)
             MySQL.set(uuid, MySQL.Path.GAMES_PLAYED, gamesPlayed);
         this.gamesPlayed = gamesPlayed;
     }
 
     public void setMaxPoints(int maxPoints) {
-        if(this.maxPoints != -1)
+        if (this.maxPoints != -1)
             MySQL.set(uuid, MySQL.Path.MAX_POINTS, maxPoints);
         this.maxPoints = maxPoints;
     }
 
     public void setExp(int exp) {
-        if(this.exp != -1)
+        if (this.exp != -1)
             MySQL.set(uuid, MySQL.Path.EXP, exp);
         this.exp = exp;
     }
 
     public void setLevel(int level) {
-        if(this.level != -1)
+        if (this.level != -1)
             MySQL.set(uuid, MySQL.Path.LEVEL, level);
         this.level = level;
     }
 
-    public void addExp(int exp){
-        if(exp < 1)
+    public void addExp(int exp) {
+        if (exp < 1)
             return;
-        if(this.exp + exp >= getNext(level)){
+        if (this.exp + exp >= getNext(level)) {
             int result = exp - getNext(level) + this.exp;
-            setLevel(level+1);
+            setLevel(level + 1);
             this.exp = 0;
             addExp(result);
             return;
         }
-        setExp(exp+this.exp);
+        setExp(exp + this.exp);
     }
 
-    public String getPercentage(){
+    public String getPercentage() {
         return String.format("%.0f", (float) exp / getNext(level) * 100);
     }
 
-    private static int getNext(int level){
-        if(level > 10)
-            return level*350;
+    private static int getNext(int level) {
+        if (level > 10)
+            return level * 350;
         return Math.max(100, level * 300);
     }
 
@@ -219,10 +219,10 @@ public class Cached {
         assert codeA != null;
         StringBuilder stringBuilder = new StringBuilder(codeA);
         boolean changed = false;
-        for(int i = 0; i < 9; i++) {
+        for (int i = 0; i < 9; i++) {
             String string = symbol;
-            if(i == percentage && !changed) {
-                string = codeB+symbol;
+            if (i == percentage && !changed) {
+                string = codeB + symbol;
                 changed = true;
             }
             stringBuilder.append(string);

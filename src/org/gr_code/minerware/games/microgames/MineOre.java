@@ -84,12 +84,12 @@ public class MineOre extends MicroGame {
 		Location first = getArena().getProperties().getFirstLocation();
 		Cuboid cuboid = getArena().getProperties().getCuboid();
 		cuboid.getLocations().stream().filter(l -> l.getBlockY() <= first.getBlockY() + 4 && l.getBlockY() != first.getBlockY())
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(ores[new Random().nextInt(7)]), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(ores[new Random().nextInt(7)]), l.getBlock()));
 		cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() + 5)
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.COBBLESTONE.parseItem()), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.COBBLESTONE.parseItem()), l.getBlock()));
 		if (getArena().isHardMode())
 			cuboid.getLocations().stream().filter(l -> getItem(l.getBlock()).isSimilar(randItemForTask)).filter(l -> Math.random() <= 0.5)
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(ores[new Random().nextInt(7)]), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(ores[new Random().nextInt(7)]), l.getBlock()));
 	}
 
     @Override
@@ -161,3 +161,5 @@ public class MineOre extends MicroGame {
 	}
 
 }
+
+

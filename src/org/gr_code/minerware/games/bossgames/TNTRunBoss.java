@@ -61,7 +61,7 @@ public class TNTRunBoss extends BossGame {
 		getArena().getProperties().destroySquares();
 		Location first = getArena().getProperties().getFirstLocation();
 		getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.AIR.parseItem()), l.getBlock()));
 		locations.forEach(location -> location.getBlock().setType(Material.TNT));
 		getArena().getPlayers().forEach(gamePlayer -> {
     		Player player = gamePlayer.getPlayer();
@@ -89,7 +89,7 @@ public class TNTRunBoss extends BossGame {
 		for (float[] coordSecond : coord) {
 			Block block = location.clone().add(coordSecond[0], 0, coordSecond[1]).getBlock();
 			if (block.getType() != Material.TNT) continue;
-			ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.AIR.parseItem()), block);
+			ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.AIR.parseItem()), block);
 		}
     }
     
@@ -140,3 +140,5 @@ public class TNTRunBoss extends BossGame {
 	}
 
 }
+
+

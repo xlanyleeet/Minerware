@@ -73,11 +73,11 @@ public class LandOnTheFloor extends MicroGame {
 		cuboid.getLocations().stream().filter(l -> l.getBlockY() != first.getBlockY() && l.getBlockY() <= second.getBlockY() - 2)
 				.filter(l -> Math.random() > 0.95).forEach(l -> {
 			double random = Math.random();
-			if (random <= 0.9) ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.STONE.parseItem()), l.getBlock());
-			else if (random <= 0.98) ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), l.getBlock());
-			else ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.COBWEB.parseItem()), l.getBlock());
+			if (random <= 0.9) ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.STONE.parseItem()), l.getBlock());
+			else if (random <= 0.98) ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.HAY_BLOCK.parseItem()), l.getBlock());
+			else ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.COBWEB.parseItem()), l.getBlock());
 		});
-		for (int x = 0; x < 3; x ++) for (int z = 0; z < 3; z ++) ManageHandler.getNMS()
+		for (int x = 0; x < 3; x ++) for (int z = 0; z < 3; z ++) ManageHandler.getModernAPI()
 				.setBlock(requireNonNull(XMaterial.GOLD_BLOCK.parseItem()), center.clone().add(-1 + x, 0, -1 + z).getBlock());
 	}
 
@@ -159,3 +159,5 @@ public class LandOnTheFloor extends MicroGame {
 	}
 
 }
+
+

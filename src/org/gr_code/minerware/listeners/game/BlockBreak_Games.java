@@ -26,9 +26,11 @@ public class BlockBreak_Games implements Listener {
         if (!(arena.getStage().equals(Arena.Stage.PLAYING) && arena.getMicroGame() != null)) return;
         blockBreakEvent.setCancelled(true);
         if (arena.getProperties().getCuboid().notInside(blockBreakEvent.getBlock().getLocation())) return;
-        if (!ManageHandler.getNMS().oldVersion())
+        if (!ManageHandler.getModernAPI().oldVersion())
             blockBreakEvent.setDropItems(false);
         blockBreakEvent.setExpToDrop(0);
         arena.getMicroGame().event(blockBreakEvent);
     }
 }
+
+

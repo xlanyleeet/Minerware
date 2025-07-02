@@ -23,13 +23,13 @@ public class PlayerInteract_Waiting implements Listener {
             return;
         if(!playerInteractEvent.getAction().toString().startsWith("RIGHT"))
             return;
-        if(ManageHandler.getNMS().equalsItemStack(Utils.VOTE, playerInteractEvent.getItem())){
+        if(ManageHandler.getModernAPI().equalsItemStack(Utils.VOTE, playerInteractEvent.getItem())){
             playerInteractEvent.setCancelled(true);
             player.openInventory(Objects.requireNonNull(
                     ServerManager.getArena(player.getUniqueId())).getVotingSession().getVotingInventory());
             return;
         }
-        if(!ManageHandler.getNMS().equalsItemStack(Utils.LEAVE_THE_ARENA, playerInteractEvent.getItem()))
+        if(!ManageHandler.getModernAPI().equalsItemStack(Utils.LEAVE_THE_ARENA, playerInteractEvent.getItem()))
             return;
         playerInteractEvent.setCancelled(true);
         new BukkitRunnable() {
@@ -42,3 +42,6 @@ public class PlayerInteract_Waiting implements Listener {
     }
 
 }
+
+
+

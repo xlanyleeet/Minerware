@@ -22,3 +22,4 @@ public class PlayerShearEntity_Games implements Listener {
         arena.getMicroGame().event(playerShearEntityEvent);
     }
 }
+

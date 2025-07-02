@@ -52,11 +52,11 @@ public class ShearSheeps extends MicroGame {
     	Location second = getArena().getProperties().getSecondLocation();
     	Cuboid cuboid = getArena().getProperties().getCuboid();
     	cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY())
-    	.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.GRASS_BLOCK.parseItem()), l.getBlock()));
+    	.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GRASS_BLOCK.parseItem()), l.getBlock()));
 		cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() + 1)
 				.filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()
 						|| l.getBlockX() == second.getBlockX() || l.getBlockZ() == second.getBlockZ())
-				.forEach(l -> ManageHandler.getNMS().setBlock(requireNonNull(XMaterial.OAK_FENCE.parseItem()), l.getBlock()));
+				.forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.OAK_FENCE.parseItem()), l.getBlock()));
     }
 
 	@Override
@@ -98,10 +98,10 @@ public class ShearSheeps extends MicroGame {
     
     private void spawnSheep() {
 	    Sheep sheep = (Sheep) requireNonNull(getArena().getProperties().getFirstLocation().getWorld()).spawnEntity(getRandomLocation(getArena()), EntityType.SHEEP);
-		if (!ManageHandler.getNMS().oldVersion()) {
+		if (!ManageHandler.getModernAPI().oldVersion()) {
 			sheep.setSilent(true);
 			sheep.setAI(false);
-		} else ManageHandler.getNMS().setNoAI(sheep);
+		} else ManageHandler.getModernAPI().setNoAI(sheep);
 		sheepList.add(sheep);
     }
 
@@ -183,3 +183,5 @@ public class ShearSheeps extends MicroGame {
 	}
 
 }
+
+
