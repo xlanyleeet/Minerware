@@ -31,14 +31,14 @@ public class Voting {
 
     private final Inventory votingInventory;
 
-    public Voting(){
+    public Voting() {
         FileConfiguration fileConfiguration = MinerPlugin.getInstance().getOptions();
         String name = Utils.translate(fileConfiguration.getString("voting.name"));
         votingInventory = Bukkit.createInventory(new VoteHolder(), fileConfiguration.getInt("voting.size"), name);
         ConfigurationSection configurationSection = fileConfiguration.getConfigurationSection("voting.items");
         revoting = fileConfiguration.getBoolean("voting.revoting");
         assert configurationSection != null;
-        for(String s : configurationSection.getKeys(false)){
+        for (String s : configurationSection.getKeys(false)) {
             ConfigurationSection section = configurationSection.getConfigurationSection(s);
             assert section != null;
             ItemStack itemStack = ItemBuilder.fromSection(section).build();
@@ -49,7 +49,7 @@ public class Voting {
         }
     }
 
-    public void reset(){
+    public void reset() {
         normal = 0;
         hard = 0;
         update();
@@ -67,11 +67,11 @@ public class Voting {
         return normal;
     }
 
-    public void update(){
+    public void update() {
         FileConfiguration fileConfiguration = MinerPlugin.getInstance().getOptions();
         ConfigurationSection configurationSection = fileConfiguration.getConfigurationSection("voting.items");
         assert configurationSection != null;
-        for(String s : configurationSection.getKeys(false)){
+        for (String s : configurationSection.getKeys(false)) {
             ConfigurationSection section = configurationSection.getConfigurationSection(s);
             assert section != null;
             ItemStack itemStack = ItemBuilder.fromSection(section).build();
@@ -82,45 +82,45 @@ public class Voting {
         }
     }
 
-    public void onClick(int i, GamePlayer p){
-        if(actionMap.get(i) == null)
+    public void onClick(int i, GamePlayer p) {
+        if (actionMap.get(i) == null)
             return;
         String s = actionMap.get(i);
-        if(s.equals("CLOSE")){
+        if (s.equals("CLOSE")) {
             p.getPlayer().closeInventory();
             return;
         }
         Player player = p.getPlayer();
-        if(s.startsWith("VOTE_")){
-            if(!player.hasPermission("minerware.vote")){
+        if (s.startsWith("VOTE_")) {
+            if (!player.hasPermission("minerware.vote")) {
                 player.sendMessage(PluginCommand.Language.CAN_NOT_VOTE.getString());
                 return;
             }
             String string = s.split("_")[1];
-            if(p.getVote() != null){
-                if(!revoting){
+            if (p.getVote() != null) {
+                if (!revoting) {
                     player.sendMessage(PluginCommand.Language.ALREADY_VOTED.getString());
                     player.closeInventory();
                     return;
                 }
-                if(p.getVote().equals(string))
+                if (p.getVote().equals(string))
                     return;
                 remove(p.getVote());
             }
             p.setVoted(string);
-            player.sendMessage(PluginCommand.Language.valueOf("VOTED_"+string).getString());
-            if(string.equals("NORMAL"))
+            player.sendMessage(PluginCommand.Language.valueOf("VOTED_" + string).getString());
+            if (string.equals("NORMAL"))
                 normal++;
-            else if(string.equals("HARD"))
+            else if (string.equals("HARD"))
                 hard++;
             update();
         }
     }
 
-    void remove(String task){
-        if(task == null)
+    void remove(String task) {
+        if (task == null)
             return;
-        switch (task){
+        switch (task) {
             case "NORMAL":
                 normal--;
                 break;
@@ -151,5 +151,3 @@ public class Voting {
     }
 
 }
-
-

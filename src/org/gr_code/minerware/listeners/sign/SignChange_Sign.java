@@ -23,17 +23,17 @@ public class SignChange_Sign implements Listener {
         if (!(Objects.requireNonNull(event.getLine(0)).equalsIgnoreCase("[MinerWare]")))
             return;
         Player player = event.getPlayer();
-        if(!event.getPlayer().hasPermission("minerware.admin")){
+        if (!event.getPlayer().hasPermission("minerware.admin")) {
             player.sendMessage(PluginCommand.Language.NO_PERMISSIONS.getString());
             event.getBlock().breakNaturally();
             return;
         }
-        if(Objects.requireNonNull(event.getLine(1)).equalsIgnoreCase("randomJoin")){
-            event.setLine(0,  Utils.translate(SignManager.title));
+        if (Objects.requireNonNull(event.getLine(1)).equalsIgnoreCase("randomJoin")) {
+            event.setLine(0, Utils.translate(SignManager.title));
             event.setLine(1, Utils.translate(fileConfiguration.getString("sign.random-join.line-1")));
             return;
         }
-        if(ServerManager.getArena(event.getLine(1)) == null){
+        if (ServerManager.getArena(event.getLine(1)) == null) {
             player.sendMessage(PluginCommand.Language.NOT_EXIST.getString());
             event.getBlock().breakNaturally();
             return;
@@ -43,9 +43,8 @@ public class SignChange_Sign implements Listener {
         event.setLine(1, Utils.translate("&c" + event.getLine(1)));
         assert arena != null;
         event.setLine(2, arena.getStage().getSignString());
-        event.setLine(3, Utils.translate("&8" + arena.getCurrentPlayers() + " / " + arena.getProperties().getMaxPlayers()));
+        event.setLine(3,
+                Utils.translate("&8" + arena.getCurrentPlayers() + " / " + arena.getProperties().getMaxPlayers()));
         SignManager.addSign(event.getBlock());
     }
 }
-
-

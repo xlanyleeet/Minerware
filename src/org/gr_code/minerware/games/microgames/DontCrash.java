@@ -43,7 +43,7 @@ public class DontCrash extends MicroGame {
         Location second = getArena().getProperties().getSecondLocation();
         Cuboid cuboid = getArena().getProperties().getCuboid();
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY() + 1)
-                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.WATER.parseItem()), l.getBlock()));
+                .forEach(l -> l.getBlock().setType(Material.WATER)); // Set WATER directly as block type since it's not an item
         cuboid.getLocations().stream()
                 .filter(l -> l.getBlockY() == first.getBlockY() + 1 || l.getBlockY() == second.getBlockY() || l.getBlockY() == second.getBlockY() - 1)
                 .filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()

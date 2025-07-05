@@ -42,24 +42,51 @@ public class IceFloor extends MicroGame {
     }
 
     private void newStage(Block block) {
-    	ItemStack ItemStack = getItem(block);
+    	ItemStack itemStack = getItem(block);
+        if (itemStack == null) {
+            // If block item is null, skip processing
+            return;
+        }
+        
         XMaterial firstStage = ManageHandler.getModernAPI().isLegacy() ? XMaterial.PACKED_ICE : XMaterial.BLUE_ICE;
         XMaterial secondStage = ManageHandler.getModernAPI().isLegacy() ? XMaterial.ICE : XMaterial.PACKED_ICE;
         XMaterial thirdStage = ManageHandler.getModernAPI().isLegacy() ? XMaterial.LIGHT_BLUE_STAINED_GLASS : XMaterial.ICE;
-        if (ItemStack.isSimilar(firstStage.parseItem())) ManageHandler.getModernAPI().setBlock(requireNonNull(secondStage.parseItem()), block);
-        else if (ItemStack.isSimilar(secondStage.parseItem())) ManageHandler.getModernAPI().setBlock(requireNonNull(thirdStage.parseItem()), block);
-        else if (ItemStack.isSimilar(thirdStage.parseItem())) {
-            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.WATER.parseItem()), block);
+        
+        ItemStack firstStageItem = firstStage.parseItem();
+        ItemStack secondStageItem = secondStage.parseItem();
+        ItemStack thirdStageItem = thirdStage.parseItem();
+        
+        if (firstStageItem != null && itemStack.isSimilar(firstStageItem)) {
+            if (secondStageItem != null) {
+                ManageHandler.getModernAPI().setBlock(secondStageItem, block);
+                // Debug: First stage -> Second stage
+            }
+        } else if (secondStageItem != null && itemStack.isSimilar(secondStageItem)) {
+            if (thirdStageItem != null) {
+                ManageHandler.getModernAPI().setBlock(thirdStageItem, block);
+                // Debug: Second stage -> Third stage
+            }
+        } else if (thirdStageItem != null && itemStack.isSimilar(thirdStageItem)) {
+            // Set water directly using Material instead of ItemStack for liquids
+            block.setType(org.bukkit.Material.WATER);
             countWater++;
+            // Debug: Third stage -> Water (count: " + countWater + ")
         }
     }
 
     private void generateFloor() {
         getArena().getProperties().destroySquares();
         ItemStack ice = ManageHandler.getModernAPI().isLegacy() ? XMaterial.PACKED_ICE.parseItem() : XMaterial.BLUE_ICE.parseItem();
-        getArena().getProperties().getCuboid().getLocations().stream()
-                .filter(location -> location.getBlockY() == getArena().getProperties().getFirstLocation().getBlockY())
-                .forEach(loc -> ManageHandler.getModernAPI().setBlock(requireNonNull(ice), loc.getBlock()));
+        if (ice == null) {
+            // Fallback to regular ice if preferred ice type is not available
+            ice = XMaterial.ICE.parseItem();
+        }
+        if (ice != null) {
+            final ItemStack finalIce = ice;
+            getArena().getProperties().getCuboid().getLocations().stream()
+                    .filter(location -> location.getBlockY() == getArena().getProperties().getFirstLocation().getBlockY())
+                    .forEach(loc -> ManageHandler.getModernAPI().setBlock(finalIce, loc.getBlock()));
+        }
     }
 
     @Override
@@ -117,7 +144,12 @@ public class IceFloor extends MicroGame {
 
     @Override
 	public ItemStack getGameItemStack() {
-    	return ItemBuilder.start(requireNonNull(XMaterial.ICE.parseItem())).setDisplayName("&3&lTHE FROZEN FLOOR").build();
+        ItemStack iceItem = XMaterial.ICE.parseItem();
+        if (iceItem == null) {
+            // Fallback if ICE is not available
+            iceItem = new ItemStack(org.bukkit.Material.ICE);
+        }
+    	return ItemBuilder.start(iceItem).setDisplayName("&3&lTHE FROZEN FLOOR").build();
 	}
 
 }

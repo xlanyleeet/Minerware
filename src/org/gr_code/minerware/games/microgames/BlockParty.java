@@ -112,10 +112,17 @@ public class BlockParty extends MicroGame {
     	ItemStack rightItem = XMaterial.valueOf(random_wool.split(":")[0]).parseItem();
     	players.stream().filter(x -> x.getState() == State.PLAYING_GAME).forEach(gamePlayer -> {
     		Player player = gamePlayer.getPlayer();
-    		ItemStack playerItem = getItem(player.getLocation().add(0, -1, 0).getBlock());
-    		if (playerItem.isSimilar(rightItem) && gamePlayer.getAchievement() == null)
+    		org.bukkit.block.Block playerBlock = player.getLocation().add(0, -1, 0).getBlock();
+    		
+    		// Check if player is standing on the correct block type
+    		boolean isOnCorrectBlock = false;
+    		if (rightItem != null) {
+    			isOnCorrectBlock = playerBlock.getType() == rightItem.getType();
+    		}
+    		
+    		if (isOnCorrectBlock && gamePlayer.getAchievement() == null)
     			startAchievement(gamePlayer);
-    		else if (!playerItem.isSimilar(rightItem) && gamePlayer.getAchievement() != null)
+    		else if (!isOnCorrectBlock && gamePlayer.getAchievement() != null)
     			stopAchievement(gamePlayer);
     		if (player.getLocation().getBlockY() <= loseY) onLose(player, true);
     	});
@@ -139,9 +146,16 @@ public class BlockParty extends MicroGame {
     	ItemStack rightItem = XMaterial.valueOf(random_wool.split(":")[0]).parseItem();
 		getArena().getPlayers().forEach(gamePlayer -> {
 			Player player = gamePlayer.getPlayer();
-			ItemStack playerItem = getItem(player.getLocation().add(0, -1, 0).getBlock());
+			org.bukkit.block.Block playerBlock = player.getLocation().add(0, -1, 0).getBlock();
 			if (gamePlayer.getAchievement() != null) stopAchievement(gamePlayer);
-			if (playerItem.isSimilar(rightItem)) onWin(player, false);
+			
+			// Check if player is standing on the correct block type
+			boolean isOnCorrectBlock = false;
+			if (rightItem != null) {
+				isOnCorrectBlock = playerBlock.getType() == rightItem.getType();
+			}
+			
+			if (isOnCorrectBlock) onWin(player, false);
 			if (gamePlayer.getState() == State.PLAYING_GAME) onLose(player, false);
 		});
 		super.end();

@@ -1,5 +1,6 @@
 package org.gr_code.minerware.games.microgames;
 
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -46,7 +47,8 @@ public class LavaFloor extends MicroGame {
         if (ItemStack.isSimilar(XMaterial.YELLOW_TERRACOTTA.parseItem())) ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.ORANGE_TERRACOTTA.parseItem()), block);
         else if (ItemStack.isSimilar(XMaterial.ORANGE_TERRACOTTA.parseItem())) ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.RED_TERRACOTTA.parseItem()), block);
         else if (ItemStack.isSimilar(XMaterial.RED_TERRACOTTA.parseItem())) {
-            ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.LAVA.parseItem()), block);
+            // Set LAVA directly as block type since it's not an item
+            block.setType(Material.LAVA);
             countLava++;
         }
     }

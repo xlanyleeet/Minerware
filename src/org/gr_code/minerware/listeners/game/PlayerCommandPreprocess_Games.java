@@ -16,15 +16,17 @@ public class PlayerCommandPreprocess_Games implements Listener {
     public void onPreprocess(PlayerCommandPreprocessEvent event) {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
-        if (!Utils.isInGame(uuid)) return;
+        if (!Utils.isInGame(uuid))
+            return;
         String string = event.getMessage();
         List<String> strings = MinerPlugin.getInstance().getOptions().getStringList("blocked-commands");
-        if (strings.isEmpty()) return;
-        if (!strings.contains(string.split(" ")[0].replace("/", ""))) return;
-        if (player.hasPermission("minerware.admin")) return;
+        if (strings.isEmpty())
+            return;
+        if (!strings.contains(string.split(" ")[0].replace("/", "")))
+            return;
+        if (player.hasPermission("minerware.admin"))
+            return;
         player.sendMessage(PluginCommand.Language.IN_GAME.getString());
         event.setCancelled(true);
     }
 }
-
-

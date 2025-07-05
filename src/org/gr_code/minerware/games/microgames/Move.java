@@ -1,6 +1,7 @@
 package org.gr_code.minerware.games.microgames;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffectType;
@@ -12,7 +13,6 @@ import org.gr_code.minerware.builders.ItemBuilder;
 import org.gr_code.minerware.cuboid.Cuboid;
 import org.gr_code.minerware.games.Game;
 import org.gr_code.minerware.games.MicroGame;
-import org.gr_code.minerware.manager.ManageHandler;
 import org.gr_code.minerware.manager.type.resources.XMaterial;
 import org.gr_code.minerware.manager.type.resources.XSound;
 
@@ -45,9 +45,9 @@ public class Move extends MicroGame {
     @Override
     public void secondStartGame() {
 		if (getArena().isHardMode()) {
-			ItemStack lava = requireNonNull(XMaterial.LAVA.parseItem());
+			// Set LAVA directly as block type since it's not an item
 			for (Properties.Square square : getArena().getProperties().getSquares())
-				square.getLocations().forEach(l -> ManageHandler.getModernAPI().setBlock(lava, l.clone().add(0,-1,0).getBlock()));
+				square.getLocations().forEach(l -> l.clone().add(0,-1,0).getBlock().setType(Material.LAVA));
 			getArena().getProperties().destroySquares();
 		}
 		String title = translate(getString("titles.start-game"));

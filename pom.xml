@@ -6,7 +6,7 @@
 
     <groupId>org.gr_code</groupId>
     <artifactId>minerware</artifactId>
-    <version>3.0.7</version>
+    <version>3.1.0</version>
     <packaging>jar</packaging>
 
     <name>MinerWare</name>

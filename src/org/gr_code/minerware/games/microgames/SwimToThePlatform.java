@@ -57,18 +57,32 @@ public class SwimToThePlatform extends MicroGame {
     private void generatePlatform() {
         Location first = getArena().getProperties().getFirstLocation();
         Location second = getArena().getProperties().getSecondLocation();
-        getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() > first.getBlockY() && l.getBlockY() <= first.getBlockY() + 5)
-                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.WATER.parseItem()), l.getBlock()));
-        getArena().getProperties().getCuboid().getLocations().stream().filter(l -> l.getBlockY() > first.getBlockY() && l.getBlockY() <= first.getBlockY() + 5)
-                .filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()
-                        || l.getBlockX() == second.getBlockX() || l.getBlockZ() == second.getBlockZ())
-                .forEach(l -> ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GLASS.parseItem()), l.getBlock()));
+        
+        // Set water blocks directly using Material instead of ItemStack for liquids
+        getArena().getProperties().getCuboid().getLocations().stream()
+                .filter(l -> l.getBlockY() > first.getBlockY() && l.getBlockY() <= first.getBlockY() + 5)
+                .forEach(l -> l.getBlock().setType(org.bukkit.Material.WATER));
+        
+        // Set glass walls
+        ItemStack glassItem = XMaterial.GLASS.parseItem();
+        if (glassItem != null) {
+            getArena().getProperties().getCuboid().getLocations().stream()
+                    .filter(l -> l.getBlockY() > first.getBlockY() && l.getBlockY() <= first.getBlockY() + 5)
+                    .filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()
+                            || l.getBlockX() == second.getBlockX() || l.getBlockZ() == second.getBlockZ())
+                    .forEach(l -> ManageHandler.getModernAPI().setBlock(glassItem, l.getBlock()));
+        }
+        
         String typeArena = getArena().getProperties().getType();
         int size = typeArena.equals("MICRO") || typeArena.equals("MINI") ? 3 : typeArena.equals("DEFAULT") ? 5 : 6;
         Location center = getArena().getProperties().getCuboid().getCenter().getBlock().getLocation().add(-((int)(size/2)), 3, -((int)(size/2)));
-        for (int x = 0; x < size; x ++)
-            for (int z = 0; z < size; z ++)
-                ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.GOLD_BLOCK.parseItem()), center.clone().add(x,0,z).getBlock());
+        
+        ItemStack goldItem = XMaterial.GOLD_BLOCK.parseItem();
+        if (goldItem != null) {
+            for (int x = 0; x < size; x ++)
+                for (int z = 0; z < size; z ++)
+                    ManageHandler.getModernAPI().setBlock(goldItem, center.clone().add(x,0,z).getBlock());
+        }
     }
 
     @Override
@@ -101,11 +115,15 @@ public class SwimToThePlatform extends MicroGame {
             Player player = gamePlayer.getPlayer();
             int y = player.getLocation().getBlockY();
             Block plB = player.getLocation().add(0,-1,0).getBlock();
-            if (getItem(plB).isSimilar(XMaterial.GOLD_BLOCK.parseItem()) && gamePlayer.getAchievement() == null) {
+            
+            // Check block type directly instead of converting to ItemStack
+            boolean isOnGoldBlock = plB.getType() == org.bukkit.Material.GOLD_BLOCK;
+            
+            if (isOnGoldBlock && gamePlayer.getAchievement() == null) {
                 double currentTime = ((double) System.currentTimeMillis()) / 1000;
                 String achievement = getSeconds(currentTime);
                 gamePlayer.setAchievement(achievement);
-            } else if (!getItem(plB).isSimilar(XMaterial.GOLD_BLOCK.parseItem()) && gamePlayer.getAchievement() != null) {
+            } else if (!isOnGoldBlock && gamePlayer.getAchievement() != null) {
                 double firstAch = Double.parseDouble(gamePlayer.getAchievement());
                 double currentTime = ((double) System.currentTimeMillis()) / 1000;
                 double secondAch = Double.parseDouble(getSeconds(currentTime));
@@ -130,8 +148,13 @@ public class SwimToThePlatform extends MicroGame {
             }
             if (gamePlayer.getState() == State.PLAYING_GAME) {
                 Block plB = player.getLocation().add(0,-1,0).getBlock();
-                if (getItem(plB).isSimilar(XMaterial.GOLD_BLOCK.parseItem())) onWin(player, false);
-                else onLose(player, false);
+                // Check block type directly instead of converting to ItemStack
+                boolean isOnGoldBlock = plB.getType() == org.bukkit.Material.GOLD_BLOCK;
+                if (isOnGoldBlock) {
+                    onWin(player, false);
+                } else {
+                    onLose(player, false);
+                }
             }
         });
         super.end();
@@ -149,7 +172,12 @@ public class SwimToThePlatform extends MicroGame {
 
     @Override
     public ItemStack getGameItemStack() {
-        return ItemBuilder.start(requireNonNull(XMaterial.LAPIS_BLOCK.parseItem())).setDisplayName("&b&lSWIM TO THE PLATFORM").build();
+        ItemStack lapisItem = XMaterial.LAPIS_BLOCK.parseItem();
+        if (lapisItem == null) {
+            // Fallback if LAPIS_BLOCK is not available
+            lapisItem = new ItemStack(org.bukkit.Material.LAPIS_BLOCK);
+        }
+        return ItemBuilder.start(lapisItem).setDisplayName("&b&lSWIM TO THE PLATFORM").build();
     }
 
     @Override

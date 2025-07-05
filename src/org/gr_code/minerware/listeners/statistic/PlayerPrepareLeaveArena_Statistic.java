@@ -17,26 +17,52 @@ import java.util.UUID;
 
 public class PlayerPrepareLeaveArena_Statistic implements Listener {
     @EventHandler
-    public void onPrepareLeave(PlayerPrepareLeaveArenaEvent playerPrepareLeaveArenaEvent){
+    public void onPrepareLeave(PlayerPrepareLeaveArenaEvent playerPrepareLeaveArenaEvent) {
         UUID uuid = playerPrepareLeaveArenaEvent.getPlayer().getUniqueId();
         int points = playerPrepareLeaveArenaEvent.getArena().getPlayer(uuid).getPoints();
         Cached cached = CachedMySQL.get(uuid);
-        if(cached == null)
+        if (cached == null)
             return;
-        if(playerPrepareLeaveArenaEvent.isFinishedMatch()) {
+        if (playerPrepareLeaveArenaEvent.isFinishedMatch()) {
             Objects.requireNonNull(cached).setGamesPlayed(cached.getGamesPlayed() + 1);
             FileConfiguration fileConfiguration = MinerPlugin.getInstance().getOptions();
             IArena iArena = playerPrepareLeaveArenaEvent.getArena();
             Player player = playerPrepareLeaveArenaEvent.getPlayer();
-            String lose = iArena.getPlayer(uuid).getPlace() == 1 ? "win." : "lose.";
-            String message = fileConfiguration.getString(lose+"message");
-            player.sendMessage(Utils.translate(message));
-            cached.addExp(fileConfiguration.getInt(lose+"exp"));
+
+            // Визначаємо місце гравця
+            int place = iArena.getPlayer(uuid).getPlace();
+            String rewardKey;
+
+            // Вибираємо відповідний ключ винагороди на основі місця
+            switch (place) {
+                case 1:
+                    rewardKey = "rewards.1st-place.";
+                    cached.setWins(cached.getWins() + 1); // Збільшуємо кількість перемог тільки для 1-го місця
+                    break;
+                case 2:
+                    rewardKey = "rewards.2nd-place.";
+                    break;
+                case 3:
+                    rewardKey = "rewards.3rd-place.";
+                    break;
+                default:
+                    rewardKey = "rewards.participation.";
+                    break;
+            }
+
+            // Відправляємо повідомлення та додаємо досвід
+            String message = fileConfiguration.getString(rewardKey + "message");
+            if (message != null) {
+                player.sendMessage(Utils.translate(message));
+            }
+
+            int expReward = fileConfiguration.getInt(rewardKey + "exp", 0);
+            if (expReward > 0) {
+                cached.addExp(expReward);
+            }
         }
-        if(points > Objects.requireNonNull(cached).getMaxPoints())
+        if (points > Objects.requireNonNull(cached).getMaxPoints())
             cached.setMaxPoints(points);
         StatisticManager.update(uuid);
     }
 }
-
-

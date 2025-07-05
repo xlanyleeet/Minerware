@@ -35,12 +35,19 @@ public class LandOnSlime extends MicroGame {
         getArena().getProperties().destroySquares();
         Location first = getArena().getProperties().getFirstLocation();
         Location second = getArena().getProperties().getSecondLocation();
-        ItemStack lava = getArena().isHardMode() ? XMaterial.EMERALD_BLOCK.parseItem() : XMaterial.LAVA.parseItem();
-        assert lava != null;
         Cuboid cuboid = getArena().getProperties().getCuboid();
+        boolean hardMode = getArena().isHardMode();
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == first.getBlockY()).forEach(l -> {
-            if (Math.random() <= 0.2) ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.SLIME_BLOCK.parseItem()), l.getBlock());
-            else ManageHandler.getModernAPI().setBlock(lava, l.getBlock());
+            if (Math.random() <= 0.2) {
+                ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.SLIME_BLOCK.parseItem()), l.getBlock());
+            } else {
+                if (hardMode) {
+                    ManageHandler.getModernAPI().setBlock(requireNonNull(XMaterial.EMERALD_BLOCK.parseItem()), l.getBlock());
+                } else {
+                    // Set LAVA directly as block type since it's not an item
+                    l.getBlock().setType(Material.LAVA);
+                }
+            }
         });
         cuboid.getLocations().stream().filter(l -> l.getBlockY() == second.getBlockY() || l.getBlockY() == second.getBlockY() - 1)
                 .filter(l -> l.getBlockX() == first.getBlockX() || l.getBlockZ() == first.getBlockZ()

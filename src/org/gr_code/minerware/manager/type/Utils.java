@@ -441,9 +441,22 @@ public class Utils {
         return vector;
     }
 
-    @SuppressWarnings("deprecation")
     public static ItemStack getItem(Block block) {
-        return new ItemStack(block.getType()); // Always use modern approach
+        Material blockType = block.getType();
+        
+        // Handle liquid blocks that cannot be converted to ItemStack
+        if (blockType == Material.WATER || blockType == Material.LAVA) {
+            // Return a water/lava bucket as the "item" representation
+            return new ItemStack(blockType == Material.WATER ? Material.WATER_BUCKET : Material.LAVA_BUCKET);
+        }
+        
+        // Handle other special blocks that might not have item equivalents
+        try {
+            return new ItemStack(blockType);
+        } catch (IllegalArgumentException e) {
+            // Fallback to AIR if the block type cannot be converted to an item
+            return new ItemStack(Material.AIR);
+        }
     }
 
     public static float sin(float var0) {

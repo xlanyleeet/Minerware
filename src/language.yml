@@ -62,6 +62,7 @@ help:
   - '&6/mw join &7[&cname&7] - join the selected arena.'
   - '&6/mw randomJoin&7 - join a random arena.'
   - '&6/mw leave&7 - leave your current arena.'
+  - '&6/mw reload&7 - reload plugin configuration.'
   - '&7-------------------------------------------------'
 user-help:
   - '&7-------------------------------------------------'

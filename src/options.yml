@@ -43,12 +43,19 @@ leaderboards:
     exp: '&b&lTop EXP'
     games_played: '&b&lTop Games'
   locations:
-win:
-  message: '&6+75 EXP for getting the first place! Good luck!'
-  exp: 75
-lose:
-  message: '&6+10 EXP for playing minerware on the server!'
-  exp: 50
+rewards:
+  1st-place:
+    message: '&6+100 EXP за перше місце! Вітаємо переможця!'
+    exp: 100
+  2nd-place:
+    message: '&6+75 EXP за друге місце! Чудова гра!'
+    exp: 75
+  3rd-place:
+    message: '&6+50 EXP за третє місце! Добре зіграно!'
+    exp: 50
+  participation:
+    message: '&6+25 EXP за участь у Minerware!'
+    exp: 25
 voting:
   size: 27
   name: 'Voting'
