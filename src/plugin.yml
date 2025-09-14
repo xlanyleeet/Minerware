@@ -1,6 +1,6 @@
 name: MinerWare
 main: org.gr_code.minerware.MinerPlugin
-version: 3.0.7
+version: 3.7.0
 api-version: 1.19
 author: Gr_Code, xlanyleeet
 description: Minerware plugin made by Gr_Code, forked by xlanyleeet (Updated for 1.19.4+)

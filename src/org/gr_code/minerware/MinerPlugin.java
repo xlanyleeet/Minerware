@@ -8,6 +8,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.gr_code.minerware.arena.Arena;
+import org.gr_code.minerware.gui.ArenaSelectionGUI;
 import org.gr_code.minerware.manager.ManageHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -38,6 +39,8 @@ public final class MinerPlugin extends JavaPlugin implements Listener {
     public void onEnable() {
         initialize();
         ManageHandler.setupMinerware();
+        // Initialize GUI
+        new ArenaSelectionGUI();
     }
 
     @Override

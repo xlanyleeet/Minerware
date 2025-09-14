@@ -13,11 +13,8 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.util.Vector;
 import org.gr_code.minerware.arena.Arena;
 import org.gr_code.minerware.manager.type.resources.XMaterial;
-
-import java.util.Objects;
 import java.util.Random;
 import java.util.function.Consumer;
 import java.util.regex.Matcher;
@@ -307,10 +304,6 @@ public class ModernMinerAPI {
     public void sendRestorePackets(Player player, Arena arena) {
         if (player == null || arena == null)
             return;
-
-        // Modern approach - send action bar message
-        player.spigot().sendMessage(net.md_5.bungee.api.ChatMessageType.ACTION_BAR,
-                net.md_5.bungee.api.chat.TextComponent.fromLegacyText(translate("&aBlocks restored!")));
     }
 
     /**

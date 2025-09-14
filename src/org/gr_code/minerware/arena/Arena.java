@@ -34,13 +34,13 @@ public final class Arena implements IArena {
 
         MEGA(29, 3, 7, 3, 16);
 
-        Type(int sizeArena, int sizeSquares, int distanceSquares, int distanceCorners, int players){
+        Type(int sizeArena, int sizeSquares, int distanceSquares, int distanceCorners, int players) {
             this.sizeSquares = sizeSquares;
             this.sizeArena = sizeArena;
             this.distanceSquares = distanceSquares;
             this.distanceCorners = distanceCorners;
             this.players = players;
-            this.cuboids = toString().equals("MICRO") ?  2 : 3;
+            this.cuboids = toString().equals("MICRO") ? 2 : 3;
         }
 
         private final int sizeArena, sizeSquares, distanceSquares, distanceCorners, players, cuboids;
@@ -57,7 +57,7 @@ public final class Arena implements IArena {
             return sizeSquares;
         }
 
-        public int getDistanceCorners(){
+        public int getDistanceCorners() {
             return distanceCorners;
         }
 
@@ -71,33 +71,33 @@ public final class Arena implements IArena {
 
     }
 
-    public static Type parseType(String string){
+    public static Type parseType(String string) {
         try {
             return Type.valueOf(string);
-        }catch (Exception exception){
+        } catch (Exception exception) {
             return Type.DEFAULT;
         }
     }
 
-    public enum Stage{
+    public enum Stage {
 
         WAITING, PLAYING, STARTING, NEW_GAME_STARTING, FINISHED;
 
-        public String getSignString(){
+        public String getSignString() {
             return getObjectString(name().toLowerCase());
         }
 
         private static final FileConfiguration fileConfiguration = MinerPlugin.getInstance().getBungee();
 
-        private static String getObjectString(String path){
-            return translate(fileConfiguration.getString("game-stage."+path));
+        private static String getObjectString(String path) {
+            return translate(fileConfiguration.getString("game-stage." + path));
         }
 
     }
 
-    /*|Boolean|*/
+    /* |Boolean| */
 
-    private boolean validateTimer (boolean isScoreBoard) {
+    private boolean validateTimer(boolean isScoreBoard) {
         if (!isScoreBoard) {
             return countDown == 400 || countDown == 200 || (countDown % 20 == 0 && countDown <= 100)
                     && countDown > 0;
@@ -125,31 +125,33 @@ public final class Arena implements IArena {
     }
 
     public boolean canFinish() {
-        return getCurrentPlayers() < 2;
+        return getCurrentPlayers() < properties.getMinPlayers();
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Arena arena = (Arena) o;
         return toString().equals(arena.toString());
     }
 
-    /*|Void|*/
+    /* |Void| */
 
     private void decreaseCountDown() {
         countDown -= 1;
     }
 
-    private void tryUnload(){
-        if(unloaded)
+    private void tryUnload() {
+        if (unloaded)
             return;
         unload();
     }
 
-    private void tryLoad(){
-        if(!unloaded)
+    private void tryLoad() {
+        if (!unloaded)
             return;
         load();
     }
@@ -158,7 +160,8 @@ public final class Arena implements IArena {
         playerList.forEach(x -> {
             Player player = Bukkit.getPlayer(x.getUUID());
             assert player != null;
-            player.playSound(properties.getLobbyLocation(), Objects.requireNonNull(XSound.BLOCK_NOTE_BLOCK_HAT.parseSound()), 5, 1);
+            player.playSound(properties.getLobbyLocation(),
+                    Objects.requireNonNull(XSound.BLOCK_NOTE_BLOCK_HAT.parseSound()), 5, 1);
             if (MinerPlugin.getInstance().getMessages().getBoolean("messages.arena.on-countdown.title-show"))
                 sendTitle(player, COLORS[getColour()] + "" + getSeconds(), null, 2, 15, 3);
             sendCountDown(player, this);
@@ -202,7 +205,7 @@ public final class Arena implements IArena {
         playerList.forEach(GamePlayer::update);
     }
 
-    /*|PlayerEvent|*/
+    /* |PlayerEvent| */
 
     public void addPlayer(UUID uuid) {
         GamePlayer gamePlayer = new GamePlayer(uuid, this);
@@ -211,7 +214,7 @@ public final class Arena implements IArena {
         onAdd(player, gamePlayer);
     }
 
-    private void sendActionMessage(UUID uuid, String path){
+    private void sendActionMessage(UUID uuid, String path) {
         String message = SocketManager.decode(uuid.toString(), path.toUpperCase(), getName());
         SocketManager.sendMessage(message);
     }
@@ -233,7 +236,7 @@ public final class Arena implements IArena {
         doTask();
         sendMessage(player, "join", true);
         player.getInventory().setItem(8, LEAVE_THE_ARENA);
-        if(MinerPlugin.getInstance().getOptions().getBoolean("voting.enabled"))
+        if (MinerPlugin.getInstance().getOptions().getBoolean("voting.enabled"))
             player.getInventory().setItem(0, VOTE);
         EventManager.craftArenaEvent(player, EventA.JOIN, this);
     }
@@ -249,7 +252,6 @@ public final class Arena implements IArena {
         voting.remove(gamePlayer.getVote());
         EventManager.craftArenaEvent(player, EventA.LEAVE, this);
     }
-
 
     private void removeWithCommand() {
         for (GamePlayer gamePlayer : playerList) {
@@ -270,15 +272,15 @@ public final class Arena implements IArena {
         playerList.clear();
     }
 
-    private void sendMessage(Player player, String path, boolean bool){
+    private void sendMessage(Player player, String path, boolean bool) {
         sendActionMessage(player.getUniqueId(), path);
         playerList.forEach(x -> {
             org.bukkit.entity.Player paramPlayer = Bukkit.getPlayer(x.getUUID());
-            Utils.sendMessage(this, paramPlayer, "messages.arena.on-"+path, player, bool);
+            Utils.sendMessage(this, paramPlayer, "messages.arena.on-" + path, player, bool);
         });
     }
 
-    /*|Start|*/
+    /* |Start| */
 
     private void tryStart() {
         if (!canStart()) {
@@ -313,7 +315,8 @@ public final class Arena implements IArena {
             assert player != null;
             player.getInventory().setItem(8, null);
             player.getInventory().setItem(0, null);
-            player.playSound(properties.getLobbyLocation(), Objects.requireNonNull(XSound.BLOCK_NOTE_BLOCK_PLING.parseSound()), 5, 1);
+            player.playSound(properties.getLobbyLocation(),
+                    Objects.requireNonNull(XSound.BLOCK_NOTE_BLOCK_PLING.parseSound()), 5, 1);
             sendPathMessage(player, "on-start");
             player.setFallDistance(0);
         });
@@ -322,7 +325,7 @@ public final class Arena implements IArena {
         microGame.startGame();
     }
 
-    /*|Updating|*/
+    /* |Updating| */
 
     public void updateArena() {
         switch (stage) {
@@ -346,7 +349,7 @@ public final class Arena implements IArena {
         updateScoreBoard();
     }
 
-    /*|Changing|*/
+    /* |Changing| */
 
     private void tryChange() {
         if (!canStartNewGame()) {
@@ -383,10 +386,10 @@ public final class Arena implements IArena {
         microGame.startGame();
     }
 
-    /*|Finish|*/
+    /* |Finish| */
 
-    private void stopEffect(){
-        if(winEffect != null)
+    private void stopEffect() {
+        if (winEffect != null)
             winEffect.stop();
     }
 
@@ -406,7 +409,7 @@ public final class Arena implements IArena {
 
     private void finishPlayer(Player player) {
         FileConfiguration fileConfiguration = MinerPlugin.getInstance().getMessages();
-        if(properties.getCuboid().notInside(player.getLocation()))
+        if (properties.getCuboid().notInside(player.getLocation()))
             player.teleport(Cuboid.getRandomLocation(this));
         GamePlayer gamePlayer = getPlayer(player.getUniqueId());
         assert gamePlayer != null;
@@ -427,7 +430,7 @@ public final class Arena implements IArena {
             finishPlayer(Objects.requireNonNull(Bukkit.getPlayer(playerInGame.getUUID())));
         });
         setStage(Stage.FINISHED);
-        if(isEnabledWinEffect) {
+        if (isEnabledWinEffect) {
             int randomInt = new Random().nextInt(WinEffect.Type.values().length);
             winEffect = WinEffect.Type.values()[randomInt].getInstance(this, 300);
         }
@@ -435,7 +438,7 @@ public final class Arena implements IArena {
     }
 
     private void performWinEffect() {
-        if(!isEnabledWinEffect)
+        if (!isEnabledWinEffect)
             return;
         winEffect.update();
     }
@@ -444,13 +447,13 @@ public final class Arena implements IArena {
         playerList.forEach(playerInGame -> {
             Player player = Bukkit.getPlayer(playerInGame.getUUID());
             assert player != null;
-            for(String prizeString : Utils.replaceWinners(this)){
+            for (String prizeString : Utils.replaceWinners(this)) {
                 Utils.sendMessage(player, prizeString);
             }
         });
     }
 
-    /*|Utils|*/
+    /* |Utils| */
 
     public void forceStopArena() {
         forceStopGame();
@@ -464,28 +467,29 @@ public final class Arena implements IArena {
         voting.reset();
     }
 
-    public boolean forceStartArena(){
-        if(!(getCurrentPlayers() >= 2 && getStage().equals(Stage.WAITING) || getStage().equals(Stage.STARTING)))
+    public boolean forceStartArena() {
+        if (!(getCurrentPlayers() >= properties.getMinPlayers() && getStage().equals(Stage.WAITING)
+                || getStage().equals(Stage.STARTING)))
             return false;
         generateLinkedList();
         onStart();
         return true;
     }
 
-    private void sendPathMessage(Player player, String path){
-        String string = "messages.arena."+path+".";
-        String title = Utils.sendMessage(this, player, string+"title", null, false);
-        String message = Utils.sendMessage(this, player, string+"message", null, false);
+    private void sendPathMessage(Player player, String path) {
+        String string = "messages.arena." + path + ".";
+        String title = Utils.sendMessage(this, player, string + "title", null, false);
+        String message = Utils.sendMessage(this, player, string + "message", null, false);
         Utils.send(path, player, title, message);
     }
 
-    public void sendWarningMessages(){
+    public void sendWarningMessages() {
         for (GamePlayer gamePlayer : playerList)
             sendPathMessage(Bukkit.getPlayer(gamePlayer.getUUID()), "on-failed-change");
     }
 
-    private void forceStopGame(){
-        if(microGame != null)
+    private void forceStopGame() {
+        if (microGame != null)
             microGame.aFinish(true);
     }
 
@@ -499,25 +503,26 @@ public final class Arena implements IArena {
         SocketManager.sendArenaUpdate(this);
     }
 
-    /*|Performance|*/
+    /* |Performance| */
 
     @Override
     public String toString() {
-        return "Arena{name="+getName()+",unloaded="+unloaded+",stage="+getStage().name()+"}";
+        return "Arena{name=" + getName() + ",unloaded=" + unloaded + ",stage=" + getStage().name() + "}";
     }
 
-    private void load(){
+    private void load() {
         unloaded = false;
     }
 
-    private void unload(){
+    private void unload() {
         unloaded = true;
         properties.unloadChunks();
     }
 
-    /*|Class|*/
+    /* |Class| */
 
-    public static final ChatColor[] COLORS = new ChatColor[]{ChatColor.GREEN, ChatColor.GREEN, ChatColor.YELLOW, ChatColor.GOLD, ChatColor.RED};
+    public static final ChatColor[] COLORS = new ChatColor[] { ChatColor.GREEN, ChatColor.GREEN, ChatColor.YELLOW,
+            ChatColor.GOLD, ChatColor.RED };
 
     private final Properties properties;
 
@@ -605,8 +610,8 @@ public final class Arena implements IArena {
     }
 
     @Nullable
-    public WinEffect.Type getCurrentWinEffect(){
-        if(winEffect == null)
+    public WinEffect.Type getCurrentWinEffect() {
+        if (winEffect == null)
             return null;
         return winEffect.getType();
     }
@@ -617,17 +622,17 @@ public final class Arena implements IArena {
     }
 
     @NotNull
-    public String getName(){
+    public String getName() {
         return properties.getName();
     }
 
     @NotNull
-    public Properties getProperties(){
+    public Properties getProperties() {
         return properties;
     }
 
     @Nullable
-    public MicroGame getMicroGame(){
+    public MicroGame getMicroGame() {
         return microGame;
     }
 
@@ -636,14 +641,12 @@ public final class Arena implements IArena {
         return voting;
     }
 
-    public boolean isStarted(){
+    public boolean isStarted() {
         return stage.equals(Stage.PLAYING) || stage.equals(Stage.NEW_GAME_STARTING) || stage.equals(Stage.FINISHED);
     }
 
-    public boolean isHardMode(){
+    public boolean isHardMode() {
         return voting.getHard() > voting.getNormal();
     }
 
 }
-
-

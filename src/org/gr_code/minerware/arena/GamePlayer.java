@@ -13,11 +13,7 @@ import org.gr_code.minerware.MinerPlugin;
 import org.gr_code.minerware.api.arena.IPlayer;
 import org.gr_code.minerware.manager.ManageHandler;
 import org.gr_code.minerware.manager.type.Utils;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 import static org.gr_code.minerware.manager.type.Utils.*;
 
@@ -32,9 +28,9 @@ public class GamePlayer implements IPlayer {
     private final String objectString = fileConfiguration.getString("waiting-scoreboard.title");
 
     @SuppressWarnings("deprecation")
-    Objective objective = ManageHandler.getModernAPI().isLegacy() ?
-            scoreboard.registerNewObjective("MinerWare", "dummy") :
-            scoreboard.registerNewObjective("MinerWare", "dummy", translate(objectString));
+    Objective objective = ManageHandler.getModernAPI().isLegacy()
+            ? scoreboard.registerNewObjective("MinerWare", "dummy")
+            : scoreboard.registerNewObjective("MinerWare", "dummy", translate(objectString));
 
     private final java.util.UUID UUID;
 
@@ -106,36 +102,51 @@ public class GamePlayer implements IPlayer {
     }
 
     private void doBoardTask(boolean game) {
-        if (Objects.requireNonNull(Bukkit.getPlayer(UUID)).getScoreboard().getObjective("MinerWare") == null)
-            startDisplaying();
-        List<String> strings = new ArrayList<>();
+        if (((Player) Objects.requireNonNull(Bukkit.getPlayer(this.UUID))).getScoreboard()
+                .getObjective("MinerWare") == null) {
+            this.startDisplaying();
+        }
+
         String path = (game ? "game" : "waiting") + "-scoreboard.list";
-        if (game) {
-            strings.add("");
-            for (String string : getLeaders(arena))
-                strings.add(format(string));
-        }
-        strings.addAll(fileConfiguration.getStringList(path));
-        int size = strings.size();
-        if (scoreboard.getTeams().size() != strings.size())
-            resetScores();
-        for (String string : strings) {
-            String s = size + ":" + UUID.toString().substring(0, 10);
-            Team team = getTeam(s, size);
-            String task = replacePlaceholders(arena,
-                    Utils.request(string.replace("<points>", getPoints() + ""),
-                            Bukkit.getPlayer(UUID)));
-            if (game) {
-                assert arena.getMicroGame() != null;
-                task = task.replace("<game_name>", arena.getMicroGame().getName());
+        List<String> strings = new ArrayList(this.fileConfiguration.getStringList(path));
+        int size;
+        if (game && strings.contains("<leaders>")) {
+            size = strings.indexOf("<leaders>");
+            strings.remove(size);
+            String[] var5 = Utils.getLeaders(this.arena);
+            int var6 = var5.length;
+
+            for (int var7 = 0; var7 < var6; ++var7) {
+                String string = var5[var7];
+                strings.add(size, this.format(string));
+                ++size;
             }
-            updateTeam(team, task);
-            updateScore(ChatColor.values()[size].toString() + ChatColor.RESET.toString(), size);
-            size--;
         }
+
+        size = strings.size();
+        if (this.scoreboard.getTeams().size() != strings.size()) {
+            this.resetScores();
+        }
+
+        for (Iterator var10 = strings.iterator(); var10.hasNext(); --size) {
+            String string = (String) var10.next();
+            String s = size + ":" + this.UUID.toString().substring(0, 10);
+            Team team = this.getTeam(s, size);
+            String task = Utils.replacePlaceholders(this.arena,
+                    Utils.request(string.replace("<points>", this.getPoints() + ""), Bukkit.getPlayer(this.UUID)));
+            if (game) {
+                assert this.arena.getMicroGame() != null;
+
+                task = task.replace("<game_name>", this.arena.getMicroGame().getName());
+            }
+
+            this.updateTeam(team, task);
+            this.updateScore(ChatColor.values()[size].toString() + ChatColor.RESET, size);
+        }
+
     }
 
-    private Team getTeam(String string, int size){
+    private Team getTeam(String string, int size) {
         Team team = scoreboard.getTeam(string);
         if (team == null) {
             team = scoreboard.registerNewTeam(string);
@@ -147,13 +158,13 @@ public class GamePlayer implements IPlayer {
     public void resetScoreBoard() {
         for (Team team : scoreboard.getTeams())
             team.unregister();
-        if(scoreboard.getObjective("MinerWare") != null)
+        if (scoreboard.getObjective("MinerWare") != null)
             objective.unregister();
         scoreboard = Objects.requireNonNull(Bukkit.getScoreboardManager()).getNewScoreboard();
     }
 
-    private void resetScores(){
-        scoreboard.getEntries().forEach(scoreboard :: resetScores);
+    private void resetScores() {
+        scoreboard.getEntries().forEach(scoreboard::resetScores);
         for (Team team : scoreboard.getTeams())
             team.unregister();
     }
@@ -173,29 +184,29 @@ public class GamePlayer implements IPlayer {
     private void updateTeam(Team team, String scoreboardText) {
         String prefix = team.getPrefix();
         String suffix;
-            if (scoreboardText.length() > LIMIT) {
-                prefix = scoreboardText.substring(0, LIMIT);
-                suffix = scoreboardText.substring(LIMIT);
-                String colors = ChatColor.getLastColors(prefix);
-                if (prefix.endsWith(String.valueOf(ChatColor.COLOR_CHAR))) {
-                    prefix = prefix.substring(0, prefix.length() - 1);
-                    ChatColor chatColor = ChatColor.getByChar(suffix.charAt(0));
-                    colors = chatColor == null ? "" : chatColor.toString();
-                    suffix = suffix.substring(colors.length());
-                }
-                suffix = colors + suffix;
-                suffix = suffix.length() > LIMIT ? suffix.substring(0, LIMIT) : suffix;
-                team.setSuffix(suffix);
-                team.setPrefix(prefix);
-                return;
+        if (scoreboardText.length() > LIMIT) {
+            prefix = scoreboardText.substring(0, LIMIT);
+            suffix = scoreboardText.substring(LIMIT);
+            String colors = ChatColor.getLastColors(prefix);
+            if (prefix.endsWith(String.valueOf(ChatColor.COLOR_CHAR))) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+                ChatColor chatColor = ChatColor.getByChar(suffix.charAt(0));
+                colors = chatColor == null ? "" : chatColor.toString();
+                suffix = suffix.substring(colors.length());
             }
-        if(!prefix.equals(scoreboardText))
+            suffix = colors + suffix;
+            suffix = suffix.length() > LIMIT ? suffix.substring(0, LIMIT) : suffix;
+            team.setSuffix(suffix);
+            team.setPrefix(prefix);
+            return;
+        }
+        if (!prefix.equals(scoreboardText))
             team.setPrefix(scoreboardText);
         team.setSuffix("");
     }
 
-    private void updateScore(String entry, int size){
-        if(objective.getScore(entry).isScoreSet())
+    private void updateScore(String entry, int size) {
+        if (objective.getScore(entry).isScoreSet())
             return;
         objective.getScore(entry).setScore(size);
     }
@@ -238,16 +249,19 @@ public class GamePlayer implements IPlayer {
         this.achievement = achievement;
     }
 
-    private String format(String string){
-        return translate(Utils.request(Objects.requireNonNull(fileConfiguration.
-                getString("game-scoreboard.leader-format"))
-                .replace("<name>", string.length() > LIMIT / 2 ? string.substring(0, LIMIT / 2): string)
-                .replace("<points>", Objects.requireNonNull(arena.getPlayer
-                        (Objects.requireNonNull(Bukkit.getPlayer(string)).getUniqueId())).getPoints() + ""), Bukkit.getPlayer(string)));
+    private String format(String string) {
+        return translate(
+                Utils.request(Objects.requireNonNull(fileConfiguration.getString("game-scoreboard.leader-format"))
+                        .replace("<name>", string.length() > LIMIT / 2 ? string.substring(0, LIMIT / 2) : string)
+                        .replace("<points>",
+                                Objects.requireNonNull(
+                                        arena.getPlayer(Objects.requireNonNull(Bukkit.getPlayer(string)).getUniqueId()))
+                                        .getPoints() + ""),
+                        Bukkit.getPlayer(string)));
     }
 
     public enum State {
-            PLAYING_GAME, LOSER_IN_GAME, WINNER_IN_GAME, WAITING_GAME
+        PLAYING_GAME, LOSER_IN_GAME, WINNER_IN_GAME, WAITING_GAME
     }
 
     public void setState(State state) {
@@ -268,7 +282,7 @@ public class GamePlayer implements IPlayer {
         this.voted = voted;
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() {
         return player;
     }
 
@@ -276,6 +290,3 @@ public class GamePlayer implements IPlayer {
         return voted;
     }
 }
-
-
-

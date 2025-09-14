@@ -11,6 +11,7 @@ import org.gr_code.minerware.arena.Arena;
 import org.gr_code.minerware.arena.Properties;
 import org.gr_code.minerware.builders.ComponentBuilder;
 import org.gr_code.minerware.commands.ACommand;
+import org.gr_code.minerware.gui.ArenaSelectionGUI;
 import org.gr_code.minerware.manager.type.*;
 import org.gr_code.minerware.manager.type.database.type.MySQL;
 import org.jetbrains.annotations.NotNull;
@@ -288,6 +289,19 @@ public class PluginCommand extends ACommand {
                     arena.addPlayer(uuid);
                     return;
                 }
+                if (args[0].equalsIgnoreCase("list")) {
+                    if (args.length != 1) {
+                        sendMessage(Language.INCORRECT.getString(), player);
+                        return;
+                    }
+                    if (Utils.isInGame(uuid)) {
+                        sendMessage(Language.IN_GAME.getString(), player);
+                        return;
+                    }
+                    ArenaSelectionGUI gui = new ArenaSelectionGUI();
+                    gui.openGUI(player);
+                    return;
+                }
                 if (args[0].equalsIgnoreCase("spawnStatistic")) {
                     if (!player.hasPermission("minerware.admin")) {
                         sendMessage(Language.NO_PERMISSIONS.getString(), player);
@@ -385,46 +399,6 @@ public class PluginCommand extends ACommand {
                         minerPlugin.getLogger().severe("Error reloading configuration: " + e.getMessage());
                         e.printStackTrace();
                     }
-                    return;
-                }
-                if (args[0].equalsIgnoreCase("testIceFloor")) {
-                    if (!player.hasPermission("minerware.admin")) {
-                        sendMessage(Language.NO_PERMISSIONS.getString(), player);
-                        return;
-                    }
-                    sendMessage("&7▪ IceFloor тест:", player);
-                    sendMessage("&7▪ Інформація про використання льодових блоків:", player);
-                    sendMessage("&7▪ Legacy режим: "
-                            + (org.gr_code.minerware.manager.ManageHandler.getModernAPI().isLegacy() ? "&aТак"
-                                    : "&cНі"),
-                            player);
-                    sendMessage("&7▪ Перший етап (початковий лід): "
-                            + (org.gr_code.minerware.manager.ManageHandler.getModernAPI().isLegacy() ? "PACKED_ICE"
-                                    : "BLUE_ICE"),
-                            player);
-                    sendMessage("&7▪ Другий етап (проміжний лід): "
-                            + (org.gr_code.minerware.manager.ManageHandler.getModernAPI().isLegacy() ? "ICE"
-                                    : "PACKED_ICE"),
-                            player);
-                    sendMessage("&7▪ Третій етап (останній лід): "
-                            + (org.gr_code.minerware.manager.ManageHandler.getModernAPI().isLegacy()
-                                    ? "LIGHT_BLUE_STAINED_GLASS"
-                                    : "ICE"),
-                            player);
-                    sendMessage("&7▪ Фінальний етап: &9WATER", player);
-                    return;
-                }
-                if (args[0].equalsIgnoreCase("exitGame")) {
-                    // Команда для виходу з гри (для тестування)
-                    UUID playerUuid = player.getUniqueId();
-                    Arena playerArena = ServerManager.getArena(playerUuid);
-                    if (playerArena == null) {
-                        sendMessage("&cВи не в грі!", player);
-                        return;
-                    }
-
-                    playerArena.removePlayer(playerUuid, false);
-                    sendMessage("&7▪ Ви вийшли з гри для тестування", player);
                     return;
                 }
                 if (args[0].equalsIgnoreCase("openGUI")) {

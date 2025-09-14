@@ -22,13 +22,9 @@ public class Cuboid {
     private final int maxX;
     private final int maxY;
     private final int maxZ;
-
     World world;
-
     private final List<Location> locations = new ArrayList<>();
-
     private final Location centerLocation;
-
     private final HashSet<String> floor;
 
     public Cuboid(int minX, int minY, int minZ, int maxX, int maxY, int maxZ, World world, boolean generateDefaults) {
